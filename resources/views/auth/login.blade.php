@@ -10,8 +10,9 @@
 
     <div class="login-container">
         <h2>Login</h2>
-        <form action="{{ route('login') }}" method="post">
+        <form action="{{ route('do.login') }}" method="post">
             @csrf
+
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>
 

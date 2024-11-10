@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -22,6 +20,8 @@ class AuthController extends Controller
             $user = Auth::user();
 
             switch ($user->role) {
+                case 'admin':
+                    return redirect()->route('dashboard.admin');
                 case 'mahasiswa':
                     return redirect()->route('dashboard.mahasiswa');
                 case 'dospem':

@@ -10,45 +10,49 @@ class UserSeeder extends Seeder
 {
     public function run()
     {
+        // mahasiswa
         User::create([
-            'name' => 'Mahasiswa Example',
-            'username' => 'mahasiswa1',
-            'email' => 'mahasiswa@example.com',
-            'phone' => '081234567890',
-            'department' => 'Teknik Informatika',
-            'password' => Hash::make('password123'),
+            'name' => 'Super Admin',
+            'username' => 'admin',
+            'email' => 'admin@gmail.com',
+            'password' => Hash::make('admin123'),
+            'role' => 'admin',
+        ]);
+
+        // mahasiswa
+        User::create([
+            'name' => 'Andi Lutfi',
+            'username' => '362055401010',
+            'email' => 'andi@gmail.com',
+            'password' => Hash::make('12345678'),
             'role' => 'mahasiswa',
         ]);
 
+        // dospem
         User::create([
-            'name' => 'Dospem Example',
-            'username' => 'dospem1',
-            'email' => 'dospem@example.com',
-            'phone' => '081234567891',
-            'department' => 'Teknik Informatika',
-            'password' => Hash::make('password123'),
+            'name' => 'Farizky Panduardi',
+            'username' => 'farizky',
+            'email' => 'farizky@gmail.com',
+            'password' => Hash::make('12345678'),
             'role' => 'dospem',
         ]);
 
+        // kaprodi
         User::create([
-            'name' => 'Kaprodi Example',
-            'username' => 'kaprodi1',
-            'email' => 'kaprodi@example.com',
-            'phone' => '081234567891',
-            'department' => 'Teknik Informatika',
-            'password' => Hash::make('password123'),
+            'name' => 'Dianni Yusuf',
+            'username' => 'dianni',
+            'email' => 'dianni@gmail.com',
+            'password' => Hash::make('12345678'),
             'role' => 'kaprodi',
         ]);
 
+        // koordinator
         User::create([
-            'name' => 'Koordinator Example',
-            'username' => 'Koordinator1',
-            'email' => 'Koordinator@example.com',
-            'phone' => '081234567891',
-            'department' => 'Teknik Informatika',
-            'password' => Hash::make('password123'),
-            'role' => 'Koordinator',
+            'name' => 'Lukman Hakim',
+            'username' => 'lukman',
+            'email' => 'lukman@gmail.com',
+            'password' => Hash::make('12345678'),
+            'role' => 'koordinator',
         ]);
-
     }
 }
