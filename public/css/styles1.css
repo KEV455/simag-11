@@ -1,0 +1,188 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.login-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    text-align: left;
+    color: #555;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    background-color: #f0f8ff;
+    outline: none;
+}
+
+button {
+    background-color: #0066cc;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #005bb5;
+}
+
+.link {
+    display: block;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #0066cc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.link:hover {
+    color: #005bb5;
+}
+
+/* Features Section */
+.features-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Kurangi min-width dari 150px menjadi 120px */
+    gap: 10px; /* Kurangi jarak antar kartu dari 20px menjadi 10px */
+    max-width: 600px; /* Kurangi lebar maksimal dari 800px menjadi 600px */
+    width: 100%;
+}
+
+.feature-card {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px; /* Kurangi padding dari 20px menjadi 10px */
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); /* Kurangi shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.feature-card:hover {
+    transform: translateY(-3px); /* Kurangi hover effect agar lebih halus */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+    font-size: 30px; /* Kurangi ukuran ikon dari 40px menjadi 30px */
+    margin-bottom: 8px; /* Kurangi jarak bawah ikon */
+    color: #0066cc;
+}
+
+.feature-card h3 {
+    font-size: 16px; /* Kurangi ukuran teks dari 18px menjadi 16px */
+    color: #333;
+    margin-bottom: 8px; /* Kurangi jarak bawah teks */
+}
+
+footer {
+    background-color: #0066cc;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    font-size: 14px;
+}
+
+
+
+/* General Styling */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: #333;
+}
+
+.card {
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    transition: all 0.3s ease;
+}
+
+.feature-card i {
+    color: #0066cc;
+}
+
+.feature-card h5 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+}
+
+.feature-card p {
+    font-size: 14px;
+    color: #666;
+}
+
+.feature-card .btn-primary {
+    background-color: #0066cc;
+    border: none;
+}
+
+.feature-card .btn-primary:hover {
+    background-color: #005bb5;
+    border: none;
+}
+
+.thank-you {
+    margin-top: 20px;
+}
+
+.thank-you p {
+    font-size: 16px;
+    color: #333;
+}

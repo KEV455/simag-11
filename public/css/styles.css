@@ -1,0 +1,1854 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+}
+
+.navbar {
+    padding: 1rem;
+}
+
+.sidebar {
+    height: 100vh;
+    padding-top: 1rem;
+    position: fixed;
+    background-color: #fff;
+    border-right: 1px solid #ddd;
+}
+
+.sidebar .nav-link {
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+    color: #333;
+}
+
+.sidebar .nav-link i {
+    margin-right: 10px;
+}
+
+.sidebar .nav-link.active {
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+}
+
+.main-content {
+    margin-left: 250px;
+    padding: 2rem;
+}
+
+.card {
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+.card-title {
+    font-size: 1.25rem;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+
+Reset dasar
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #faf8f8;
+    color: #333;
+}
+
+.sidebar {
+    background-color: #343a40;
+    height: 100vh;
+    position: fixed;
+    width: 250px;
+    padding-top: 20px;
+}
+
+.sidebar h4 {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.sidebar .nav-link {
+    color: rgba(255, 25, 255, 0.9);
+    font-weight: 500;
+    padding: 15px;
+    display: block;
+    transition: background 0.3s ease;
+}
+
+.sidebar .nav-link.active,
+.sidebar .nav-link:hover {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+.main-content {
+    margin-left: 250px;
+    padding: 2rem;
+}
+
+.card {
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    margin-bottom: 1.5rem;
+}
+
+.card-title {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.stat-card {
+    padding: 1rem;
+}
+
+.stat-icon {
+    font-size: 2.5rem;
+    color: #007bff;
+    margin-right: 15px;
+}
+
+.table-responsive {
+    margin-top: 2rem;
+}
+
+.table th, .table td {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+    vertical-align: middle;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f2f2f2;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 0;
+        padding: 1rem;
+    }
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+}
+.sidebar {
+    background-color: #343a40;
+    color: white;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    padding: 20px;
+}
+.sidebar h2 {
+    color: #fff;
+    margin-bottom: 30px;
+    text-align: center;
+}
+.sidebar ul {
+    padding: 0;
+    list-style: none;
+}
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+.sidebar ul li a {
+    color: #ced4da;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+}
+.sidebar ul li a:hover {
+    background-color: #495057;
+    color: #fff;
+}
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+}
+.card {
+    margin-bottom: 20px;
+}
+.thank-you {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+/* pendaftaran */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+}
+
+.navbar {
+    padding: 1rem;
+}
+
+.sidebar {
+    height: 100vh;
+    padding-top: 1rem;
+    position: fixed;
+    background-color: #fff;
+    border-right: 1px solid #ddd;
+}
+
+.sidebar .nav-link {
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+    color: #333;
+}
+
+.sidebar .nav-link i {
+    margin-right: 10px;
+}
+
+.sidebar .nav-link.active {
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+}
+
+.main-content {
+    margin-left: 250px;
+    padding: 2rem;
+}
+
+.card {
+    border-radius: 10px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+}
+
+/* Validasi program magang */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+}
+
+.navbar {
+    padding: 1rem;
+}
+
+.sidebar {
+    height: 100vh;
+    padding-top: 1rem;
+    position: fixed;
+    background-color: #fff;
+    border-right: 1px solid #ddd;
+}
+
+.sidebar .nav-link {
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+    color: #333;
+}
+
+.sidebar .nav-link i {
+    margin-right: 10px;
+}
+
+.sidebar .nav-link.active {
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+}
+
+.main-content {
+    margin-left: 250px;
+    padding: 2rem;
+}
+
+.card {
+    border-radius: 10px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+}
+
+/* penetapan dosen */
+body {
+    background-color: #f8f9fa;
+}
+
+.navbar {
+    margin-bottom: 30px;
+}
+
+.navbar-brand {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.container {
+    margin-top: 40px;
+}
+
+h2 {
+    font-size: 26px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.card {
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.table {
+    margin-top: 20px;
+}
+
+.table th {
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+}
+
+.table td {
+    text-align: center;
+}
+
+.btn-sm {
+    margin-right: 5px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+}
+
+.form-select {
+    width: 100%;
+    padding: 5px;
+}
+
+.badge {
+    font-size: 14px;
+    padding: 5px 10px;
+}
+
+/* logbookmhs */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+}
+
+.navbar {
+    padding: 1rem;
+}
+
+.sidebar {
+    height: 100vh;
+    padding-top: 1rem;
+    position: fixed;
+    background-color: #fff;
+    border-right: 1px solid #ddd;
+}
+
+.sidebar .nav-link {
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+    color: #333;
+}
+
+.sidebar .nav-link i {
+    margin-right: 10px;
+}
+
+.sidebar .nav-link.active {
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+}
+
+.main-content {
+    margin-left: 250px;
+    padding: 2rem;
+}
+
+.card {
+    border-radius: 10px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+}
+
+/* laporanmhs */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+}
+
+.navbar {
+    padding: 1rem;
+}
+
+.sidebar {
+    height: 100vh;
+    padding-top: 1rem;
+    position: fixed;
+    background-color: #fff;
+    border-right: 1px solid #ddd;
+}
+
+.sidebar .nav-link {
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+    color: #333;
+}
+
+.sidebar .nav-link i {
+    margin-right: 10px;
+}
+
+.sidebar .nav-link.active {
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+}
+
+.main-content {
+    margin-left: 250px;
+    padding: 2rem;
+}
+
+.card {
+    border-radius: 10px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+}
+/* validasitranskip */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+}
+
+.navbar {
+    padding: 1rem;
+}
+
+.sidebar {
+    height: 100vh;
+    padding-top: 1rem;
+    position: fixed;
+    background-color: #fff;
+    border-right: 1px solid #ddd;
+}
+
+.sidebar .nav-link {
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+    color: #333;
+}
+
+.sidebar .nav-link i {
+    margin-right: 10px;
+}
+
+.sidebar .nav-link.active {
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+}
+
+.main-content {
+    margin-left: 250px;
+    padding: 2rem;
+}
+
+.card {
+    border-radius: 10px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+}
+
+/* editprofil */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+}
+
+.navbar {
+    padding: 1rem;
+}
+
+.sidebar {
+    height: 100vh;
+    padding-top: 1rem;
+    position: fixed;
+    background-color: #fff;
+    border-right: 1px solid #ddd;
+}
+
+.sidebar .nav-link {
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+    color: #333;
+}
+
+.sidebar .nav-link i {
+    margin-right: 10px;
+}
+
+.sidebar .nav-link.active {
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+}
+
+.main-content {
+    margin-left: 250px;
+    padding: 2rem;
+}
+
+.card {
+    border-radius: 10px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+}
+
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+}
+
+.navbar {
+    padding: 1rem;
+}
+
+.sidebar {/* profil */
+    height: 100vh;
+    padding-top: 1rem;
+    position: fixed;
+    background-color: #fff;
+    border-right: 1px solid #ddd;
+}
+
+.sidebar .nav-link {
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+    color: #333;
+}
+
+.sidebar .nav-link i {
+    margin-right: 10px;
+}
+
+.sidebar .nav-link.active {
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+}
+
+.main-content {
+    margin-left: 250px;
+    padding: 2rem;
+}
+
+.card {
+    border-radius: 10px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+}
+
+/* daftardosen */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+}
+
+.navbar {
+    padding: 1rem;
+}
+
+.sidebar {
+    height: 100vh;
+    padding-top: 1rem;
+    position: fixed;
+    background-color: #fff;
+    border-right: 1px solid #ddd;
+}
+
+.sidebar .nav-link {
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+    color: #333;
+}
+
+.sidebar .nav-link i {
+    margin-right: 10px;
+}
+
+.sidebar .nav-link.active {
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+}
+
+.main-content {
+    margin-left: 250px;
+    padding: 2rem;
+}
+
+.card {
+    border-radius: 10px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+}
+
+/* halamantambahdosen */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+}
+
+.navbar {
+    padding: 1rem;
+}
+
+.sidebar {
+    height: 100vh;
+    padding-top: 1rem;
+    position: fixed;
+    background-color: #fff;
+    border-right: 1px solid #ddd;
+}
+
+.sidebar .nav-link {
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+    color: #333;
+}
+
+.sidebar .nav-link i {
+    margin-right: 10px;
+}
+
+.sidebar .nav-link.active {
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+}
+
+.main-content {
+    margin-left: 250px;
+    padding: 2rem;
+}
+
+.card {
+    border-radius: 10px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+}
+
+/* halamanlogbokdosen */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+}
+
+.navbar {
+    padding: 1rem;
+}
+
+.sidebar {
+    height: 100vh;
+    padding-top: 1rem;
+    position: fixed;
+    background-color: #fff;
+    border-right: 1px solid #ddd;
+}
+
+.sidebar .nav-link {
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+    color: #333;
+}
+
+.sidebar .nav-link i {
+    margin-right: 10px;
+}
+
+.sidebar .nav-link.active {
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+}
+
+.main-content {
+    margin-left: 250px;
+    padding: 2rem;
+}
+
+.card {
+    border-radius: 10px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f1f1f1;
+}
+/* dashboarddospem */
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+.navbar {
+    padding: 1rem;
+}
+
+.sidebar {
+    height: 100vh;
+    padding-top: 1rem;
+    position: fixed;
+}
+
+.sidebar .nav-link {
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+}
+
+.sidebar .nav-link i {
+    margin-right: 10px;
+}
+
+.main-content {
+    margin-left: 250px;
+    padding: 2rem;
+}
+
+.card {
+    border-radius: 10px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+}
+
+/* laporandospem */
+/* General Body Styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #212529;
+}
+
+/* Navbar Styling */
+.navbar {
+    margin-bottom: 20px;
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+    font-size: 16px;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    background-color: #f1f1f1;
+    height: 100vh;
+    padding: 20px 0;
+}
+
+.sidebar .nav-item {
+    margin-bottom: 10px;
+}
+
+.sidebar .nav-link {
+    font-size: 16px;
+    color: #495057;
+}
+
+.sidebar .nav-link.active {
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+}
+
+.sidebar .nav-link:hover {
+    background-color: #e9ecef;
+}
+
+/* Main Content Styling */
+.main-content {
+    padding: 20px;
+}
+
+.table {
+    margin-bottom: 20px;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #e9ecef;
+}
+
+.table-dark {
+    background-color: #343a40;
+    color: #ffffff;
+}
+
+.table-dark th, .table-dark td {
+    border-color: #454d55;
+}
+
+.table-dark .table-active {
+    background-color: #495057;
+    color: #ffffff;
+}
+
+.badge {
+    font-size: 14px;
+}
+
+/* Modal Styling */
+.modal-content {
+    border-radius: 0.5rem;
+}
+
+.modal-header {
+    border-bottom: 1px solid #dee2e6;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+textarea {
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+}
+
+/* Button Styling */
+.btn {
+    border-radius: 0.25rem;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border: none;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+.btn-info {
+    background-color: #17a2b8;
+    border: none;
+}
+
+.btn-info:hover {
+    background-color: #138496;
+}
+
+.btn-outline-success {
+    border-color: #28a745;
+    color: #28a745;
+}
+
+.btn-outline-success:hover {
+    background-color: #28a745;
+    color: #ffffff;
+}
+
+/* Responsive Design */
+@media (max-width: 767.98px) {
+    .sidebar {
+        height: auto;
+        position: relative;
+    }
+
+    .sidebar .nav-link {
+        font-size: 14px;
+    }
+
+    .navbar-nav {
+        margin-top: 10px;
+    }
+}
+
+/* logbookdospem */
+body {
+    background-color: #f8f9fa;
+}
+
+.navbar {
+    margin-bottom: 30px;
+}
+
+.navbar-brand {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.container {
+    margin-top: 40px;
+}
+
+h2 {
+    font-size: 26px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.list-group-item {
+    font-size: 16px;
+}
+
+.list-group-item.active {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+.card {
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.table {
+    margin-top: 20px;
+}
+
+.table th {
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+}
+
+.table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+textarea {
+    resize: none;
+}
+
+.btn-sm {
+    margin-right: 5px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    color: #fff;
+    font-size: 16px;
+}
+
+.text-end {
+    text-align: right;
+}
+
+/* halmancpl */
+body {
+    font-family: "Verdana", sans-serif;
+    background-color: #f8f9fa;
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+form .form-control {
+    margin-bottom: 15px;
+}
+
+.btn {
+    padding: 10px;
+    font-size: 16px;
+}
+
+/* Sidebar styling */
+.sidebar {
+    width: 250px;
+    min-height: 100vh;
+    position: fixed;
+}
+
+.sidebar .nav-link {
+    color: #333;
+    padding: 10px 15px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.sidebar .nav-link.active {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.sidebar .nav-link:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+
+
+
+/* konversi nilai */
+body {
+    font-family: "Verdana", sans-serif;
+    background-color: #f8f9fa;
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+.sidebar {
+    background-color: #f1f1f1;
+    height: 100vh;
+    padding-top: 20px;
+}
+
+.table-responsive {
+    margin-top: 20px;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #e9ecef;
+}
+
+form .btn-primary {
+    margin-top: 10px;
+}
+
+/* update cpl */
+body {
+    font-family: "Verdana", sans-serif;
+    background-color: #f8f9fa;
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+form .form-control {
+    margin-bottom: 15px;
+}
+
+.btn {
+    padding: 10px;
+    font-size: 16px;
+}
+/* halmankonversinilai */
+body {
+    font-family: "Verdana", sans-serif;
+    background-color: #f8f9fa;
+    margin: 0; /* Menghilangkan margin default */
+    padding: 0; /* Menghilangkan padding default */
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+.container {
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1200px; /* Menentukan lebar maksimum untuk konten */
+}
+
+.table {
+    margin-top: 20px;
+}
+
+.table th, .table td {
+    vertical-align: middle;
+}
+
+.table thead {
+    background-color: #343a40;
+    color: #fff;
+}
+
+.btn {
+    padding: 8px;
+    font-size: 14px;
+}
+
+/* Sidebar styling */
+.sidebar {
+    width: 250px;
+    min-height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #f8f9fa;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar .nav-link {
+    color: #333;
+    padding: 10px 15px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.sidebar .nav-link.active {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.sidebar .nav-link:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+/* Adjust main content margin to account for sidebar width */
+.d-flex {
+    margin-left: 250px;
+}
+
+
+
+
+/* halmankonversinilai2 */
+body {
+    font-family: "Verdana", sans-serif;
+    background-color: #f8f9fa;
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+form .form-control {
+    margin-bottom: 15px;
+}
+
+.btn {
+    padding: 10px;
+    font-size: 16px;
+}
+
+/* Sidebar styling */
+.sidebar {
+    width: 250px;
+    min-height: 100vh;
+    position: fixed;
+}
+
+.sidebar .nav-link {
+    color: #333;
+    padding: 10px 15px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.sidebar .nav-link.active {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.sidebar .nav-link:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.list-group-item {
+    font-size: 16px;
+}
+
+.btn-outline-info {
+    border-color: #007bff;
+    color: #007bff;
+}
+
+.btn-outline-info:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+/* manajemenplmitra */
+
+
+/* login*/
+
+
+/* halmandaftardpl */
+
+/* dpl */
+/* General styling */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #f8f9fa;
+    padding-top: 20px;
+}
+
+/* Content Margin for Sidebar */
+.container {
+    margin-left: 270px;
+}
+
+/* Form Styling */
+.form-control {
+    border-radius: 5px;
+}
+
+button {
+    margin-right: 10px;
+}
+
+/* transkipnilaikaprodi */
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: 220px; /* Perkecil sedikit lebar sidebar */
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #f8f9fa;
+    padding-top: 20px;
+}
+
+/* Content Margin for Sidebar */
+.container {
+    margin-left: 240px; /* Kurangi margin kiri agar lebih dekat ke sidebar */
+}
+
+/* Table Styling */
+.table {
+    margin-top: 20px;
+}
+
+.btn-sm {
+    font-size: 14px;
+}
+
+.badge {
+    font-size: 14px;
+}
+
+/* validasikaprodi*/
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: 220px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #f8f9fa;
+    padding-top: 20px;
+}
+
+/* Content Margin for Sidebar */
+.container {
+    margin-left: 40px;
+}
+
+.table {
+    margin-top: 20px;
+}
+
+.badge {
+    font-size: 14px;
+}
+
+.btn-sm {
+    font-size: 14px;
+}
+
+/* daftarlowonganmitra */
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: 220px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #f8f9fa;
+    padding-top: 20px;
+}
+
+/* Content Margin for Sidebar */
+.container {
+    margin-left: 40px;
+}
+
+.table {
+    margin-top: 20px;
+}
+
+.pagination {
+    margin-bottom: 0;
+}
+
+/*detaillowongan*/
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: 220px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #f8f9fa;
+    padding-top: 20px;
+}
+
+/* Content Margin for Sidebar */
+.container {
+    margin-left: 40px;
+}
+
+.card {
+    margin-top: 20px;
+}
+
+.d-grid {
+    margin-top: 20px;
+}
+
+.btn-lg {
+    padding: 12px 24px;
+}
+
+/* listlogbook*/
+/* Global Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    min-height: 100vh;
+    border-right: 1px solid #ddd;
+}
+
+.sidebar .nav-link {
+    font-size: 16px;
+    padding: 10px 15px;
+    color: #333;
+}
+
+.sidebar .nav-link:hover {
+    background-color: #e9ecef;
+    color: #0056b3;
+}
+
+.sidebar .nav-link i {
+    margin-right: 10px;
+}
+
+/* Table Styling */
+.table-responsive {
+    margin-top: 20px;
+}
+
+.table thead th {
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+}
+
+.table tbody td {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Button Styling */
+.btn-primary {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.btn-primary:hover {
+    background-color: #004494;
+    border-color: #004494;
+}
+
+/* lihatdetaillowonganmitra */
+body {
+    background-color: #f8f9fa;
+}
+
+.card {
+    margin-top: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.card-subtitle {
+    font-size: 18px;
+    color: #6c757d;
+}
+
+.card-text {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+}
+
+.btn-apply {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-apply:hover {
+    background-color: #0056b3;
+}
+
+.btn-back {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+.navbar {
+    margin-bottom: 30px;
+}
+
+.navbar-brand {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.nav-link {
+    font-size: 16px;
+}
+
+.nav-link i {
+    margin-right: 5px;
+}
+
+.navbar-dark .navbar-toggler {
+    border-color: transparent;
+}
+
+.dropdown-menu {
+    font-size: 16px;
+}
+/* lihatdetailmitrabumisari*/
+
+body {
+    background-color: #f8f9fa;
+}
+
+.card {
+    margin-top: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.card-subtitle {
+    font-size: 18px;
+    color: #6c757d;
+}
+
+.card-text {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+}
+
+.btn-apply {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-apply:hover {
+    background-color: #0056b3;
+}
+
+.btn-back {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+.navbar {
+    margin-bottom: 30px;
+}
+
+.navbar-brand {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.nav-link {
+    font-size: 16px;
+}
+
+.nav-link i {
+    margin-right: 5px;
+}
+
+.navbar-dark .navbar-toggler {
+    border-color: transparent;
+}
+
+.dropdown-menu {
+    font-size: 16px;
+}
+
+/*prodivalidasi*/
+body {
+    background-color: #f8f9fa;
+}
+
+.navbar {
+    margin-bottom: 30px;
+}
+
+.navbar-brand {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.container {
+    margin-top: 40px;
+}
+
+h2 {
+    font-size: 26px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.card {
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.table {
+    margin-top: 20px;
+}
+
+.table th {
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+}
+
+.table td {
+    text-align: center;
+}
+
+.btn-sm {
+    margin-right: 5px;
+}
+
+.btn-success {
+    background-color: #28a745;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+}
+
+.badge {
+    font-size: 14px;
+    padding: 5px 10px;
+}
+
+/* dashboardkordinatormagang */
+/* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar {
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-nav .nav-item .nav-link {
+    color: #fff;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+    color: #ffc107;
+}
+
+.nav-item .dropdown-menu {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Sidebar */
+.sidebar {
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 60px;
+    background-color: #f8f9fa;
+    border-right: 1px solid #ddd;
+}
+
+.sidebar .nav-link {
+    color: #333;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    padding: 10px 15px;
+}
+
+.sidebar .nav-link.active {
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+}
+
+.sidebar .nav-link:hover {
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.sidebar .nav-link i {
+    margin-right: 10px;
+}
+
+/* Main Content */
+.main-content {
+    margin-left: 250px;
+    padding: 30px;
+}
+
+.main-content h1 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.border-bottom {
+    border-bottom: 2px solid #dee2e6 !important;
+}
+
+/* Dashboard Cards */
+.dashboard-card {
+    border: none;
+    border-radius: 10px;
+    background-color: #fff;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    color: #6c757d;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .sidebar {
+        position: static;
+        height: auto;
+        border-right: none;
+    }
+    .main-content {
+        margin-left: 0;
+    }
+}
+
+ /*kelolamahasiswa*/
+
+
+/*penetapandosenpembimbing*/
+body {
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+.sidebar {
+    height: 100vh;
+    position: fixed;
+    top: 56px; /* Untuk menghindari navbar */
+}
+
+.table th, .table td {
+    vertical-align: middle;
+}
+
+.btn-info {
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+
+.btn-info:hover {
+    background-color: #138496;
+}
+
+.modal-body {
+    padding: 20px;
+}
