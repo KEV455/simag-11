@@ -44,10 +44,32 @@
                     <!-- Navigation Menu-->
                     <ul class="navigation-menu">
                         <li class="has-submenu">
-                            <a href="">
-                                <i class="fa-solid fa-house-chimney"></i>
-                                <span>Dashboard</span>
-                            </a>
+                            @if (Auth()->user()->role == 'admin')
+                                <a href="{{ route('dashboard.admin') }}">
+                                    <i class="fa-solid fa-house-chimney"></i>
+                                    <span>Dashboard</span>
+                                </a>
+                            @elseif (Auth()->user()->role == 'mahasiswa')
+                                <a href="{{ route('dashboard.mahasiswa') }}">
+                                    <i class="fa-solid fa-house-chimney"></i>
+                                    <span>Dashboard</span>
+                                </a>
+                            @elseif (Auth()->user()->role == 'dospem')
+                                <a href="{{ route('dashboard.dospem') }}">
+                                    <i class="fa-solid fa-house-chimney"></i>
+                                    <span>Dashboard</span>
+                                </a>
+                            @elseif (Auth()->user()->role == 'kaprodi')
+                                <a href="{{ route('dashboard.kaprodi') }}">
+                                    <i class="fa-solid fa-house-chimney"></i>
+                                    <span>Dashboard</span>
+                                </a>
+                            @elseif (Auth()->user()->role == 'koordinator')
+                                <a href="{{ route('dashboard.koordinator') }}">
+                                    <i class="fa-solid fa-house-chimney"></i>
+                                    <span>Dashboard</span>
+                                </a>
+                            @endif
                         </li>
 
                         <li class="has-submenu">
@@ -84,29 +106,31 @@
                             </ul><!--end submenu-->
                         </li><!--end has-submenu-->
 
-                        <li class="has-submenu">
-                            <a href="#">
-                                <i class="fa-solid fa-book"></i>
-                                <span>Akademik</span>
-                            </a>
-                            <ul class="submenu">
-                                <li class="has-submenu">
-                                    <a href="#">Program Studi</a>
-                                    <ul class="submenu">
-                                        <li><a href="">Jurusan</a></li>
-                                        <li><a href="">Prodi</a></li>
-                                    </ul>
-                                </li><!--end has-submenu-->
-                                <li>
-                                    <a href="">
-                                        Dosen
-                                    </a>
-                                    <a href="">
-                                        Mahasiswa
-                                    </a>
-                                </li>
-                            </ul><!--end submenu-->
-                        </li><!--end has-submenu-->
+                        @if (Auth()->user()->role == 'admin')
+                            <li class="has-submenu">
+                                <a href="#">
+                                    <i class="fa-solid fa-book"></i>
+                                    <span>Akademik</span>
+                                </a>
+                                <ul class="submenu">
+                                    <li class="has-submenu">
+                                        <a href="#">Program Studi</a>
+                                        <ul class="submenu">
+                                            <li><a href="#">Jurusan</a></li>
+                                            <li><a href="{{ route('admin.prodi.index') }}">Prodi</a></li>
+                                        </ul>
+                                    </li><!--end has-submenu-->
+                                    <li>
+                                        <a href="#">
+                                            Dosen
+                                        </a>
+                                        <a href="#">
+                                            Mahasiswa
+                                        </a>
+                                    </li>
+                                </ul><!--end submenu-->
+                            </li><!--end has-submenu-->
+                        @endif
 
                     </ul><!-- End navigation menu -->
                 </div> <!-- end navigation -->

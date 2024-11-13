@@ -15,6 +15,6 @@ class Prodi extends Model
 
     public function jurusan()
     {
-        return $this->belongsTo(Jurusan::class);
+        return $this->belongsTo(Jurusan::class, 'id_jurusan', 'id');
     }
 }

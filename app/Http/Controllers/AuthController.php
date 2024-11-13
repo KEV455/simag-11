@@ -29,19 +29,19 @@ class AuthController extends Controller
 
             switch ($user->role) {
                 case 'admin':
-                    Alert::toast('Selamat datang admin', 'success');
+                    Alert::toast('Selamat datang ' . $user->name, 'success');
                     return redirect()->route('dashboard.admin');
                 case 'mahasiswa':
-                    Alert::toast('Selamat datang mahasiswa', 'success');
+                    Alert::toast('Selamat datang ' . $user->name, 'success');
                     return redirect()->route('dashboard.mahasiswa');
                 case 'dospem':
-                    Alert::toast('Selamat datang dospem', 'success');
+                    Alert::toast('Selamat datang ' . $user->name, 'success');
                     return redirect()->route('dashboard.dospem');
                 case 'kaprodi':
-                    Alert::toast('Selamat datang kaprodi', 'success');
+                    Alert::toast('Selamat datang ' . $user->name, 'success');
                     return redirect()->route('dashboard.kaprodi');
                 case 'koordinator':
-                    Alert::toast('Selamat datang koordinator', 'success');
+                    Alert::toast('Selamat datang ' . $user->name, 'success');
                     return redirect()->route('dashboard.koordinator');
                 default:
                     Auth::logout();
