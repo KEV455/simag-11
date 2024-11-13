@@ -7,11 +7,13 @@ Route::middleware(['guest'])->group(function () {
     // Route Authentication
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [AuthController::class, 'login'])->name('do.login');
+
+    Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
 });
 
 Route::middleware(['auth'])->group(function () {
     // Route Authentication
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
     // Route Dashboard
     Route::get('/dashboard/admin', fn() => view('dashboard.admin'))->name('dashboard.admin');
@@ -22,7 +24,3 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/profile', [AuthController::class, 'showProfile'])->name('profile')->middleware('auth');
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });

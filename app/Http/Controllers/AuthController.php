@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\Session;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AuthController extends Controller
 {
@@ -14,21 +17,31 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $credentials = $request->only('username', 'password');
+        $credentials = $request->validate([
+            'username' => ['required', 'string'],
+            'password' => ['required', Rules\Password::defaults()],
+        ]);
 
         if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
             $user = Auth::user();
 
             switch ($user->role) {
                 case 'admin':
+                    Alert::toast('Selamat datang admin', 'success');
                     return redirect()->route('dashboard.admin');
                 case 'mahasiswa':
+                    Alert::toast('Selamat datang mahasiswa', 'success');
                     return redirect()->route('dashboard.mahasiswa');
                 case 'dospem':
+                    Alert::toast('Selamat datang dospem', 'success');
                     return redirect()->route('dashboard.dospem');
                 case 'kaprodi':
+                    Alert::toast('Selamat datang kaprodi', 'success');
                     return redirect()->route('dashboard.kaprodi');
                 case 'koordinator':
+                    Alert::toast('Selamat datang koordinator', 'success');
                     return redirect()->route('dashboard.koordinator');
                 default:
                     Auth::logout();
@@ -47,6 +60,7 @@ class AuthController extends Controller
 
     public function logout()
     {
+        Session::flush();
         Auth::logout();
         return redirect()->route('login');
     }

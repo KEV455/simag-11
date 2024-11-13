@@ -1,137 +1,303 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Magang Admin</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-</head>
-<body>
+@extends('layouts.base.base-template')
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Sistem Magang</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-user-circle"></i> {{ Auth::user()->username }} <!-- Menampilkan Username Pengguna -->
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{{ route('profile') }}">Profil</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li>
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    Keluar
-                                </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+@section('title')
+    <title>Dashboard Admin | SiMagang</title>
+@endsection
 
+@section('content')
     <div class="container-fluid">
+        <!-- Page-Title -->
         <div class="row">
-            <!-- Sidebar Menu -->
-            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-                <div class="position-sticky pt-3">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ route('dashboard.admin') }}">
-                                <i class="fas fa-home"></i> Beranda
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('pengajuan.magang') }}">
-                                <i class="fas fa-file-alt"></i> Pengajuan Magang
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('lowongan.mitra') }}">
-                                <i class="fas fa-briefcase"></i> Daftar Lowongan Mitra
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('logbook.mhs') }}">
-                                <i class="fas fa-book"></i> Logbook
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('laporan.mhs') }}">
-                                <i class="fas fa-file-alt"></i> Laporan
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+            <div class="col-sm-12">
+                <div class="page-title-box">
+                    <div class="float-right">
+                        <ol class="breadcrumb">
+                            {{-- <li class="breadcrumb-item"><a href="javascript:void(0);">SiMagang</a></li> --}}
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">SiMagang</a></li>
+                            <li class="breadcrumb-item active">Dashboard </li>
+                        </ol><!--end breadcrumb-->
+                    </div><!--end /div-->
+                    <h4 class="page-title">Dashboard {{ Auth()->user()->role }}</h4>
+                </div><!--end page-title-box-->
+            </div><!--end col-->
+        </div><!--end row-->
 
-            <!-- Main Content -->
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Selamat Datang, {{ Auth::user()->name }}!</h1> <!-- Menampilkan Nama Pengguna -->
-                    <p>Ini adalah dashboard untuk admin magang.</p>
-                </div>
-
-                <!-- Dashboard Cards -->
+        <!-- end page title end breadcrumb -->
+        <div class="row">
+            <div class="col-lg-12">
                 <div class="row">
                     <div class="col-lg-4">
-                        <div class="card shadow-sm mb-4 dashboard-card">
+                        <div class="card hospital-info card-hover">
                             <div class="card-body">
-                                <h5 class="card-title">Pengajuan Magang</h5>
-                                <p class="card-text">Kelola pengajuan magang admin.</p>
-                                <a href="{{ route('pengajuan.magang') }}" class="btn btn-primary">Akses</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="card shadow-sm mb-4 dashboard-card">
-                            <div class="card-body">
-                                <h5 class="card-title">Daftar Lowongan Mitra</h5>
-                                <p class="card-text">Untuk mengetahui lowongan mitra.</p>
-                                <a href="{{ route('lowongan.mitra') }}" class="btn btn-primary">Akses</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="card shadow-sm mb-4 dashboard-card">
-                            <div class="card-body">
-                                <h5 class="card-title">Logbook</h5>
-                                <p class="card-text">Untuk mendokumentasi kegiatan magang.</p>
-                                <a href="{{ route('logbook.mhs') }}" class="btn btn-primary">Akses</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                 <div class="row">
-                    <div class="col-lg-4">
-                        <div class="card shadow-sm mb-4 dashboard-card">
-                            <div class="card-body">
-                                <h5 class="card-title">Laporan</h5>
-                                <p class="card-text">Untuk mendokumentasi kegiatan magang.</p>
-                                <a href="{{ route('laporan.mhs') }}" class="btn btn-primary">Akses</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </main>
-        </div>
-    </div>
+                                <h4 class="header-title mt-0 mb-3">Mitra</h4>
+                                <div class="media">
+                                    <div class="data-icon align-self-center">
+                                        <i class="fa-solid fa-handshake rounded-circle text-primary"></i>
+                                    </div>
+                                    <div class="media-body ml-3 align-self-center text-right">
+                                        <h3 class="mt-0">40</h3>
+                                        <p class="text-muted mb-0 text-nowrap">Daftar Mitra</p>
+                                    </div><!--end media body-->
+                                </div>
+                            </div><!--end card-body-->
+                        </div><!--end card-->
+                    </div><!-- end col-->
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+                    <div class="col-lg-4">
+                        <div class="card hospital-info card-hover">
+                            <div class="card-body card-hover">
+                                <h4 class="header-title mt-0 mb-3">Lowongan</h4>
+                                <div class="media">
+                                    <div class="data-icon align-self-center">
+                                        <i class="fa-solid fa-clipboard-list rounded-circle text-success"></i>
+                                    </div>
+                                    <div class="media-body ml-3 align-self-center text-right">
+                                        <h3 class="mt-0">21</h3>
+                                        <p class="text-muted mb-0 text-nowrap">Daftar Lowongan</p>
+                                    </div><!--end media body-->
+                                </div>
+                            </div><!--end card-body-->
+                        </div><!--end card-->
+                    </div><!-- end col-->
+
+                    <div class="col-lg-4">
+                        <div class="card hospital-info card-hover">
+                            <div class="card-body">
+                                <h4 class="header-title mt-0 mb-3">Mitra Mandiri</h4>
+                                <div class="media">
+                                    <div class="data-icon align-self-center">
+                                        <i class="fa-solid fa-handshake-angle rounded-circle text-bg-info"></i>
+                                    </div>
+                                    <div class="media-body ml-3 align-self-center text-right">
+                                        <h3 class="mt-0">10</h3>
+                                        <p class="text-muted mb-0 text-nowrap">Daftar Mitra Mandiri</p>
+                                    </div><!--end media body-->
+                                </div>
+                            </div><!--end card-body-->
+                        </div><!--end card-->
+                    </div><!-- end col-->
+
+                    <div class="col-lg-4">
+                        <div class="card hospital-info card-hover">
+                            <div class="card-body">
+                                <h4 class="header-title mt-0 mb-3">Permohonan Magang</h4>
+                                <div class="media">
+                                    <div class="data-icon align-self-center">
+                                        <i class="fa-solid fa-user-plus rounded-circle text-warning"></i>
+                                    </div>
+                                    <div class="media-body ml-3 align-self-center text-right">
+                                        <h3 class="mt-0">15</h3>
+                                        <p class="text-muted mb-0 text-nowrap">Daftar Pelamar Magang</p>
+                                    </div><!--end media body-->
+                                </div>
+                            </div><!--end card-body-->
+                        </div><!--end card-->
+                    </div><!-- end col-->
+
+                    <div class="col-lg-4">
+                        <div class="card hospital-info card-hover">
+                            <div class="card-body">
+                                <h4 class="header-title mt-0 mb-3">Berkas Persyaratan</h4>
+                                <div class="media">
+                                    <div class="data-icon align-self-center">
+                                        <i class="fa-solid fa-folder-open rounded-circle text-danger"></i>
+                                    </div>
+                                    <div class="media-body ml-3 align-self-center text-right">
+                                        <h3 class="mt-0">40</h3>
+                                        <p class="text-muted mb-0 text-nowrap">Kelola Berkas Magang</p>
+                                    </div><!--end media body-->
+                                </div>
+                            </div><!--end card-body-->
+                        </div><!--end card-->
+                    </div><!-- end col-->
+
+                    <div class="col-lg-4">
+                        <div class="card hospital-info card-hover">
+                            <div class="card-body">
+                                <h4 class="header-title mt-0 mb-3">Jurusan</h4>
+                                <div class="media">
+                                    <div class="data-icon align-self-center">
+                                        <i class="fa-solid fa-building-columns rounded-circle text-pink"></i>
+                                    </div>
+                                    <div class="media-body ml-3 align-self-center text-right">
+                                        <h3 class="mt-0">5</h3>
+                                        <p class="text-muted mb-0 text-nowrap">Daftar Jurusan</p>
+                                    </div><!--end media body-->
+                                </div>
+                            </div><!--end card-body-->
+                        </div><!--end card-->
+                    </div><!-- end col-->
+
+                    <div class="col-lg-4">
+                        <div class="card hospital-info card-hover">
+                            <div class="card-body">
+                                <h4 class="header-title mt-0 mb-3">Program Studi</h4>
+                                <div class="media">
+                                    <div class="data-icon align-self-center">
+                                        <i class="fa-solid fa-school rounded-circle text-orange"></i>
+                                    </div>
+                                    <div class="media-body ml-3 align-self-center text-right">
+                                        <h3 class="mt-0">10</h3>
+                                        <p class="text-muted mb-0 text-nowrap">Daftar Prodi</p>
+                                    </div><!--end media body-->
+                                </div>
+                            </div><!--end card-body-->
+                        </div><!--end card-->
+                    </div><!-- end col-->
+
+                    <div class="col-lg-4">
+                        <div class="card hospital-info card-hover">
+                            <div class="card-body">
+                                <h4 class="header-title mt-0 mb-3">Dosen</h4>
+                                <div class="media">
+                                    <div class="data-icon align-self-center">
+                                        <i class="fa-solid fa-user-graduate rounded-circle text-blue-violet"></i>
+                                    </div>
+                                    <div class="media-body ml-3 align-self-center text-right">
+                                        <h3 class="mt-0">10</h3>
+                                        <p class="text-muted mb-0 text-nowrap">Daftar Dosen</p>
+                                    </div><!--end media body-->
+                                </div>
+                            </div><!--end card-body-->
+                        </div><!--end card-->
+                    </div><!-- end col-->
+
+                    <div class="col-lg-4">
+                        <div class="card hospital-info card-hover">
+                            <div class="card-body">
+                                <h4 class="header-title mt-0 mb-3">Mahasiswa</h4>
+                                <div class="media">
+                                    <div class="data-icon align-self-center">
+                                        <i class="fa-solid fa-graduation-cap rounded-circle text-deep-sky-blue"></i>
+                                    </div>
+                                    <div class="media-body ml-3 align-self-center text-right">
+                                        <h3 class="mt-0">10</h3>
+                                        <p class="text-muted mb-0 text-nowrap">Daftar Mahasiswa</p>
+                                    </div><!--end media body-->
+                                </div>
+                            </div><!--end card-body-->
+                        </div><!--end card-->
+                    </div><!-- end col-->
+
+                </div><!--end row-->
+            </div><!--end col-->
+        </div><!--end row-->
+
+        {{-- Datatable --}}
+        {{-- <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="header-title mt-0 mb-3">New Patients</h4>
+                        <div class="table-responsive">
+                            <table id="datatable" class="table">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Patient Name</th>
+                                        <th>Age</th>
+                                        <th>ID</th>
+                                        <th>Address</th>
+                                        <th>Mobile No</th>
+                                        <th>Last Visit</th>
+                                        <th>Diseases</th>
+                                        <th class="text-right">Action</th>
+                                    </tr><!--end tr-->
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td><a href="../hospital/patient-profile.html"><img
+                                                    src="{{ asset('template/assets/images/users/user-10.jpg') }}"
+                                                    alt="" class="thumb-sm rounded-circle mr-2">Keith
+                                                Jacobson</a>
+                                        </td>
+                                        <td>48</td>
+                                        <td>#1236</td>
+                                        <td>B28 University Street US</td>
+                                        <td>+123456789</td>
+                                        <td>18/07/2019</td>
+                                        <td><span class="badge badge-soft-success">Ulcers</span></td>
+                                        <td class="text-right">
+                                            <a href="../hospital/patient-edit.html" class="mr-2"><i
+                                                    class="fas fa-edit text-info font-16"></i></a>
+                                            <a href="#"><i class="fas fa-trash-alt text-danger font-16"></i></a>
+                                        </td>
+                                    </tr><!--end tr-->
+                                    <tr>
+                                        <td><a href="../hospital/patient-profile.html"><img
+                                                    src="{{ asset('template/assets/images/users/user-10.jpg') }}"
+                                                    alt="" class="thumb-sm rounded-circle mr-2">Greg
+                                                Crosby</a></td>
+                                        <td>27</td>
+                                        <td>#1236</td>
+                                        <td>B28 University Street US</td>
+                                        <td>+123456789</td>
+                                        <td>18/07/2019</td>
+                                        <td><span class="badge badge-soft-danger">HIV</span></td>
+                                        <td class="text-right">
+                                            <a href="../hospital/patient-edit.html" class="mr-2"><i
+                                                    class="fas fa-edit text-info font-16"></i></a>
+                                            <a href="#"><i class="fas fa-trash-alt text-danger font-16"></i></a>
+                                        </td>
+                                    </tr><!--end tr-->
+                                    <tr>
+                                        <td><a href="../hospital/patient-profile.html"><img
+                                                    src="{{ asset('template/assets/images/users/user-10.jpg') }}"
+                                                    alt="" class="thumb-sm rounded-circle mr-2">Fred
+                                                Godina</a></td>
+                                        <td>22</td>
+                                        <td>#1236</td>
+                                        <td>B28 University Street US</td>
+                                        <td>+123456789</td>
+                                        <td>18/07/2019</td>
+                                        <td><span class="badge badge-soft-success">Virus Fever</span></td>
+                                        <td class="text-right">
+                                            <a href="../hospital/patient-edit.html" class="mr-2"><i
+                                                    class="fas fa-edit text-info font-16"></i></a>
+                                            <a href="#"><i class="fas fa-trash-alt text-danger font-16"></i></a>
+                                        </td>
+                                    </tr><!--end tr-->
+                                    <tr>
+                                        <td><a href="../hospital/patient-profile.html"><img
+                                                    src="{{ asset('template/assets/images/users/user-10.jpg') }}"
+                                                    alt="" class="thumb-sm rounded-circle mr-2">Peggy
+                                                Doe</a></td>
+                                        <td>51</td>
+                                        <td>#7851</td>
+                                        <td>B28 University Street US</td>
+                                        <td>+123456789</td>
+                                        <td>20/07/2019</td>
+                                        <td><span class="badge badge-soft-success">heart attack</span></td>
+                                        <td class="text-right">
+                                            <a href="../hospital/patient-edit.html" class="mr-2"><i
+                                                    class="fas fa-edit text-info font-16"></i></a>
+                                            <a href="#"><i class="fas fa-trash-alt text-danger font-16"></i></a>
+                                        </td>
+                                    </tr><!--end tr-->
+                                    <tr>
+                                        <td><a href="../hospital/patient-profile.html"><img
+                                                    src="{{ asset('template/assets/images/users/user-10.jpg') }}"
+                                                    alt="" class="thumb-sm rounded-circle mr-2">Jennifer Doss</a>
+                                        </td>
+                                        <td>18</td>
+                                        <td>#3654</td>
+                                        <td>B28 University Street US</td>
+                                        <td>+123456789</td>
+                                        <td>19/07/2019</td>
+                                        <td><span class="badge badge-soft-danger">Ebola</span></td>
+                                        <td class="text-right">
+                                            <a href="../hospital/patient-edit.html" class="mr-2"><i
+                                                    class="fas fa-edit text-info font-16"></i></a>
+                                            <a href="#"><i class="fas fa-trash-alt text-danger font-16"></i></a>
+                                        </td>
+                                    </tr><!--end tr-->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div><!--end card-body-->
+                </div><!--end card-->
+            </div> <!--end col-->
+        </div><!--end row--> --}}
+
+    </div><!-- container -->
+@endsection

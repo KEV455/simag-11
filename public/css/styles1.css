@@ -85,7 +85,10 @@ button:hover {
 /* Features Section */
 .features-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Kurangi min-width dari 150px menjadi 120px */
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(120px, 1fr)
+    ); /* Kurangi min-width dari 150px menjadi 120px */
     gap: 10px; /* Kurangi jarak antar kartu dari 20px menjadi 10px */
     max-width: 600px; /* Kurangi lebar maksimal dari 800px menjadi 600px */
     width: 100%;
@@ -129,11 +132,9 @@ footer {
     font-size: 14px;
 }
 
-
-
 /* General Styling */
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
