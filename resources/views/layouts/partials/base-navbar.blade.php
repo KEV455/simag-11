@@ -72,39 +72,46 @@
                             @endif
                         </li>
 
-                        <li class="has-submenu">
-                            <a href="#">
-                                <i class="fa-solid fa-briefcase"></i>
-                                <span>Magang</span>
-                            </a>
-                            <ul class="submenu">
-                                <li class="has-submenu">
-                                    <a href="#">Mitra</a>
-                                    <ul class="submenu">
-                                        <li><a href="">Daftar Mitra</a></li>
-                                        <li><a href="">Daftar Lowongan</a></li>
-                                    </ul>
-                                </li><!--end has-submenu-->
-                                <li class="has-submenu">
-                                    <a href="#">Mitra Mandiri</a>
-                                    <ul class="submenu">
-                                        <li><a href="">Daftar Mitra Mandiri</a></li>
-                                    </ul>
-                                </li><!--end has-submenu-->
-                                <li class="has-submenu">
-                                    <a href="#">Pelamar Magang</a>
-                                    <ul class="submenu">
-                                        <li><a href="">Daftar Pelamar Magang</a></li>
-                                    </ul>
-                                </li><!--end has-submenu-->
-                                <li class="has-submenu">
-                                    <a href="#">Berkas Persyaratan</a>
-                                    <ul class="submenu">
-                                        <li><a href="">Daftar Berkas</a></li>
-                                    </ul>
-                                </li><!--end has-submenu-->
-                            </ul><!--end submenu-->
-                        </li><!--end has-submenu-->
+                        @if (Auth()->user()->role == 'koordinator')
+                            <li class="has-submenu">
+                                <a href="#">
+                                    <i class="fa-solid fa-briefcase"></i>
+                                    <span>Magang</span>
+                                </a>
+                                <ul class="submenu">
+                                    <li class="has-submenu">
+                                        <a href="#">Mitra</a>
+                                        <ul class="submenu">
+                                            <li><a href="">Daftar Mitra</a></li>
+                                            <li><a href="">Daftar Lowongan</a></li>
+                                        </ul>
+                                    </li><!--end has-submenu-->
+                                    <li class="has-submenu">
+                                        <a href="#">Mitra Mandiri</a>
+                                        <ul class="submenu">
+                                            <li><a href="">Daftar Mitra Mandiri</a></li>
+                                        </ul>
+                                    </li><!--end has-submenu-->
+                                    <li class="has-submenu">
+                                        <a href="#">Pelamar Magang</a>
+                                        <ul class="submenu">
+                                            <li><a href="">Daftar Pelamar Magang</a></li>
+                                        </ul>
+                                    </li><!--end has-submenu-->
+                                    <li class="has-submenu">
+                                        <a href="#">Berkas Persyaratan</a>
+                                        <ul class="submenu">
+                                            <li><a href="#">Daftar Berkas</a></li>
+                                        </ul>
+                                    </li><!--end has-submenu-->
+                                    <li>
+                                        <a href="{{ route('admin.kategori.bidang.index') }}">
+                                            Kategori Bidang
+                                        </a>
+                                    </li>
+                                </ul><!--end submenu-->
+                            </li><!--end has-submenu-->
+                        @endif
 
                         @if (Auth()->user()->role == 'admin')
                             <li class="has-submenu">
