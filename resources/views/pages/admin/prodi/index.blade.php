@@ -41,7 +41,7 @@
 
                                 <tbody>
 
-                                    @foreach ($prodi as $item)
+                                    @foreach ($prodis as $item)
                                         <tr class="text-center">
                                             <td>{{ $no }}</td>
                                             <td class="text-left">{{ $item->jenjang_pendidikan }}</td>
