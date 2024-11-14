@@ -116,7 +116,7 @@
                                     <li class="has-submenu">
                                         <a href="#">Program Studi</a>
                                         <ul class="submenu">
-                                            <li><a href="#">Jurusan</a></li>
+                                            <li><a href="{{ route('admin.jurusan.index') }}">Jurusan</a></li>
                                             <li><a href="{{ route('admin.prodi.index') }}">Prodi</a></li>
                                         </ul>
                                     </li><!--end has-submenu-->

@@ -113,35 +113,39 @@
 
                     <div class="col-lg-4">
                         <div class="card hospital-info card-hover">
-                            <div class="card-body">
-                                <h4 class="header-title mt-0 mb-3">Jurusan</h4>
-                                <div class="media">
-                                    <div class="data-icon align-self-center">
-                                        <i class="fa-solid fa-building-columns rounded-circle text-pink"></i>
+                            <a href="{{ route('admin.jurusan.index') }}">
+                                <div class="card-body">
+                                    <h4 class="header-title mt-0 mb-3">Jurusan</h4>
+                                    <div class="media">
+                                        <div class="data-icon align-self-center">
+                                            <i class="fa-solid fa-building-columns rounded-circle text-pink"></i>
+                                        </div>
+                                        <div class="media-body ml-3 align-self-center text-right">
+                                            <h3 class="mt-0">{{ $jurusan_count }}</h3>
+                                            <p class="text-muted mb-0 text-nowrap">Daftar Jurusan</p>
+                                        </div><!--end media body-->
                                     </div>
-                                    <div class="media-body ml-3 align-self-center text-right">
-                                        <h3 class="mt-0">{{ $jurusan_count }}</h3>
-                                        <p class="text-muted mb-0 text-nowrap">Daftar Jurusan</p>
-                                    </div><!--end media body-->
-                                </div>
-                            </div><!--end card-body-->
+                                </div><!--end card-body-->
+                            </a>
                         </div><!--end card-->
                     </div><!-- end col-->
 
                     <div class="col-lg-4">
                         <div class="card hospital-info card-hover">
-                            <div class="card-body">
-                                <h4 class="header-title mt-0 mb-3">Program Studi</h4>
-                                <div class="media">
-                                    <div class="data-icon align-self-center">
-                                        <i class="fa-solid fa-school rounded-circle text-orange"></i>
+                            <a href="{{ route('admin.prodi.index') }}">
+                                <div class="card-body">
+                                    <h4 class="header-title mt-0 mb-3">Program Studi</h4>
+                                    <div class="media">
+                                        <div class="data-icon align-self-center">
+                                            <i class="fa-solid fa-school rounded-circle text-orange"></i>
+                                        </div>
+                                        <div class="media-body ml-3 align-self-center text-right">
+                                            <h3 class="mt-0">{{ $prodi_count }}</h3>
+                                            <p class="text-muted mb-0 text-nowrap">Daftar Prodi</p>
+                                        </div><!--end media body-->
                                     </div>
-                                    <div class="media-body ml-3 align-self-center text-right">
-                                        <h3 class="mt-0">{{ $prodi_count }}</h3>
-                                        <p class="text-muted mb-0 text-nowrap">Daftar Prodi</p>
-                                    </div><!--end media body-->
-                                </div>
-                            </div><!--end card-body-->
+                                </div><!--end card-body-->
+                            </a>
                         </div><!--end card-->
                     </div><!-- end col-->
 

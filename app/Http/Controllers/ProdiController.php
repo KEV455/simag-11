@@ -16,7 +16,7 @@ class ProdiController extends Controller
     public function index()
     {
         $data = [
-            'prodi' => Prodi::all(),
+            'prodis' => Prodi::all(),
             'jurusans' => Jurusan::all()
         ];
 
