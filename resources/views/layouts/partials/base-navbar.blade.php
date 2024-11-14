@@ -132,6 +132,38 @@
                             </li><!--end has-submenu-->
                         @endif
 
+                        @if (Auth()->user()->role == 'admin')
+                            <li class="has-submenu">
+                                <a href="#">
+                                    <i class="fa-solid fa-briefcase"></i>
+                                    <span>Kelola Lowongan</span>
+                                </a>
+                                <ul class="submenu">
+                                    <li>
+                                        <a href="#">
+                                            <i></i>Lowongan
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('admin.berkas.index') }}">
+                                            <i></i>Berkas
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i></i>Berkas Lowongan
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i></i>Prodi Lowongan
+                                        </a>
+                                    </li>
+                                </ul>
+                                <!--end submenu-->
+                            </li>
+                        @endif
+
                     </ul><!-- End navigation menu -->
                 </div> <!-- end navigation -->
             </div> <!-- end container-fluid -->
