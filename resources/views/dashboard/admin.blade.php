@@ -71,20 +71,22 @@
 
                     @if (Auth()->user()->role == 'admin')
                         <div class="col-lg-4">
-                            <div class="card hospital-info card-hover card-rounded">
-                                <div class="card-body">
-                                    <h4 class="header-title mt-0 mb-3">Dosen</h4>
-                                    <div class="media">
-                                        <div class="data-icon align-self-center">
-                                            <i class="fa-solid fa-user-graduate rounded-circle text-blue-violet"></i>
+                            <a href="{{ route('admin.dosen.index') }}">
+                                <div class="card hospital-info card-hover card-rounded">
+                                    <div class="card-body">
+                                        <h4 class="header-title mt-0 mb-3">Dosen</h4>
+                                        <div class="media">
+                                            <div class="data-icon align-self-center">
+                                                <i class="fa-solid fa-user-graduate rounded-circle text-blue-violet"></i>
+                                            </div>
+                                            <div class="media-body ml-3 align-self-center text-right">
+                                                <h3 class="mt-0">{{ $dosen_count }}</h3>
+                                                <p class="text-muted mb-0 text-nowrap">Daftar Dosen</p>
+                                            </div><!--end media body-->
                                         </div>
-                                        <div class="media-body ml-3 align-self-center text-right">
-                                            <h3 class="mt-0">--</h3>
-                                            <p class="text-muted mb-0 text-nowrap">Daftar Dosen</p>
-                                        </div><!--end media body-->
-                                    </div>
-                                </div><!--end card-body-->
-                            </div><!--end card-->
+                                    </div><!--end card-body-->
+                                </div><!--end card-->
+                            </a>
                         </div><!-- end col-->
                     @endif
 

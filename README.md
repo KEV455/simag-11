@@ -21,6 +21,28 @@ Update Composer
   composer update
 ```
 
+## Atau Install Package Secara Manual
+
+Install Sweet Alert (Realrashid)
+
+```bash
+  composer require realrashid/sweet-alert
+```
+
+Install Laravolt Indonesia
+
+```bash
+  composer require laravolt/indonesia
+```
+
+Install Maatwebsite Excel
+
+```bash
+  composer require maatwebsite/excel ^3.1.4
+```
+
+## Publish Assets
+
 Publish Asset Sweet Alert
 
 ```bash
@@ -33,6 +55,8 @@ Publish Asset Laravolt Indonesia
   php artisan vendor:publish --provider="Laravolt\Indonesia\ServiceProvider"
 ```
 
+## Migrate dan Seeding
+
 Running Migration and Seeder
 
 ```bash
@@ -44,6 +68,8 @@ Seed Data Laravolt Indonesia
 ```bash
   php artisan laravolt:indonesia:seed
 ```
+
+## Running App
 
 Run App
 
