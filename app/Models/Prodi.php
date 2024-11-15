@@ -24,4 +24,9 @@ class Prodi extends Model
     {
         return $this->hasMany(Dosen::class);
     }
+
+    public function lowongan_prodi()
+    {
+        return $this->hasMany(LowonganProdi::class);
+    }
 }
