@@ -25,4 +25,9 @@ class Mitra extends Model
     {
         return $this->belongsTo(KategoriBidang::class, 'id_kategori_bidang', 'id');
     }
+
+    public function lowongan()
+    {
+        return $this->hasMany(Lowongan::class);
+    }
 }

@@ -18,7 +18,7 @@ class BerkasController extends Controller
             'berkas' => Berkas::all(),
         ];
 
-        return view('pages.admin.berkas.index', $data);
+        return view('pages.koordinator.berkas.index', $data);
     }
 
     /**

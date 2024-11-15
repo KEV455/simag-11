@@ -14,4 +14,9 @@ class Berkas extends Model
         'nama_berkas',
         'status',
     ];
+
+    public function berkas_lowongan()
+    {
+        return $this->hasMany(BerkasLowongan::class);
+    }
 }
