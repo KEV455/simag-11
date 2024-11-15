@@ -33,6 +33,7 @@
                                         <th width="10%">No</th>
                                         <th class="text-left">Jenjang Pendidikan</th>
                                         <th class="text-left">Nama Program Studi</th>
+                                        <th class="text-left">Kode Prodi</th>
                                         <th class="text-left">Jurusan</th>
                                         <th width="10%">Action</th>
                                     </tr>
@@ -46,6 +47,7 @@
                                             <td>{{ $no }}</td>
                                             <td class="text-left">{{ $item->jenjang_pendidikan }}</td>
                                             <td class="text-left">{{ $item->nama_program_studi }}</td>
+                                            <td class="text-left">{{ $item->kode_prodi }}</td>
                                             <td class="text-left">{{ $item->jurusan->nama_jurusan }}</td>
                                             <td>
                                                 <a href="{{ route('admin.prodi.update', $item->id) }}" class="mr-2"
@@ -118,6 +120,22 @@
                                                                         @error('update_jenjang_pendidikan')
                                                                             <div id="update_jenjang_pendidikan"
                                                                                 class="form-text pb-1">
+                                                                                {{ $message }}</div>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <label for="update_kode_prodi">Kode
+                                                                            Program Studi</label>
+                                                                        <input type="number"
+                                                                            class="form-control @error('update_kode_prodi') is-invalid @enderror"
+                                                                            id="update_kode_prodi" name="update_kode_prodi"
+                                                                            placeholder="Masukkan Kode Program Studi"
+                                                                            value="{{ $item->kode_prodi }}">
+                                                                        @error('update_kode_prodi')
+                                                                            <div id="update_kode_prodi" class="form-text pb-1">
                                                                                 {{ $message }}</div>
                                                                         @enderror
                                                                     </div>
@@ -209,6 +227,20 @@
                                     </select>
                                     @error('create_jenjang_pendidikan')
                                         <div id="create_jenjang_pendidikan" class="form-text pb-1">
+                                            {{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="create_kode_prodi">Kode Program Studi</label>
+                                    <input type="number"
+                                        class="form-control @error('create_kode_prodi') is-invalid @enderror"
+                                        id="create_kode_prodi" name="create_kode_prodi"
+                                        placeholder="Masukkan Kode Program Studi">
+                                    @error('create_kode_prodi')
+                                        <div id="create_kode_prodi" class="form-text pb-1">
                                             {{ $message }}</div>
                                     @enderror
                                 </div>

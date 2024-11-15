@@ -10,11 +10,18 @@ class Prodi extends Model
         'id',
         'nama_program_studi',
         'jenjang_pendidikan',
+        'kode_prodi',
         'id_jurusan',
     ];
 
     public function jurusan()
     {
         return $this->belongsTo(Jurusan::class, 'id_jurusan', 'id');
+    }
+
+
+    public function dosen()
+    {
+        return $this->hasMany(Dosen::class);
     }
 }

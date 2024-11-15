@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Berkas;
 use App\Models\KategoriBidang;
+use App\Models\Mitra;
 use Illuminate\Http\Request;
 
 class DashboardKoordinatorController extends Controller
@@ -14,6 +16,8 @@ class DashboardKoordinatorController extends Controller
     {
         $data = [
             'kategori_bidang_count' => KategoriBidang::count(),
+            'mitra_count' => Mitra::count(),
+            'berkas_count' => Berkas::count()
         ];
 
         return view('dashboard.koordinator', $data);

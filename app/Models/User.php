@@ -45,4 +45,15 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    // relationship methods
+    public function koordinator()
+    {
+        return $this->hasMany(Koordinator::class);
+    }
+
+    public function dosen()
+    {
+        return $this->hasMany(Dosen::class);
+    }
 }

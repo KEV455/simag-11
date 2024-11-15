@@ -33,6 +33,12 @@ Publish Asset Laravolt Indonesia
   php artisan vendor:publish --provider="Laravolt\Indonesia\ServiceProvider"
 ```
 
+Running Migration and Seeder
+
+```bash
+  php artisan migrate:fresh --seed
+```
+
 Seed Data Laravolt Indonesia
 
 ```bash

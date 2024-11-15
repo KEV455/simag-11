@@ -76,13 +76,13 @@
     <script src="{{ asset('template/assets/js/waves.min.js') }}"></script>
 
     <script src="{{ asset('template/assets/js/jquery.slimscroll.min.js') }}"></script>
-    {{-- <script src="{{ asset('template/assets/plugins/apexcharts/apexcharts.min.js') }}"></script> --}}
+    <script src="{{ asset('template/assets/plugins/apexcharts/apexcharts.min.js') }}"></script>
     <script src="{{ asset('template/assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
 
     {{-- Datatable --}}
     <script src="{{ asset('template/assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('template/assets/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
-    {{-- <script src="{{ asset('template/assets/pages/jquery.hospital_dashboard.init.js') }}"></script> --}}
+    <script src="{{ asset('template/assets/pages/jquery.hospital_dashboard.init.js') }}"></script>
 
     {{-- AOS Script --}}
     <script>

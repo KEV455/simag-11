@@ -39,12 +39,14 @@ class ProdiController extends Controller
         $validated = $request->validate([
             'create_nama_program_studi' => ['required', 'string', Rule::unique('prodis', 'nama_program_studi')],
             'create_jenjang_pendidikan' => ['required', 'string'],
+            'create_kode_prodi' => ['required', 'string', 'size:5', 'alpha_num'],
             'create_id_jurusan' => ['required', 'string'],
         ]);
 
         $prodi = new Prodi;
         $prodi->nama_program_studi = $validated['create_nama_program_studi'];
         $prodi->jenjang_pendidikan = $validated['create_jenjang_pendidikan'];
+        $prodi->kode_prodi = $validated['create_kode_prodi'];
         $prodi->id_jurusan = $validated['create_id_jurusan'];
         $prodi->save();
 
@@ -79,12 +81,14 @@ class ProdiController extends Controller
         $validated = $request->validate([
             'update_nama_program_studi' => ['required', 'string', Rule::unique('prodis', 'nama_program_studi')->ignore($prodi->id, 'id')],
             'update_jenjang_pendidikan' => ['required', 'string'],
+            'update_kode_prodi' => ['required', 'string', 'size:5', 'alpha_num'],
             'update_id_jurusan' => ['required', 'string'],
         ]);
 
         Prodi::where('id', $id)->update([
             'nama_program_studi' => $validated['update_nama_program_studi'],
             'jenjang_pendidikan' => $validated['update_jenjang_pendidikan'],
+            'kode_prodi' => $validated['update_kode_prodi'],
             'id_jurusan' => $validated['update_id_jurusan'],
         ]);
 

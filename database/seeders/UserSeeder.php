@@ -12,6 +12,7 @@ class UserSeeder extends Seeder
     {
         // mahasiswa
         User::create([
+            'id' => 1,
             'name' => 'Super Admin',
             'username' => 'admin',
             'email' => 'admin@gmail.com',
@@ -21,6 +22,7 @@ class UserSeeder extends Seeder
 
         // mahasiswa
         User::create([
+            'id' => 2,
             'name' => 'Andi Lutfi',
             'username' => '362055401010',
             'email' => 'andi@gmail.com',
@@ -30,6 +32,7 @@ class UserSeeder extends Seeder
 
         // dospem
         User::create([
+            'id' => 3,
             'name' => 'Farizky Panduardi',
             'username' => 'farizky',
             'email' => 'farizky@gmail.com',
@@ -39,6 +42,7 @@ class UserSeeder extends Seeder
 
         // kaprodi
         User::create([
+            'id' => 4,
             'name' => 'Dianni Yusuf',
             'username' => 'dianni',
             'email' => 'dianni@gmail.com',
@@ -48,6 +52,7 @@ class UserSeeder extends Seeder
 
         // koordinator
         User::create([
+            'id' => 5,
             'name' => 'Lukman Hakim',
             'username' => 'lukman',
             'email' => 'lukman@gmail.com',

@@ -4,7 +4,7 @@
         <nav class="topbar-main">
             <!-- LOGO -->
             <div class="topbar-left">
-                <a href="" class="logo">
+                <a href="#" class="logo">
                     <span>
                         <img src="{{ asset('images/logo-title-poliwangi.png') }}" alt="logo-small" class="logo-sm">
                     </span>
