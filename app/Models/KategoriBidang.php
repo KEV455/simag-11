@@ -11,8 +11,8 @@ class KategoriBidang extends Model
         'nama_kategori',
     ];
 
-    // public function mitra()
-    // {
-    //     return $this->hasMany(Mitra::class);
-    // }
+    public function mitra()
+    {
+        return $this->hasMany(Mitra::class);
+    }
 }

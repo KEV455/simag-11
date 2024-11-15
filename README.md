@@ -27,6 +27,18 @@ Publish Asset Sweet Alert
   php artisan sweetalert:publish
 ```
 
+Publish Asset Laravolt Indonesia
+
+```bash
+  php artisan vendor:publish --provider="Laravolt\Indonesia\ServiceProvider"
+```
+
+Seed Data Laravolt Indonesia
+
+```bash
+  php artisan laravolt:indonesia:seed
+```
+
 Run App
 
 ```bash

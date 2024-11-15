@@ -12,7 +12,8 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
-            'role' => \App\Http\Middleware\RoleMiddleware::class, // Tambahkan baris ini
+            'role' => \App\Http\Middleware\RoleMiddleware::class,
+            'Indonesia' => Laravolt\Indonesia\Facade::class
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

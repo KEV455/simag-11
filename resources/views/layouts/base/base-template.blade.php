@@ -30,6 +30,10 @@
     <link href="{{ asset('template/assets/css/style.css') }}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
 
+    {{-- AOS JS --}}
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
     {{-- Font awesome icon cdn --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
@@ -72,13 +76,18 @@
     <script src="{{ asset('template/assets/js/waves.min.js') }}"></script>
 
     <script src="{{ asset('template/assets/js/jquery.slimscroll.min.js') }}"></script>
-    <script src="{{ asset('template/assets/plugins/apexcharts/apexcharts.min.js') }}"></script>
+    {{-- <script src="{{ asset('template/assets/plugins/apexcharts/apexcharts.min.js') }}"></script> --}}
     <script src="{{ asset('template/assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
 
     {{-- Datatable --}}
     <script src="{{ asset('template/assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('template/assets/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('template/assets/pages/jquery.hospital_dashboard.init.js') }}"></script>
+    {{-- <script src="{{ asset('template/assets/pages/jquery.hospital_dashboard.init.js') }}"></script> --}}
+
+    {{-- AOS Script --}}
+    <script>
+        AOS.init();
+    </script>
 </body>
 
 </html>

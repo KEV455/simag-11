@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardKoordinatorController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\KategoriBidang;
 use App\Http\Controllers\KategoriBidangController;
+use App\Http\Controllers\MitraController;
 use App\Http\Controllers\ProdiController;
 
 Route::middleware(['guest'])->group(function () {
@@ -47,6 +48,17 @@ Route::middleware(['auth', 'role:koordinator'])->group(function () {
     Route::post('/admin/manajemen-kategori-bidang/create', [KategoriBidangController::class, 'store'])->name('admin.kategori.bidang.create');
     Route::get('/admin/manajemen-kategori-bidang/delete/{id}', [KategoriBidangController::class, 'destroy'])->name('admin.kategori.bidang.destroy');
     Route::put('/admin/manajemen-kategori-bidang/{id}/update', [KategoriBidangController::class, 'update'])->name('admin.kategori.bidang.update');
+
+    // Route Manajemen Mitra
+    Route::get('/admin/manajemen-mitra', [MitraController::class, 'index'])->name('admin.mitra.index');
+    Route::get('/admin/manajemen-mitra/create', [MitraController::class, 'create'])->name('admin.mitra.create');
+    Route::post('/admin/manajemen-mitra/store', [MitraController::class, 'store'])->name('admin.mitra.store');
+    Route::get('/admin/manajemen-mitra/{id}/edit', [MitraController::class, 'edit'])->name('admin.mitra.edit');
+    Route::put('/admin/manajemen-mitra/{id}/update', [MitraController::class, 'update'])->name('admin.mitra.update');
+    Route::get('/admin/manajemen-mitra/delete/{id}', [MitraController::class, 'destroy'])->name('admin.mitra.destroy');
+
+    // Laravolt Indonesia
+    Route::get('/get-cities', [MitraController::class, 'getCitiesByProvince'])->name('get.cities');
 });
 
 // Route::middleware(['auth', 'role:admin,koordinator'])->group(function () {

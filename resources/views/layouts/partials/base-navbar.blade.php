@@ -82,8 +82,8 @@
                                     <li class="has-submenu">
                                         <a href="#">Mitra</a>
                                         <ul class="submenu">
-                                            <li><a href="">Daftar Mitra</a></li>
-                                            <li><a href="">Daftar Lowongan</a></li>
+                                            <li><a href="{{ route('admin.mitra.index') }}">Daftar Mitra</a></li>
+                                            <li><a href="#">Daftar Lowongan</a></li>
                                         </ul>
                                     </li><!--end has-submenu-->
                                     <li class="has-submenu">
