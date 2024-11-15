@@ -76,20 +76,27 @@
                             <li class="has-submenu">
                                 <a href="#">
                                     <i class="fa-solid fa-briefcase"></i>
-                                    <span>Magang</span>
+                                    <span>Mitra</span>
                                 </a>
                                 <ul class="submenu">
                                     <li class="has-submenu">
                                         <a href="#">Mitra</a>
                                         <ul class="submenu">
                                             <li><a href="{{ route('admin.mitra.index') }}">Daftar Mitra</a></li>
-                                            <li><a href="#">Daftar Lowongan</a></li>
                                         </ul>
                                     </li><!--end has-submenu-->
                                     <li class="has-submenu">
                                         <a href="#">Mitra Mandiri</a>
                                         <ul class="submenu">
                                             <li><a href="">Daftar Mitra Mandiri</a></li>
+                                        </ul>
+                                    </li><!--end has-submenu-->
+                                    <li class="has-submenu">
+                                        <a href="#">Lowongan</a>
+                                        <ul class="submenu">
+                                            <li><a href="#">Daftar Lowongan</a></li>
+                                            <li><a href="#">Berkas Lowongan</a></li>
+                                            <li><a href="#">Prodi Lowongan</a></li>
                                         </ul>
                                     </li><!--end has-submenu-->
                                     <li class="has-submenu">
@@ -101,7 +108,7 @@
                                     <li class="has-submenu">
                                         <a href="#">Berkas Persyaratan</a>
                                         <ul class="submenu">
-                                            <li><a href="#">Daftar Berkas</a></li>
+                                            <li><a href="{{ route('admin.berkas.index') }}">Daftar Berkas</a></li>
                                         </ul>
                                     </li><!--end has-submenu-->
                                     <li>
@@ -137,38 +144,6 @@
                                     </li>
                                 </ul><!--end submenu-->
                             </li><!--end has-submenu-->
-                        @endif
-
-                        @if (Auth()->user()->role == 'admin')
-                            <li class="has-submenu">
-                                <a href="#">
-                                    <i class="fa-solid fa-briefcase"></i>
-                                    <span>Kelola Lowongan</span>
-                                </a>
-                                <ul class="submenu">
-                                    <li>
-                                        <a href="#">
-                                            <i></i>Lowongan
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('admin.berkas.index') }}">
-                                            <i></i>Berkas
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i></i>Berkas Lowongan
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i></i>Prodi Lowongan
-                                        </a>
-                                    </li>
-                                </ul>
-                                <!--end submenu-->
-                            </li>
                         @endif
 
                     </ul><!-- End navigation menu -->

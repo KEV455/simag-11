@@ -6,7 +6,6 @@ use App\Http\Controllers\BerkasController;
 use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\DashboardKoordinatorController;
 use App\Http\Controllers\JurusanController;
-use App\Http\Controllers\KategoriBidang;
 use App\Http\Controllers\KategoriBidangController;
 use App\Http\Controllers\MitraController;
 use App\Http\Controllers\ProdiController;
@@ -39,12 +38,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/admin/manajemen-prodi/create', [ProdiController::class, 'store'])->name('admin.prodi.create');
     Route::get('/admin/manajemen-prodi/delete/{id}', [ProdiController::class, 'destroy'])->name('admin.prodi.destroy');
     Route::put('/admin/manajemen-prodi/{id}/update', [ProdiController::class, 'update'])->name('admin.prodi.update');
-
-    //berkas
-    Route::get('/admin/manajemen-berkas', [BerkasController::class, 'index'])->name('admin.berkas.index');
-    Route::post('/admin/manajemen-berkas/create', [BerkasController::class, 'store'])->name('admin.berkas.create');
-    Route::get('/admin/manajemen-berkas/delete/{id}', [BerkasController::class, 'destroy'])->name('admin.berkas.destroy');
-    Route::put('/admin/manajemen-berkas/{id}/update', [BerkasController::class, 'update'])->name('admin.berkas.update');
 });
 
 Route::middleware(['auth', 'role:koordinator'])->group(function () {
@@ -64,8 +57,11 @@ Route::middleware(['auth', 'role:koordinator'])->group(function () {
     Route::put('/admin/manajemen-mitra/{id}/update', [MitraController::class, 'update'])->name('admin.mitra.update');
     Route::get('/admin/manajemen-mitra/delete/{id}', [MitraController::class, 'destroy'])->name('admin.mitra.destroy');
 
-    // Laravolt Indonesia
-    Route::get('/get-cities', [MitraController::class, 'getCitiesByProvince'])->name('get.cities');
+    //Route Manaemen Berkas
+    Route::get('/admin/manajemen-berkas', [BerkasController::class, 'index'])->name('admin.berkas.index');
+    Route::post('/admin/manajemen-berkas/create', [BerkasController::class, 'store'])->name('admin.berkas.create');
+    Route::get('/admin/manajemen-berkas/delete/{id}', [BerkasController::class, 'destroy'])->name('admin.berkas.destroy');
+    Route::put('/admin/manajemen-berkas/{id}/update', [BerkasController::class, 'update'])->name('admin.berkas.update');
 });
 
 // Route::middleware(['auth', 'role:admin,koordinator'])->group(function () {
@@ -77,3 +73,7 @@ Route::middleware(['auth', 'role:koordinator'])->group(function () {
 // Route::get('/dashboard/dospem', fn() => view('dashboard.dospem'))->name('dashboard.dospem');
 // Route::get('/dashboard/kaprodi', fn() => view('dashboard.kaprodi'))->name('dashboard.kaprodi');
 // Route::get('/profile', [AuthController::class, 'showProfile'])->name('profile')->middleware('auth');
+
+// Route tidak terpakai
+// Laravolt Indonesia
+// Route::get('/get-cities', [MitraController::class, 'getCitiesByProvince'])->name('get.cities');

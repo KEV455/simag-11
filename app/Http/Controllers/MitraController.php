@@ -13,18 +13,16 @@ use Illuminate\Support\Facades\Storage;
 
 class MitraController extends Controller
 {
-    public function getCitiesByProvince(Request $request)
-    {
-        // Sesuaikan nama parameter dengan yang dikirim
-        $provinceCode = $request->province_code;  // Ganti 'code' menjadi 'province_code'
+    // public function getCitiesByProvince(Request $request)
+    // {
+    //     // Sesuaikan nama parameter dengan yang dikirim
+    //     $provinceCode = $request->province_code;  // Ganti 'code' menjadi 'province_code'
 
-        dd($provinceCode);  // Hapus dd() setelah pengecekan selesai
+    //     $cities = City::where('province_code', $provinceCode)->get();
 
-        $cities = City::where('province_code', $provinceCode)->get();
-
-        // Pastikan mengirimkan data yang dibutuhkan
-        return response()->json($cities);
-    }
+    //     // Pastikan mengirimkan data yang dibutuhkan
+    //     return response()->json($cities);
+    // }
 
     /**
      * Display a listing of the resource.
