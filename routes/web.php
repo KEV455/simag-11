@@ -62,30 +62,30 @@ Route::middleware(['auth', 'role:koordinator'])->group(function () {
     Route::get('/koordinator/dashboard', [DashboardKoordinatorController::class, 'index'])->name('dashboard.koordinator');
 
     // Route Manajemen Kategori Bidang
-    Route::get('/koordinator/manajemen-kategori-bidang', [KategoriBidangController::class, 'index'])->name('admin.kategori.bidang.index');
-    Route::post('/koordinator/manajemen-kategori-bidang/create', [KategoriBidangController::class, 'store'])->name('admin.kategori.bidang.create');
-    Route::get('/koordinator/manajemen-kategori-bidang/delete/{id}', [KategoriBidangController::class, 'destroy'])->name('admin.kategori.bidang.destroy');
-    Route::put('/koordinator/manajemen-kategori-bidang/{id}/update', [KategoriBidangController::class, 'update'])->name('admin.kategori.bidang.update');
+    Route::get('/koordinator/manajemen-kategori-bidang', [KategoriBidangController::class, 'index'])->name('koordinator.kategori.bidang.index');
+    Route::post('/koordinator/manajemen-kategori-bidang/create', [KategoriBidangController::class, 'store'])->name('koordinator.kategori.bidang.create');
+    Route::get('/koordinator/manajemen-kategori-bidang/delete/{id}', [KategoriBidangController::class, 'destroy'])->name('koordinator.kategori.bidang.destroy');
+    Route::put('/koordinator/manajemen-kategori-bidang/{id}/update', [KategoriBidangController::class, 'update'])->name('koordinator.kategori.bidang.update');
 
     // Route Manajemen Mitra
-    Route::get('/koordinator/manajemen-mitra', [MitraController::class, 'index'])->name('admin.mitra.index');
-    Route::get('/koordinator/manajemen-mitra/create', [MitraController::class, 'create'])->name('admin.mitra.create');
-    Route::post('/koordinator/manajemen-mitra/store', [MitraController::class, 'store'])->name('admin.mitra.store');
-    Route::get('/koordinator/manajemen-mitra/{id}/edit', [MitraController::class, 'edit'])->name('admin.mitra.edit');
-    Route::put('/koordinator/manajemen-mitra/{id}/update', [MitraController::class, 'update'])->name('admin.mitra.update');
-    Route::get('/admin/manajemen-mitra/delete/{id}', [MitraController::class, 'destroy'])->name('admin.mitra.destroy');
+    Route::get('/koordinator/manajemen-mitra', [MitraController::class, 'index'])->name('koordinator.mitra.index');
+    Route::get('/koordinator/manajemen-mitra/create', [MitraController::class, 'create'])->name('koordinator.mitra.create');
+    Route::post('/koordinator/manajemen-mitra/store', [MitraController::class, 'store'])->name('koordinator.mitra.store');
+    Route::get('/koordinator/manajemen-mitra/{id}/edit', [MitraController::class, 'edit'])->name('koordinator.mitra.edit');
+    Route::put('/koordinator/manajemen-mitra/{id}/update', [MitraController::class, 'update'])->name('koordinator.mitra.update');
+    Route::get('/koordinator/manajemen-mitra/delete/{id}', [MitraController::class, 'destroy'])->name('koordinator.mitra.destroy');
 
     //Route Manaemen Berkas
-    Route::get('/admin/manajemen-berkas', [BerkasController::class, 'index'])->name('admin.berkas.index');
-    Route::post('/admin/manajemen-berkas/create', [BerkasController::class, 'store'])->name('admin.berkas.create');
-    Route::get('/admin/manajemen-berkas/delete/{id}', [BerkasController::class, 'destroy'])->name('admin.berkas.destroy');
-    Route::put('/admin/manajemen-berkas/{id}/update', [BerkasController::class, 'update'])->name('admin.berkas.update');
+    Route::get('/koordinator/manajemen-berkas', [BerkasController::class, 'index'])->name('koordinator.berkas.index');
+    Route::post('/koordinator/manajemen-berkas/create', [BerkasController::class, 'store'])->name('koordinator.berkas.create');
+    Route::get('/koordinator/manajemen-berkas/delete/{id}', [BerkasController::class, 'destroy'])->name('koordinator.berkas.destroy');
+    Route::put('/koordinator/manajemen-berkas/{id}/update', [BerkasController::class, 'update'])->name('koordinator.berkas.update');
 
     //Route Manajemen Lowongan
-    Route::get('/admin/manajemen-lowongan/index.php', [LowonganController::class, 'index'])->name('admin.lowongan.index');
-    Route::post('/admin/manajemen-lowongan/create', [LowonganController::class, 'store'])->name('admin.lowongan.create');
-    Route::get('/admin/manajemen-lowongan/delete/{id}', [LowonganController::class, 'destroy'])->name('admin.lowongan.destroy');
-    Route::put('/admin/manajemen-lowongan/{id}/update', [LowonganController::class, 'update'])->name('admin.lowongan.update');
+    Route::get('/koordinator/manajemen-lowongan/index.php', [LowonganController::class, 'index'])->name('koordinator.lowongan.index');
+    Route::post('/koordinator/manajemen-lowongan/create', [LowonganController::class, 'store'])->name('koordinator.lowongan.create');
+    Route::get('/koordinator/manajemen-lowongan/delete/{id}', [LowonganController::class, 'destroy'])->name('koordinator.lowongan.destroy');
+    Route::put('/koordinator/manajemen-lowongan/{id}/update', [LowonganController::class, 'update'])->name('koordinator.lowongan.update');
 });
 
 // Route::middleware(['auth', 'role:admin,koordinator'])->group(function () {

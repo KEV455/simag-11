@@ -25,7 +25,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{ route('admin.mitra.update', $mitra->id) }}" enctype="multipart/form-data"
+                        <form action="{{ route('koordinator.mitra.update', $mitra->id) }}" enctype="multipart/form-data"
                             method="POST">
                             @method('put')
                             @csrf

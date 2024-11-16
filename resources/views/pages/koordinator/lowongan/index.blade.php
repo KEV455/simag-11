@@ -76,11 +76,11 @@
                                             <td class="text-left">{{ dateConversion($item->tanggal_magang_ditutup) }}</td>
                                             <td class="text-left">{{ $item->status }}</td>
                                             <td>
-                                                <a href="{{ route('admin.lowongan.update', $item->id) }}" class="mr-2"
-                                                    data-toggle="modal" data-animation="bounce"
+                                                <a href="{{ route('koordinator.lowongan.update', $item->id) }}"
+                                                    class="mr-2" data-toggle="modal" data-animation="bounce"
                                                     data-target=".modalUpdate{{ $item->id }}"><i
                                                         class="fas fa-edit text-info font-16"></i></a>
-                                                <a href="{{ route('admin.lowongan.destroy', $item->id) }}"><i
+                                                <a href="{{ route('koordinator.lowongan.destroy', $item->id) }}"><i
                                                         class="fas fa-trash-alt text-danger font-16"></i></a>
                                             </td>
                                         </tr>
@@ -111,7 +111,7 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                             </div>
                             <div class="modal-body">
-                                <form action="{{ route('admin.lowongan.update', $itemdata->id) }}" method="POST">
+                                <form action="{{ route('koordinator.lowongan.update', $itemdata->id) }}" method="POST">
                                     @method('put')
                                     @csrf
 
@@ -381,7 +381,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('admin.lowongan.create') }}" method="POST">
+                    <form action="{{ route('koordinator.lowongan.create') }}" method="POST">
                         @csrf
 
                         <div class="row">

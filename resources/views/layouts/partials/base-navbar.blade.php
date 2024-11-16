@@ -82,7 +82,7 @@
                                     <li class="has-submenu">
                                         <a href="#">Mitra</a>
                                         <ul class="submenu">
-                                            <li><a href="{{ route('admin.mitra.index') }}">Daftar Mitra</a></li>
+                                            <li><a href="{{ route('koordinator.mitra.index') }}">Daftar Mitra</a></li>
                                         </ul>
                                     </li><!--end has-submenu-->
                                     <li class="has-submenu">
@@ -94,7 +94,8 @@
                                     <li class="has-submenu">
                                         <a href="#">Lowongan</a>
                                         <ul class="submenu">
-                                            <li><a href="{{ route('admin.lowongan.index') }}">Daftar Lowongan</a></li>
+                                            <li><a href="{{ route('koordinator.lowongan.index') }}">Daftar Lowongan</a>
+                                            </li>
 
                                         </ul>
                                     </li><!--end has-submenu-->
@@ -107,11 +108,12 @@
                                     <li class="has-submenu">
                                         <a href="#">Berkas Persyaratan</a>
                                         <ul class="submenu">
-                                            <li><a href="{{ route('admin.berkas.index') }}">Daftar Berkas</a></li>
+                                            <li><a href="{{ route('koordinator.berkas.index') }}">Daftar Berkas</a>
+                                            </li>
                                         </ul>
                                     </li><!--end has-submenu-->
                                     <li>
-                                        <a href="{{ route('admin.kategori.bidang.index') }}">
+                                        <a href="{{ route('koordinator.kategori.bidang.index') }}">
                                             Kategori Bidang
                                         </a>
                                     </li>

@@ -44,7 +44,7 @@ class KategoriBidangController extends Controller
 
         Alert::success('Success', 'Kategori Bidang Berhasil Ditambahkan');
 
-        return redirect()->route('admin.kategori.bidang.index');
+        return redirect()->route('koordinator.kategori.bidang.index');
     }
 
     /**
@@ -80,7 +80,7 @@ class KategoriBidangController extends Controller
 
         Alert::success('Success', 'Kategori Bidang Berhasil Diupdate');
 
-        return redirect()->route('admin.kategori.bidang.index');
+        return redirect()->route('koordinator.kategori.bidang.index');
     }
 
     /**
@@ -93,6 +93,6 @@ class KategoriBidangController extends Controller
 
         Alert::success('Success', 'Kategori Bidang Berhasil Dihapus');
 
-        return redirect()->route('admin.kategori.bidang.index');
+        return redirect()->route('koordinator.kategori.bidang.index');
     }
 }

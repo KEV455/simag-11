@@ -25,7 +25,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{ route('admin.mitra.store') }}" enctype="multipart/form-data" method="POST">
+                        <form action="{{ route('koordinator.mitra.store') }}" enctype="multipart/form-data" method="POST">
                             @csrf
 
                             <div class="row">

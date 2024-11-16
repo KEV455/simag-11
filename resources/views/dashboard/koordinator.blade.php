@@ -29,7 +29,7 @@
                     @if (Auth()->user()->role == 'koordinator')
                         <div class="col-lg-4">
                             <div class="card hospital-info card-hover card-rounded">
-                                <a href="{{ route('admin.mitra.index') }}">
+                                <a href="{{ route('koordinator.mitra.index') }}">
                                     <div class="card-body">
                                         <h4 class="header-title mt-0 mb-3">Mitra</h4>
                                         <div class="media">
@@ -49,20 +49,22 @@
 
                     @if (Auth()->user()->role == 'koordinator')
                         <div class="col-lg-4">
-                            <div class="card hospital-info card-hover card-rounded">
-                                <div class="card-body">
-                                    <h4 class="header-title mt-0 mb-3">Lowongan</h4>
-                                    <div class="media">
-                                        <div class="data-icon align-self-center">
-                                            <i class="fa-solid fa-clipboard-list rounded-circle text-success"></i>
+                            <a href="{{ route('koordinator.lowongan.index') }}">
+                                <div class="card hospital-info card-hover card-rounded">
+                                    <div class="card-body">
+                                        <h4 class="header-title mt-0 mb-3">Lowongan</h4>
+                                        <div class="media">
+                                            <div class="data-icon align-self-center">
+                                                <i class="fa-solid fa-clipboard-list rounded-circle text-success"></i>
+                                            </div>
+                                            <div class="media-body ml-3 align-self-center text-right">
+                                                <h3 class="mt-0">{{ $lowongan_count }}</h3>
+                                                <p class="text-muted mb-0 text-nowrap">Daftar Lowongan</p>
+                                            </div><!--end media body-->
                                         </div>
-                                        <div class="media-body ml-3 align-self-center text-right">
-                                            <h3 class="mt-0">--</h3>
-                                            <p class="text-muted mb-0 text-nowrap">Daftar Lowongan</p>
-                                        </div><!--end media body-->
-                                    </div>
-                                </div><!--end card-body-->
-                            </div><!--end card-->
+                                    </div><!--end card-body-->
+                                </div><!--end card-->
+                            </a>
                         </div><!-- end col-->
                     @endif
 
@@ -106,7 +108,7 @@
 
                     @if (Auth()->user()->role == 'koordinator')
                         <div class="col-lg-4">
-                            <a href="{{ route('admin.berkas.index') }}">
+                            <a href="{{ route('koordinator.berkas.index') }}">
                                 <div class="card hospital-info card-hover card-rounded">
                                     <div class="card-body">
                                         <h4 class="header-title mt-0 mb-3">Berkas Persyaratan</h4>
@@ -127,7 +129,7 @@
 
                     @if (Auth()->user()->role == 'koordinator')
                         <div class="col-lg-4">
-                            <a href="{{ route('admin.kategori.bidang.index') }}">
+                            <a href="{{ route('koordinator.kategori.bidang.index') }}">
                                 <div class="card hospital-info card-hover card-rounded">
                                     <div class="card-body">
                                         <h4 class="header-title mt-0 mb-3">Kategori Bidang</h4>

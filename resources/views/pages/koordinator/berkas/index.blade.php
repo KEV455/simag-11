@@ -45,11 +45,11 @@
                                             <td class="text-left">{{ $item->nama_berkas }}</td>
                                             <td>{{ $item->status }}</td>
                                             <td>
-                                                <a href="{{ route('admin.berkas.update', $item->id) }}" class="mr-2"
+                                                <a href="{{ route('koordinator.berkas.update', $item->id) }}" class="mr-2"
                                                     data-toggle="modal" data-animation="bounce"
                                                     data-target=".modalUpdate{{ $item->id }}"><i
                                                         class="fas fa-edit text-info font-16"></i></a>
-                                                <a href="{{ route('admin.berkas.destroy', $item->id) }}"><i
+                                                <a href="{{ route('koordinator.berkas.destroy', $item->id) }}"><i
                                                         class="fas fa-trash-alt text-danger font-16"></i></a>
                                             </td>
                                         </tr>
@@ -71,7 +71,8 @@
                                                     aria-hidden="true">×</button>
                                             </div>
                                             <div class="modal-body">
-                                                <form action="{{ route('admin.berkas.update', $item->id) }}" method="POST">
+                                                <form action="{{ route('koordinator.berkas.update', $item->id) }}"
+                                                    method="POST">
                                                     @method('put')
                                                     @csrf
 
@@ -153,7 +154,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('admin.berkas.create') }}" method="POST">
+                    <form action="{{ route('koordinator.berkas.create') }}" method="POST">
                         @csrf
 
                         <div class="row">
