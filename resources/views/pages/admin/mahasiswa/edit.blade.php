@@ -1,7 +1,7 @@
 @extends('layouts.base.base-template')
 
 @section('title')
-    <title>Tambah Dosen | SiMagang</title>
+    <title>Edit Mahasiswa | SiMagang</title>
 @endsection
 
 @section('top-css')
@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-title-box">
-                    <h4 class="page-title">Tambah Dosen Baru</h4>
+                    <h4 class="page-title">Edit Mahasiswa</h4>
                 </div>
                 <!--end page-title-box-->
             </div>
@@ -25,18 +25,20 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{ route('admin.dosen.store') }}" method="POST">
+                        <form action="{{ route('admin.mahasiswa.update', $mahasiswa->id) }}" method="POST">
+                            @method('put')
                             @csrf
 
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="nama_dosen">Nama Dosen</label>
-                                        <input type="text" class="form-control @error('nama_dosen') is-invalid @enderror"
-                                            id="nama_dosen" name="nama_dosen" placeholder="Masukkan Nama Dosen"
-                                            value="{{ old('nama_dosen') }}">
-                                        @error('nama_dosen')
-                                            <div id="nama_dosen" class="form-text pb-1">
+                                        <label for="nama_mahasiswa">Nama Mahasiswa</label>
+                                        <input type="text"
+                                            class="form-control @error('nama_mahasiswa') is-invalid @enderror"
+                                            id="nama_mahasiswa" name="nama_mahasiswa" placeholder="Masukkan Nama Mahasiswa"
+                                            value="{{ $mahasiswa->nama_mahasiswa }}">
+                                        @error('nama_mahasiswa')
+                                            <div id="nama_mahasiswa" class="form-text pb-1">
                                                 {{ $message }}</div>
                                         @enderror
                                     </div>
@@ -48,10 +50,10 @@
                                         <select class="form-control @error('jenis_kelamin') is-invalid @enderror"
                                             id="jenis_kelamin" name="jenis_kelamin">
                                             <option value="">Pilih Gender</option>
-                                            <option value="L" {{ old('jenis_kelamin') == 'L' ? 'selected' : '' }}>
+                                            <option value="L" {{ $mahasiswa->jenis_kelamin == 'L' ? 'selected' : '' }}>
                                                 Laki-laki
                                             </option>
-                                            <option value="P" {{ old('jenis_kelamin') == 'P' ? 'selected' : '' }}>
+                                            <option value="P" {{ $mahasiswa->jenis_kelamin == 'P' ? 'selected' : '' }}>
                                                 Perempuan
                                             </option>
                                         </select>
@@ -64,51 +66,38 @@
 
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <label for="nim">Nim</label>
+                                        <input type="number" class="form-control @error('nim') is-invalid @enderror"
+                                            id="nim" name="nim" placeholder="Masukkan Nim Mahasiswa"
+                                            value="{{ $mahasiswa->nim }}">
+                                        @error('nim')
+                                            <div id="nim" class="form-text pb-1">
+                                                {{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="angkatan">Angkatan</label>
+                                        <input type="number" class="form-control @error('angkatan') is-invalid @enderror"
+                                            id="angkatan" name="angkatan" placeholder="2024"
+                                            value="{{ $mahasiswa->angkatan }}">
+                                        @error('angkatan')
+                                            <div id="angkatan" class="form-text pb-1">
+                                                {{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
                                         <label for="email">Email</label>
                                         <input type="email" class="form-control @error('email') is-invalid @enderror"
                                             id="email" name="email" placeholder="Masukkan Alamat Email"
-                                            value="{{ old('email') }}">
+                                            value="{{ $mahasiswa->email }}">
                                         @error('email')
                                             <div id="email" class="form-text pb-1">
-                                                {{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="nomor_telp">Nomor Telepon</label>
-                                        <input type="number" class="form-control @error('nomor_telp') is-invalid @enderror"
-                                            id="nomor_telp" name="nomor_telp" placeholder="08xxxxxxxxxx"
-                                            value="{{ old('nomor_telp') }}">
-                                        @error('nomor_telp')
-                                            <div id="nomor_telp" class="form-text pb-1">
-                                                {{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="nip">NIP</label>
-                                        <input type="number" class="form-control @error('nip') is-invalid @enderror"
-                                            id="nip" name="nip" placeholder="xxxxxxxxxxxxxxxxxx"
-                                            value="{{ old('nip') }}">
-                                        @error('nip')
-                                            <div id="nip" class="form-text pb-1">
-                                                {{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="nidn">NIDN</label>
-                                        <input type="number" class="form-control @error('nidn') is-invalid @enderror"
-                                            id="nidn" name="nidn" placeholder="xxxxxxxxxxxxxxxxxx"
-                                            value="{{ old('nidn') }}">
-                                        @error('nidn')
-                                            <div id="nidn" class="form-text pb-1">
                                                 {{ $message }}</div>
                                         @enderror
                                     </div>
@@ -122,7 +111,7 @@
                                             <option value="">Pilih Prodi</option>
                                             @foreach ($prodis as $item)
                                                 <option value="{{ $item->id }}"
-                                                    {{ old('id_prodi') == $item->id ? 'selected' : '' }}>
+                                                    {{ $mahasiswa->id_prodi == $item->id ? 'selected' : '' }}>
                                                     {{ $item->nama_program_studi }}
                                                 </option>
                                             @endforeach
@@ -132,23 +121,10 @@
                                         @enderror
                                     </div>
                                 </div>
-
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="alamat">Alamat</label>
-                                        <textarea name="alamat" id="alamat" class="form-control @error('alamat') is-invalid @enderror" cols="30"
-                                            rows="5" placeholder="Masukkan Alamat">{{ old('alamat') }}</textarea>
-                                        @error('alamat')
-                                            <div id="alamat" class="form-text pb-1">
-                                                {{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
                             </div>
 
-                            <button type="submit" class="btn btn-sm btn-primary" id="sa-success">Tambah</button>
-                            <a href="{{ url()->previous() }}" class="btn btn-sm btn-danger"
-                                data-dismiss="modal">Batal</a>
+                            <button type="submit" class="btn btn-sm btn-primary" id="sa-success">Ubah</button>
+                            <a href="{{ url()->previous() }}" class="btn btn-sm btn-danger" data-dismiss="modal">Batal</a>
                         </form>
                     </div>
                     <!--end card-body-->

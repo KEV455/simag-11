@@ -145,7 +145,7 @@
                                         <a href="{{ route('admin.dosen.index') }}">
                                             Dosen
                                         </a>
-                                        <a href="#">
+                                        <a href="{{ route('admin.mahasiswa.index') }}">
                                             Mahasiswa
                                         </a>
                                     </li>

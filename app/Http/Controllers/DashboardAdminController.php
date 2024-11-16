@@ -6,6 +6,7 @@ use App\Models\Dosen;
 use App\Models\Jurusan;
 use App\Models\Kaprodi;
 use App\Models\Koordinator;
+use App\Models\Mahasiswa;
 use App\Models\Prodi;
 use Illuminate\Http\Request;
 
@@ -21,7 +22,8 @@ class DashboardAdminController extends Controller
             'prodi_count' => Prodi::count(),
             'dosen_count' => Dosen::count(),
             'koordinator_count' => Koordinator::count(),
-            'kaprodi_count' => Kaprodi::count()
+            'kaprodi_count' => Kaprodi::count(),
+            'mahasiswa_count' => Mahasiswa::count()
         ];
 
         return view('dashboard.admin', $data);

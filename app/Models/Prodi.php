@@ -34,4 +34,9 @@ class Prodi extends Model
     {
         return $this->hasMany(Kaprodi::class);
     }
+
+    public function mahasiswa()
+    {
+        return $this->hasMany(Mahasiswa::class);
+    }
 }

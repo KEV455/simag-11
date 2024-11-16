@@ -66,7 +66,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="email">Email</label>
-                                        <input type="text" class="form-control @error('email') is-invalid @enderror"
+                                        <input type="email" class="form-control @error('email') is-invalid @enderror"
                                             id="email" name="email" placeholder="Masukkan Alamat Email"
                                             value="{{ $dosen->email }}">
                                         @error('email')

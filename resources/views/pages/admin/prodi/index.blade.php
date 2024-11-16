@@ -251,7 +251,7 @@
                                     <label for="create_id_jurusan">Jurusan</label>
                                     <select class="form-control @error('create_id_jurusan') is-invalid @enderror"
                                         id="create_id_jurusan" name="create_id_jurusan">
-                                        <option value="">Pilih Divisi</option>
+                                        <option value="">Pilih Jurusan</option>
                                         @foreach ($jurusans as $dataJurusan)
                                             <option value="{{ $dataJurusan->id }}">{{ $dataJurusan->nama_jurusan }}
                                             </option>

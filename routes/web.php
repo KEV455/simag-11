@@ -11,6 +11,7 @@ use App\Http\Controllers\KaprodiController;
 use App\Http\Controllers\KategoriBidangController;
 use App\Http\Controllers\KoordinatorController;
 use App\Http\Controllers\LowonganController;
+use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MitraController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\UserController;
@@ -59,14 +60,24 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::put('/admin/manajemen-koordinator/{id}/update', [KoordinatorController::class, 'update'])->name('admin.koordinator.update');
     Route::get('/admin/manajemen-koordinator/{id}/delete', [KoordinatorController::class, 'destroy'])->name('admin.koordinator.destroy');
 
-    //Route Manjemen User
+    // Route Manjemen User
     Route::get('/admin/manajemen-user', [UserController::class, 'index'])->name('admin.user.index');
     Route::post('/admin/manajemen-user/store', [UserController::class, 'store'])->name('admin.user.store');
+
     // Route Manajemen Kaprodi
     Route::get('/admin/manajemen-kaprodi', [KaprodiController::class, 'index'])->name('admin.kaprodi.index');
     Route::post('/admin/manajemen-kaprodi/store', [KaprodiController::class, 'store'])->name('admin.kaprodi.store');
     Route::put('/admin/manajemen-kaprodi/{id}/update', [KaprodiController::class, 'update'])->name('admin.kaprodi.update');
     Route::get('/admin/manajemen-kaprodi/{id}/delete', [KaprodiController::class, 'destroy'])->name('admin.kaprodi.destroy');
+
+    // Route Manajemen Mahasiswa
+    Route::get('/admin/manajemen-mahasiswa', [MahasiswaController::class, 'index'])->name('admin.mahasiswa.index');
+    Route::get('/admin/manajemen-mahasiswa/create', [MahasiswaController::class, 'create'])->name('admin.mahasiswa.create');
+    Route::post('/admin/manajemen-mahasiswa/store', [MahasiswaController::class, 'store'])->name('admin.mahasiswa.store');
+    Route::get('/admin/manajemen-mahasiswa/{id}/edit', [MahasiswaController::class, 'edit'])->name('admin.mahasiswa.edit');
+    Route::put('/admin/manajemen-mahasiswa/{id}/update', [MahasiswaController::class, 'update'])->name('admin.mahasiswa.update');
+    Route::get('/admin/manajemen-mahasiswa/{id}/delete', [MahasiswaController::class, 'destroy'])->name('admin.mahasiswa.destroy');
+    // Route::post('/admin/manajemen-mahasiswa/import', [MahasiswaController::class, 'import'])->name('admin.mahasiswa.import');
 });
 
 Route::middleware(['auth', 'role:koordinator'])->group(function () {
