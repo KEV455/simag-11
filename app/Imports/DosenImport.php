@@ -50,7 +50,7 @@ class DosenImport implements ToCollection
                 $user_dosen = User::create([
                     'name' => $column[2],
                     'email' => $column[4],
-                    'username' => $nidn,
+                    'username' => $column[4],
                     'password' => bcrypt('12345678'),
                     'role' => 'dosen',
                 ]);

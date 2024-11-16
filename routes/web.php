@@ -31,13 +31,13 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     // Route Manajemen Jurusan
     Route::get('/admin/manajemen-jurusan', [JurusanController::class, 'index'])->name('admin.jurusan.index');
     Route::post('/admin/manajemen-jurusan/create', [JurusanController::class, 'store'])->name('admin.jurusan.create');
-    Route::get('/admin/manajemen-jurusan/delete/{id}', [JurusanController::class, 'destroy'])->name('admin.jurusan.destroy');
+    Route::get('/admin/manajemen-jurusan/{id}/delete', [JurusanController::class, 'destroy'])->name('admin.jurusan.destroy');
     Route::put('/admin/manajemen-jurusan/{id}/update', [JurusanController::class, 'update'])->name('admin.jurusan.update');
 
     // Route Manajemen Prodi
     Route::get('/admin/manajemen-prodi', [ProdiController::class, 'index'])->name('admin.prodi.index');
     Route::post('/admin/manajemen-prodi/create', [ProdiController::class, 'store'])->name('admin.prodi.create');
-    Route::get('/admin/manajemen-prodi/delete/{id}', [ProdiController::class, 'destroy'])->name('admin.prodi.destroy');
+    Route::get('/admin/manajemen-prodi/{id}/delete', [ProdiController::class, 'destroy'])->name('admin.prodi.destroy');
     Route::put('/admin/manajemen-prodi/{id}/update', [ProdiController::class, 'update'])->name('admin.prodi.update');
 
     // Route Manajemen Dosen
@@ -46,7 +46,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/admin/manajemen-dosen/store', [DosenController::class, 'store'])->name('admin.dosen.store');
     Route::get('/admin/manajemen-dosen/{id}/edit', [DosenController::class, 'edit'])->name('admin.dosen.edit');
     Route::put('/admin/manajemen-dosen/{id}/update', [DosenController::class, 'update'])->name('admin.dosen.update');
-    Route::get('/admin/manajemen-dosen/delete/{id}', [DosenController::class, 'destroy'])->name('admin.dosen.destroy');
+    Route::get('/admin/manajemen-dosen/{id}/delete', [DosenController::class, 'destroy'])->name('admin.dosen.destroy');
     Route::post('/admin/manajemen-dosen/import', [DosenController::class, 'import'])->name('admin.dosen.import');
 });
 

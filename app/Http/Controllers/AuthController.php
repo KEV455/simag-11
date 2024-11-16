@@ -31,6 +31,9 @@ class AuthController extends Controller
                 case 'admin':
                     Alert::toast('Selamat datang ' . $user->name, 'success');
                     return redirect()->route('dashboard.admin');
+                case 'dosen':
+                    Alert::toast('Selamat datang ' . $user->name, 'success');
+                    return redirect()->route('dashboard.dosen');
                 case 'mahasiswa':
                     Alert::toast('Selamat datang ' . $user->name, 'success');
                     return redirect()->route('dashboard.mahasiswa');

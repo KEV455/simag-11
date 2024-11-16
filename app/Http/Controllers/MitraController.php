@@ -6,7 +6,6 @@ use App\Models\KategoriBidang;
 use App\Models\Mitra;
 use Illuminate\Http\Request;
 use Laravolt\Indonesia\IndonesiaService;
-use Laravolt\Indonesia\Models\City;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;

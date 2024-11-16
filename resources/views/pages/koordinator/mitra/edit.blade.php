@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-title-box">
-                    <h4 class="page-title">Update Mitra Baru</h4>
+                    <h4 class="page-title">Edit Mitra</h4>
                 </div>
                 <!--end page-title-box-->
             </div>
