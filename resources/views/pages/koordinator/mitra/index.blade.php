@@ -20,7 +20,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <a href="{{ route('admin.mitra.create') }}" class="btn btn-primary px-4 mt-0 mb-3"
+                        <a href="{{ route('koordinator.mitra.create') }}" class="btn btn-primary px-4 mt-0 mb-3"
                             data-animation="bounce"><i class="mdi mdi-plus-circle-outline mr-2"></i>Tambah Mitra
                             Baru</a>
                         <div class="table-responsive">
@@ -56,11 +56,11 @@
                                             <td class="text-left">{{ $item->kategori_bidang->nama_kategori }}</td>
                                             <td class="text-left">{{ $item->status }}</td>
                                             <td>
-                                                <a href="{{ route('admin.mitra.edit', $item->id) }}" class="mr-2"
+                                                <a href="{{ route('koordinator.mitra.edit', $item->id) }}" class="mr-2"
                                                     data-animation="bounce">
                                                     <i class="fas fa-edit text-info font-16"></i>
                                                 </a>
-                                                <a href="{{ route('admin.mitra.destroy', $item->id) }}">
+                                                <a href="{{ route('koordinator.mitra.destroy', $item->id) }}">
                                                     <i class="fas fa-trash-alt text-danger font-16"></i>
                                                 </a>
                                             </td>

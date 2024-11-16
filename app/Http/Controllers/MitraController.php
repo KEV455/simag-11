@@ -101,7 +101,7 @@ class MitraController extends Controller
         Alert::success('Success', 'Mitra Berhasil Ditambahkan');
 
         // Redirect ke halaman index mitra
-        return redirect()->route('admin.mitra.index');
+        return redirect()->route('koordinator.mitra.index');
     }
 
     /**
@@ -187,7 +187,7 @@ class MitraController extends Controller
 
         Alert::success('Success', 'Mitra Berhasil Diupdate');
 
-        return redirect()->route('admin.mitra.index');
+        return redirect()->route('koordinator.mitra.index');
     }
 
 
@@ -215,6 +215,6 @@ class MitraController extends Controller
 
         Alert::success('Success', 'Mitra Berhasil Dihapus');
 
-        return redirect()->route('admin.mitra.index');
+        return redirect()->route('koordinator.mitra.index');
     }
 }

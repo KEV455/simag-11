@@ -43,11 +43,11 @@
                                             <td>{{ $no }}</td>
                                             <td class="text-left">{{ $item->nama_kategori }}</td>
                                             <td>
-                                                <a href="{{ route('admin.kategori.bidang.update', $item->id) }}"
+                                                <a href="{{ route('koordinator.kategori.bidang.update', $item->id) }}"
                                                     class="mr-2" data-toggle="modal" data-animation="bounce"
                                                     data-target=".modalUpdate{{ $item->id }}"><i
                                                         class="fas fa-edit text-info font-16"></i></a>
-                                                <a href="{{ route('admin.kategori.bidang.destroy', $item->id) }}"><i
+                                                <a href="{{ route('koordinator.kategori.bidang.destroy', $item->id) }}"><i
                                                         class="fas fa-trash-alt text-danger font-16"></i></a>
                                             </td>
                                         </tr>
@@ -67,7 +67,7 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <form
-                                                            action="{{ route('admin.kategori.bidang.update', $item->id) }}"
+                                                            action="{{ route('koordinator.kategori.bidang.update', $item->id) }}"
                                                             method="POST">
                                                             @method('put')
                                                             @csrf
@@ -125,7 +125,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('admin.kategori.bidang.create') }}" method="POST">
+                    <form action="{{ route('koordinator.kategori.bidang.create') }}" method="POST">
                         @csrf
 
                         <div class="row">

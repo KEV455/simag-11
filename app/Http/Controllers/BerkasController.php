@@ -46,7 +46,7 @@ class BerkasController extends Controller
 
         Alert::success('Success', 'Berkas Berhasil Ditambahkan');
 
-        return redirect()->route('admin.berkas.index');
+        return redirect()->route('koordinator.berkas.index');
     }
 
     /**
@@ -84,7 +84,7 @@ class BerkasController extends Controller
 
         Alert::success('Success', 'Berkas Berhasil Diupdate');
 
-        return redirect()->route('admin.berkas.index');
+        return redirect()->route('koordinator.berkas.index');
     }
 
     /**
@@ -97,6 +97,6 @@ class BerkasController extends Controller
         $berkas->delete();
         Alert::success('Success', 'Berkas Berhasil Dihapus');
 
-        return redirect()->route('admin.berkas.index');
+        return redirect()->route('koordinator.berkas.index');
     }
 }

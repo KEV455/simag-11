@@ -130,7 +130,7 @@ class LowonganController extends Controller
 
         Alert::success('Success', 'Lowongan Berhasil Ditambahkan');
 
-        return redirect()->route('admin.lowongan.index');
+        return redirect()->route('koordinator.lowongan.index');
     }
 
     /**
@@ -230,7 +230,7 @@ class LowonganController extends Controller
 
         Alert::success('Success', 'Lowongan Berhasil Diupdate');
 
-        return redirect()->route('admin.lowongan.index');
+        return redirect()->route('koordinator.lowongan.index');
     }
 
     /**
@@ -243,6 +243,6 @@ class LowonganController extends Controller
         $lowongan->delete();
         Alert::success('Success', 'Lowongan Berhasil Dihapus');
 
-        return redirect()->route('admin.lowongan.index');
+        return redirect()->route('koordinator.lowongan.index');
     }
 }
