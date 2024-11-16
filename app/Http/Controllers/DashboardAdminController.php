@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Dosen;
 use App\Models\Jurusan;
+use App\Models\Koordinator;
 use App\Models\Prodi;
 use Illuminate\Http\Request;
 
@@ -18,6 +19,7 @@ class DashboardAdminController extends Controller
             'jurusan_count' => Jurusan::count(),
             'prodi_count' => Prodi::count(),
             'dosen_count' => Dosen::count(),
+            'koordinator_count' => Koordinator::count(),
         ];
 
         return view('dashboard.admin', $data);

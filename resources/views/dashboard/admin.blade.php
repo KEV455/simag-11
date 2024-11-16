@@ -30,6 +30,27 @@
                     @if (Auth()->user()->role == 'admin')
                         <div class="col-lg-4">
                             <div class="card hospital-info card-hover card-rounded">
+                                <a href="{{ route('admin.koordinator.index') }}">
+                                    <div class="card-body">
+                                        <h4 class="header-title mt-0 mb-3">Koordinator</h4>
+                                        <div class="media">
+                                            <div class="data-icon align-self-center">
+                                                <i class="fa-solid fa-user-tie rounded-circle text-success"></i>
+                                            </div>
+                                            <div class="media-body ml-3 align-self-center text-right">
+                                                <h3 class="mt-0">{{ $koordinator_count }}</h3>
+                                                <p class="text-muted mb-0 text-nowrap">Daftar Koordinator</p>
+                                            </div><!--end media body-->
+                                        </div>
+                                    </div><!--end card-body-->
+                                </a>
+                            </div><!--end card-->
+                        </div><!-- end col-->
+                    @endif
+
+                    @if (Auth()->user()->role == 'admin')
+                        <div class="col-lg-4">
+                            <div class="card hospital-info card-hover card-rounded">
                                 <a href="{{ route('admin.jurusan.index') }}">
                                     <div class="card-body">
                                         <h4 class="header-title mt-0 mb-3">Jurusan</h4>

@@ -135,7 +135,10 @@
                                         </ul>
                                     </li><!--end has-submenu-->
                                     <li>
-                                        <a href="#">
+                                        <a href="{{ route('admin.koordinator.index') }}">
+                                            Koordinator
+                                        </a>
+                                        <a href="{{ route('admin.dosen.index') }}">
                                             Dosen
                                         </a>
                                         <a href="#">

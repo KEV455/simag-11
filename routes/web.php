@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardKoordinatorController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\KategoriBidangController;
+use App\Http\Controllers\KoordinatorController;
 use App\Http\Controllers\MitraController;
 use App\Http\Controllers\ProdiController;
 
@@ -48,6 +49,12 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::put('/admin/manajemen-dosen/{id}/update', [DosenController::class, 'update'])->name('admin.dosen.update');
     Route::get('/admin/manajemen-dosen/{id}/delete', [DosenController::class, 'destroy'])->name('admin.dosen.destroy');
     Route::post('/admin/manajemen-dosen/import', [DosenController::class, 'import'])->name('admin.dosen.import');
+
+    // Route Manajemen Koordinator
+    Route::get('/admin/manajemen-koordinator', [KoordinatorController::class, 'index'])->name('admin.koordinator.index');
+    Route::post('/admin/manajemen-koordinator/store', [KoordinatorController::class, 'store'])->name('admin.koordinator.store');
+    Route::put('/admin/manajemen-koordinator/{id}/update', [KoordinatorController::class, 'update'])->name('admin.koordinator.update');
+    Route::get('/admin/manajemen-koordinator/{id}/delete', [KoordinatorController::class, 'destroy'])->name('admin.koordinator.destroy');
 });
 
 Route::middleware(['auth', 'role:koordinator'])->group(function () {
