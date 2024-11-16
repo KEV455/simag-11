@@ -13,7 +13,7 @@ class Lowongan extends Model
         'deskripsi',
         'tanggal_dibuka',
         'tanggal_ditutup',
-        'tanggall_magang_dimulai',
+        'tanggal_magang_dimulai',
         'tanggal_magang_ditutup',
         'status',
         'id_mitra'

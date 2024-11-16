@@ -13,10 +13,10 @@ class LowonganProdi extends Model
 
     public function lowongan()
     {
-        return $this->hasMany(Lowongan::class);
+        return $this->belongsTo(Lowongan::class, 'id_lowongan');
     }
     public function prodi()
     {
-        return $this->hasMany(Prodi::class);
+        return $this->belongsTo(Prodi::class, 'id_prodi');
     }
 }

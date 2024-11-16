@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\DashboardKoordinatorController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\KategoriBidangController;
+use App\Http\Controllers\LowonganController;
 use App\Http\Controllers\MitraController;
 use App\Http\Controllers\ProdiController;
 
@@ -62,6 +63,12 @@ Route::middleware(['auth', 'role:koordinator'])->group(function () {
     Route::post('/admin/manajemen-berkas/create', [BerkasController::class, 'store'])->name('admin.berkas.create');
     Route::get('/admin/manajemen-berkas/delete/{id}', [BerkasController::class, 'destroy'])->name('admin.berkas.destroy');
     Route::put('/admin/manajemen-berkas/{id}/update', [BerkasController::class, 'update'])->name('admin.berkas.update');
+
+    //Route Manajemen Lowongan
+    Route::get('/admin/manajemen-lowongan/index.php', [LowonganController::class, 'index'])->name('admin.lowongan.index');
+    Route::post('/admin/manajemen-lowongan/create', [LowonganController::class, 'store'])->name('admin.lowongan.create');
+    Route::get('/admin/manajemen-lowongan/delete/{id}', [LowonganController::class, 'destroy'])->name('admin.lowongan.destroy');
+    Route::put('/admin/manajemen-lowongan/{id}/update', [LowonganController::class, 'update'])->name('admin.lowongan.update');
 });
 
 // Route::middleware(['auth', 'role:admin,koordinator'])->group(function () {

@@ -94,9 +94,8 @@
                                     <li class="has-submenu">
                                         <a href="#">Lowongan</a>
                                         <ul class="submenu">
-                                            <li><a href="#">Daftar Lowongan</a></li>
-                                            <li><a href="#">Berkas Lowongan</a></li>
-                                            <li><a href="#">Prodi Lowongan</a></li>
+                                            <li><a href="{{ route('admin.lowongan.index') }}">Daftar Lowongan</a></li>
+
                                         </ul>
                                     </li><!--end has-submenu-->
                                     <li class="has-submenu">
