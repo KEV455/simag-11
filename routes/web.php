@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\DashboardKoordinatorController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\JurusanController;
+use App\Http\Controllers\KaprodiController;
 use App\Http\Controllers\KategoriBidangController;
 use App\Http\Controllers\KoordinatorController;
 use App\Http\Controllers\LowonganController;
@@ -56,6 +57,12 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/admin/manajemen-koordinator/store', [KoordinatorController::class, 'store'])->name('admin.koordinator.store');
     Route::put('/admin/manajemen-koordinator/{id}/update', [KoordinatorController::class, 'update'])->name('admin.koordinator.update');
     Route::get('/admin/manajemen-koordinator/{id}/delete', [KoordinatorController::class, 'destroy'])->name('admin.koordinator.destroy');
+
+    // Route Manajemen Kaprodi
+    Route::get('/admin/manajemen-kaprodi', [KaprodiController::class, 'index'])->name('admin.kaprodi.index');
+    Route::post('/admin/manajemen-kaprodi/store', [KaprodiController::class, 'store'])->name('admin.kaprodi.store');
+    Route::put('/admin/manajemen-kaprodi/{id}/update', [KaprodiController::class, 'update'])->name('admin.kaprodi.update');
+    Route::get('/admin/manajemen-kaprodi/{id}/delete', [KaprodiController::class, 'destroy'])->name('admin.kaprodi.destroy');
 });
 
 Route::middleware(['auth', 'role:koordinator'])->group(function () {
@@ -81,7 +88,7 @@ Route::middleware(['auth', 'role:koordinator'])->group(function () {
     Route::get('/koordinator/manajemen-berkas/delete/{id}', [BerkasController::class, 'destroy'])->name('koordinator.berkas.destroy');
     Route::put('/koordinator/manajemen-berkas/{id}/update', [BerkasController::class, 'update'])->name('koordinator.berkas.update');
 
-    //Route Manajemen Lowongan
+    // Route Manajemen Lowongan
     Route::get('/koordinator/manajemen-lowongan/index.php', [LowonganController::class, 'index'])->name('koordinator.lowongan.index');
     Route::post('/koordinator/manajemen-lowongan/create', [LowonganController::class, 'store'])->name('koordinator.lowongan.create');
     Route::get('/koordinator/manajemen-lowongan/delete/{id}', [LowonganController::class, 'destroy'])->name('koordinator.lowongan.destroy');

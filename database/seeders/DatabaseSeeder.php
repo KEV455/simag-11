@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             KoordinatorSeeder::class,
             KategoriBidangSeeder::class,
             BerkasSeeder::class,
+            KaprodiSeeder::class,
         ]);
     }
 }

@@ -139,6 +139,9 @@
                                         <a href="{{ route('admin.koordinator.index') }}">
                                             Koordinator
                                         </a>
+                                        <a href="{{ route('admin.kaprodi.index') }}">
+                                            Kaprodi
+                                        </a>
                                         <a href="{{ route('admin.dosen.index') }}">
                                             Dosen
                                         </a>

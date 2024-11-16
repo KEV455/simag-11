@@ -58,4 +58,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Dosen::class);
     }
+
+    public function kaprodi()
+    {
+        return $this->hasMany(Kaprodi::class);
+    }
 }

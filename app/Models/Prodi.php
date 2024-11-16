@@ -29,4 +29,9 @@ class Prodi extends Model
     {
         return $this->hasMany(LowonganProdi::class);
     }
+
+    public function kaprodi()
+    {
+        return $this->hasMany(Kaprodi::class);
+    }
 }
