@@ -12,6 +12,7 @@ use App\Http\Controllers\KoordinatorController;
 use App\Http\Controllers\LowonganController;
 use App\Http\Controllers\MitraController;
 use App\Http\Controllers\ProdiController;
+use App\Http\Controllers\UserController;
 
 Route::middleware(['guest'])->group(function () {
     // Route Authentication
@@ -56,6 +57,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/admin/manajemen-koordinator/store', [KoordinatorController::class, 'store'])->name('admin.koordinator.store');
     Route::put('/admin/manajemen-koordinator/{id}/update', [KoordinatorController::class, 'update'])->name('admin.koordinator.update');
     Route::get('/admin/manajemen-koordinator/{id}/delete', [KoordinatorController::class, 'destroy'])->name('admin.koordinator.destroy');
+
+    //Route Manjemen User
+    Route::get('/admin/manajemen-user', [UserController::class, 'index'])->name('admin.user.index');
+    Route::post('/admin/manajemen-user/store', [UserController::class, 'store'])->name('admin.user.store');
 });
 
 Route::middleware(['auth', 'role:koordinator'])->group(function () {

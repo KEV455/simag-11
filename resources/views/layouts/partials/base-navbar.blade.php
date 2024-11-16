@@ -146,6 +146,19 @@
                                     </li>
                                 </ul><!--end submenu-->
                             </li><!--end has-submenu-->
+                            <li class="has-submenu">
+                                <a href="#">
+                                    <i class="fa-solid fa-gear"></i>
+                                    <span>Setting</span>
+                                </a>
+                                <ul class="submenu">
+                                    <li>
+                                        <a href="{{ route('admin.user.index') }}">
+                                            User
+                                        </a>
+                                    </li>
+                                </ul><!--end submenu-->
+                            </li><!--end has-submenu-->
                         @endif
 
                     </ul><!-- End navigation menu -->
