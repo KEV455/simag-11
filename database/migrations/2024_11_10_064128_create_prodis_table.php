@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama_program_studi')->nullable(false);
             $table->enum('jenjang_pendidikan', ['D3', 'D4', 'S1'])->nullable(false);
+            $table->string('kode_prodi', 5)->unique()->nullable(false);
             $table->unsignedBigInteger('id_jurusan');
             $table->foreign('id_jurusan')->references('id')->on('jurusans')->onDelete('cascade');
             $table->timestamps();

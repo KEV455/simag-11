@@ -5,8 +5,10 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BerkasController;
 use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\DashboardKoordinatorController;
+use App\Http\Controllers\DosenController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\KategoriBidangController;
+use App\Http\Controllers\KoordinatorController;
 use App\Http\Controllers\LowonganController;
 use App\Http\Controllers\MitraController;
 use App\Http\Controllers\ProdiController;
@@ -31,31 +33,46 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     // Route Manajemen Jurusan
     Route::get('/admin/manajemen-jurusan', [JurusanController::class, 'index'])->name('admin.jurusan.index');
     Route::post('/admin/manajemen-jurusan/create', [JurusanController::class, 'store'])->name('admin.jurusan.create');
-    Route::get('/admin/manajemen-jurusan/delete/{id}', [JurusanController::class, 'destroy'])->name('admin.jurusan.destroy');
+    Route::get('/admin/manajemen-jurusan/{id}/delete', [JurusanController::class, 'destroy'])->name('admin.jurusan.destroy');
     Route::put('/admin/manajemen-jurusan/{id}/update', [JurusanController::class, 'update'])->name('admin.jurusan.update');
 
     // Route Manajemen Prodi
     Route::get('/admin/manajemen-prodi', [ProdiController::class, 'index'])->name('admin.prodi.index');
     Route::post('/admin/manajemen-prodi/create', [ProdiController::class, 'store'])->name('admin.prodi.create');
-    Route::get('/admin/manajemen-prodi/delete/{id}', [ProdiController::class, 'destroy'])->name('admin.prodi.destroy');
+    Route::get('/admin/manajemen-prodi/{id}/delete', [ProdiController::class, 'destroy'])->name('admin.prodi.destroy');
     Route::put('/admin/manajemen-prodi/{id}/update', [ProdiController::class, 'update'])->name('admin.prodi.update');
+
+    // Route Manajemen Dosen
+    Route::get('/admin/manajemen-dosen', [DosenController::class, 'index'])->name('admin.dosen.index');
+    Route::get('/admin/manajemen-dosen/create', [DosenController::class, 'create'])->name('admin.dosen.create');
+    Route::post('/admin/manajemen-dosen/store', [DosenController::class, 'store'])->name('admin.dosen.store');
+    Route::get('/admin/manajemen-dosen/{id}/edit', [DosenController::class, 'edit'])->name('admin.dosen.edit');
+    Route::put('/admin/manajemen-dosen/{id}/update', [DosenController::class, 'update'])->name('admin.dosen.update');
+    Route::get('/admin/manajemen-dosen/{id}/delete', [DosenController::class, 'destroy'])->name('admin.dosen.destroy');
+    Route::post('/admin/manajemen-dosen/import', [DosenController::class, 'import'])->name('admin.dosen.import');
+
+    // Route Manajemen Koordinator
+    Route::get('/admin/manajemen-koordinator', [KoordinatorController::class, 'index'])->name('admin.koordinator.index');
+    Route::post('/admin/manajemen-koordinator/store', [KoordinatorController::class, 'store'])->name('admin.koordinator.store');
+    Route::put('/admin/manajemen-koordinator/{id}/update', [KoordinatorController::class, 'update'])->name('admin.koordinator.update');
+    Route::get('/admin/manajemen-koordinator/{id}/delete', [KoordinatorController::class, 'destroy'])->name('admin.koordinator.destroy');
 });
 
 Route::middleware(['auth', 'role:koordinator'])->group(function () {
-    Route::get('/dashboard/koordinator', [DashboardKoordinatorController::class, 'index'])->name('dashboard.koordinator');
+    Route::get('/koordinator/dashboard', [DashboardKoordinatorController::class, 'index'])->name('dashboard.koordinator');
 
     // Route Manajemen Kategori Bidang
-    Route::get('/admin/manajemen-kategori-bidang', [KategoriBidangController::class, 'index'])->name('admin.kategori.bidang.index');
-    Route::post('/admin/manajemen-kategori-bidang/create', [KategoriBidangController::class, 'store'])->name('admin.kategori.bidang.create');
-    Route::get('/admin/manajemen-kategori-bidang/delete/{id}', [KategoriBidangController::class, 'destroy'])->name('admin.kategori.bidang.destroy');
-    Route::put('/admin/manajemen-kategori-bidang/{id}/update', [KategoriBidangController::class, 'update'])->name('admin.kategori.bidang.update');
+    Route::get('/koordinator/manajemen-kategori-bidang', [KategoriBidangController::class, 'index'])->name('admin.kategori.bidang.index');
+    Route::post('/koordinator/manajemen-kategori-bidang/create', [KategoriBidangController::class, 'store'])->name('admin.kategori.bidang.create');
+    Route::get('/koordinator/manajemen-kategori-bidang/delete/{id}', [KategoriBidangController::class, 'destroy'])->name('admin.kategori.bidang.destroy');
+    Route::put('/koordinator/manajemen-kategori-bidang/{id}/update', [KategoriBidangController::class, 'update'])->name('admin.kategori.bidang.update');
 
     // Route Manajemen Mitra
-    Route::get('/admin/manajemen-mitra', [MitraController::class, 'index'])->name('admin.mitra.index');
-    Route::get('/admin/manajemen-mitra/create', [MitraController::class, 'create'])->name('admin.mitra.create');
-    Route::post('/admin/manajemen-mitra/store', [MitraController::class, 'store'])->name('admin.mitra.store');
-    Route::get('/admin/manajemen-mitra/{id}/edit', [MitraController::class, 'edit'])->name('admin.mitra.edit');
-    Route::put('/admin/manajemen-mitra/{id}/update', [MitraController::class, 'update'])->name('admin.mitra.update');
+    Route::get('/koordinator/manajemen-mitra', [MitraController::class, 'index'])->name('admin.mitra.index');
+    Route::get('/koordinator/manajemen-mitra/create', [MitraController::class, 'create'])->name('admin.mitra.create');
+    Route::post('/koordinator/manajemen-mitra/store', [MitraController::class, 'store'])->name('admin.mitra.store');
+    Route::get('/koordinator/manajemen-mitra/{id}/edit', [MitraController::class, 'edit'])->name('admin.mitra.edit');
+    Route::put('/koordinator/manajemen-mitra/{id}/update', [MitraController::class, 'update'])->name('admin.mitra.update');
     Route::get('/admin/manajemen-mitra/delete/{id}', [MitraController::class, 'destroy'])->name('admin.mitra.destroy');
 
     //Route Manaemen Berkas
@@ -80,7 +97,3 @@ Route::middleware(['auth', 'role:koordinator'])->group(function () {
 // Route::get('/dashboard/dospem', fn() => view('dashboard.dospem'))->name('dashboard.dospem');
 // Route::get('/dashboard/kaprodi', fn() => view('dashboard.kaprodi'))->name('dashboard.kaprodi');
 // Route::get('/profile', [AuthController::class, 'showProfile'])->name('profile')->middleware('auth');
-
-// Route tidak terpakai
-// Laravolt Indonesia
-// Route::get('/get-cities', [MitraController::class, 'getCitiesByProvince'])->name('get.cities');
