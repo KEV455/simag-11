@@ -148,6 +148,11 @@
                                         <a href="{{ route('admin.mahasiswa.index') }}">
                                             Mahasiswa
                                         </a>
+
+                                        <a href="{{ route('kaprodi.dospem.index') }}">
+                                            Dosen Pembimbing
+                                        </a>
+
                                     </li>
                                 </ul><!--end submenu-->
                             </li><!--end has-submenu-->
@@ -162,6 +167,7 @@
                                             User
                                         </a>
                                     </li>
+
                                 </ul><!--end submenu-->
                             </li><!--end has-submenu-->
                         @endif
