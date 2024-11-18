@@ -72,6 +72,57 @@
                             @endif
                         </li>
 
+                        {{-- Navbar Admin --}}
+                        @if (Auth()->user()->role == 'admin')
+                            <li class="has-submenu">
+                                <a href="#">
+                                    <i class="fa-solid fa-book"></i>
+                                    <span>Akademik</span>
+                                </a>
+                                <ul class="submenu">
+                                    <li class="has-submenu">
+                                        <a href="#">Program Studi</a>
+                                        <ul class="submenu">
+                                            <li><a href="{{ route('admin.jurusan.index') }}">Jurusan</a></li>
+                                            <li><a href="{{ route('admin.prodi.index') }}">Prodi</a></li>
+                                        </ul>
+                                    </li><!--end has-submenu-->
+                                    <li>
+                                        <a href="{{ route('admin.koordinator.index') }}">
+                                            Koordinator
+                                        </a>
+                                        <a href="{{ route('admin.kaprodi.index') }}">
+                                            Kaprodi
+                                        </a>
+                                        <a href="{{ route('admin.dosen.index') }}">
+                                            Dosen
+                                        </a>
+                                        <a href="{{ route('admin.mahasiswa.index') }}">
+                                            Mahasiswa
+                                        </a>
+                                    </li>
+                                </ul><!--end submenu-->
+                            </li><!--end has-submenu-->
+                        @endif
+
+                        @if (Auth()->user()->role == 'admin')
+                            <li class="has-submenu">
+                                <a href="#">
+                                    <i class="fa-solid fa-gear"></i>
+                                    <span>Setting</span>
+                                </a>
+                                <ul class="submenu">
+                                    <li>
+                                        <a href="{{ route('admin.user.index') }}">
+                                            User
+                                        </a>
+                                    </li>
+
+                                </ul><!--end submenu-->
+                            </li><!--end has-submenu-->
+                        @endif
+
+                        {{-- Navbar Kaprodi --}}
                         @if (Auth()->user()->role == 'koordinator')
                             <li class="has-submenu">
                                 <a href="#">
@@ -121,53 +172,19 @@
                             </li><!--end has-submenu-->
                         @endif
 
-                        @if (Auth()->user()->role == 'admin')
+                        {{-- Navbar Kaprodi --}}
+                        @if (Auth()->user()->role == 'kaprodi')
                             <li class="has-submenu">
                                 <a href="#">
                                     <i class="fa-solid fa-book"></i>
                                     <span>Akademik</span>
                                 </a>
                                 <ul class="submenu">
-                                    <li class="has-submenu">
-                                        <a href="#">Program Studi</a>
-                                        <ul class="submenu">
-                                            <li><a href="{{ route('admin.jurusan.index') }}">Jurusan</a></li>
-                                            <li><a href="{{ route('admin.prodi.index') }}">Prodi</a></li>
-                                        </ul>
-                                    </li><!--end has-submenu-->
                                     <li>
-                                        <a href="{{ route('admin.koordinator.index') }}">
-                                            Koordinator
-                                        </a>
-                                        <a href="{{ route('admin.kaprodi.index') }}">
-                                            Kaprodi
-                                        </a>
-                                        <a href="{{ route('admin.dosen.index') }}">
-                                            Dosen
-                                        </a>
-                                        <a href="{{ route('admin.mahasiswa.index') }}">
-                                            Mahasiswa
-                                        </a>
-
                                         <a href="{{ route('kaprodi.dospem.index') }}">
                                             Dosen Pembimbing
                                         </a>
-
                                     </li>
-                                </ul><!--end submenu-->
-                            </li><!--end has-submenu-->
-                            <li class="has-submenu">
-                                <a href="#">
-                                    <i class="fa-solid fa-gear"></i>
-                                    <span>Setting</span>
-                                </a>
-                                <ul class="submenu">
-                                    <li>
-                                        <a href="{{ route('admin.user.index') }}">
-                                            User
-                                        </a>
-                                    </li>
-
                                 </ul><!--end submenu-->
                             </li><!--end has-submenu-->
                         @endif

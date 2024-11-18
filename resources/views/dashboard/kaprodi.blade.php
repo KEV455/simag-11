@@ -1,122 +1,55 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Kepala Program</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-</head>
-<body>
+@extends('layouts.base.base-template')
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Dashboard Magang</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-user-circle"></i> {{ Auth::user()->username }} <!-- Menampilkan username yang login -->
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{{ route('profile') }}">Profil</a></li>
-                            <li><a class="dropdown-item" href="#">Pengaturan</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li>
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    Keluar
-                                </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+@section('title')
+    <title>Dashboard Kaprodi | SiMagang</title>
+@endsection
 
+@section('content')
     <div class="container-fluid">
+        <!-- Page-Title -->
         <div class="row">
-            <!-- Sidebar Menu -->
-            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-                <div class="position-sticky pt-3">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ route('dashboard.kaprodi') }}">
-                                <i class="fas fa-home"></i> Beranda
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('validasi.program') }}">
-                                <i class="fas fa-check"></i> Validasi Program
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('laporan.mahasiswa') }}">
-                                <i class="fas fa-file-alt"></i> Laporan Mahasiswa
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('validasi.transkip') }}">
-                                <i class="fas fa-file-alt"></i> Validasi Transkip Nilai
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+            <div class="col-sm-12">
+                <div class="page-title-box">
+                    <div class="float-right">
+                        <ol class="breadcrumb">
+                            {{-- <li class="breadcrumb-item"><a href="javascript:void(0);">SiMagang</a></li> --}}
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">SiMagang</a></li>
+                            <li class="breadcrumb-item active">Dashboard </li>
+                        </ol><!--end breadcrumb-->
+                    </div><!--end /div-->
+                    <h4 class="page-title">Dashboard {{ Auth()->user()->role }}</h4>
+                </div><!--end page-title-box-->
+            </div><!--end col-->
+        </div><!--end row-->
 
-            <!-- Main Content -->
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Dashboard Kepala Program</h1>
-                </div>
-
-                <!-- Dashboard Cards -->
+        <!-- end page title end breadcrumb -->
+        <div class="row">
+            <div class="col-lg-12">
                 <div class="row">
-                    <div class="col-lg-4">
-                        <div class="card shadow-sm mb-4 dashboard-card">
-                            <div class="card-body">
-                                <h5 class="card-title">Validasi Program</h5>
-                                <p class="card-text">Melihat kegiatan mahasiswa.</p>
-                                <a href="{{ route('validasi.program') }}" class="btn btn-primary">Akses</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="card shadow-sm mb-4 dashboard-card">
-                            <div class="card-body">
-                                <h5 class="card-title">Laporan</h5>
-                                <p class="card-text">Melihat laporan mahasiswa.</p>
-                                <a href="{{ route('laporan.mahasiswa') }}" class="btn btn-primary">Akses</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="card shadow-sm mb-4 dashboard-card">
-                            <div class="card-body">
-                                <h5 class="card-title">Validasi Transkip Nilai</h5>
-                                <p class="card-text">Untuk memvalidasi nilai.</p>
-                                <a href="{{ route('validasi.transkip') }}" class="btn btn-primary">Akses</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </main>
-        </div>
-    </div>
+                    @if (Auth()->user()->role == 'kaprodi')
+                        <div class="col-lg-4">
+                            <div class="card hospital-info card-hover card-rounded">
+                                <a href="{{ route('kaprodi.dospem.index') }}">
+                                    <div class="card-body">
+                                        <h4 class="header-title mt-0 mb-3">Dosen Pembimbing</h4>
+                                        <div class="media">
+                                            <div class="data-icon align-self-center">
+                                                <i class="fa-solid fa-user-group rounded-circle text-primary"></i>
+                                            </div>
+                                            <div class="media-body ml-3 align-self-center text-right">
+                                                <h3 class="mt-0">{{ $dospem_by_prodi_count }}</h3>
+                                                <p class="text-muted mb-0 text-nowrap">Daftar Dospem Mahasiswa</p>
+                                            </div><!--end media body-->
+                                        </div>
+                                    </div><!--end card-body-->
+                                </a>
+                            </div><!--end card-->
+                        </div><!-- end col-->
+                    @endif
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+                </div><!--end row-->
+            </div><!--end col-->
+        </div><!--end row-->
+
+    </div><!-- container -->
+@endsection
