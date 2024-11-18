@@ -1,7 +1,7 @@
 @extends('layouts.base.base-template')
 
 @section('title')
-    <title>Dashboard Dosen Pembimbing | SiMagang</title>
+    <title>Dashboard Dosen | SiMagang</title>
 @endsection
 
 @section('content')
@@ -26,19 +26,19 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="row">
-                    @if (Auth()->user()->role == 'dospem')
+                    @if (Auth()->user()->role == 'dosen')
                         <div class="col-lg-4">
                             <div class="card hospital-info card-hover card-rounded">
                                 <a href="#">
                                     <div class="card-body">
-                                        <h4 class="header-title mt-0 mb-3">Laporan Akhir</h4>
+                                        <h4 class="header-title mt-0 mb-3">Ubah Biodata</h4>
                                         <div class="media">
                                             <div class="data-icon align-self-center">
-                                                <i class="fa-solid fa-folder-open rounded-circle text-purple"></i>
+                                                <i class="fa-solid fa-address-card rounded-circle text-primary"></i>
                                             </div>
                                             <div class="media-body ml-3 align-self-center text-right">
-                                                <h3 class="mt-0">--</h3>
-                                                <p class="text-muted mb-0 text-nowrap">Daftar Laporan Akhir Mahasiswa</p>
+                                                <h5 class="mt-0">{{ Auth()->user()->name }}</h5>
+                                                <p class="text-muted mb-0 text-nowrap">Informasi Pribadi Saya</p>
                                             </div><!--end media body-->
                                         </div>
                                     </div><!--end card-body-->

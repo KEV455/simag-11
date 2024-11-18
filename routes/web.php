@@ -4,8 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BerkasController;
 use App\Http\Controllers\DashboardAdminController;
+use App\Http\Controllers\DashboardDosenController;
+use App\Http\Controllers\DashboardDospemController;
 use App\Http\Controllers\DashboardKaprodiController;
 use App\Http\Controllers\DashboardKoordinatorController;
+use App\Http\Controllers\DashboardMahasiswaController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\DosenPembimbingController;
 use App\Http\Controllers\JurusanController;
@@ -65,6 +68,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     // Route Manjemen User
     Route::get('/admin/manajemen-user', [UserController::class, 'index'])->name('admin.user.index');
     Route::post('/admin/manajemen-user/store', [UserController::class, 'store'])->name('admin.user.store');
+    Route::get('/admin/manajemen-user/{id}/delete', [UserController::class, 'destroy'])->name('admin.user.destroy');
 
     // Route Manajemen Kaprodi
     Route::get('/admin/manajemen-kaprodi', [KaprodiController::class, 'index'])->name('admin.kaprodi.index');
@@ -121,12 +125,15 @@ Route::middleware(['auth', 'role:kaprodi'])->group(function () {
     Route::put('/kaprodi/manajemen-dosen-pembimbing/{id}/update', [DosenPembimbingController::class, 'update'])->name('kaprodi.dospem.update');
     Route::get('/kaprodi/manajemen-dosen-pembimbing/{id}/delete', [DosenPembimbingController::class, 'destroy'])->name('kaprodi.dospem.destroy');
 });
-// Route::middleware(['auth', 'role:admin,koordinator'])->group(function () {
-//     // route
-// });
 
-// route yang masih belum dipakai
-// Route::get('/dashboard/mahasiswa', fn() => view('dashboard.mahasiswa'))->name('dashboard.mahasiswa');
-// Route::get('/dashboard/dospem', fn() => view('dashboard.dospem'))->name('dashboard.dospem');
-// Route::get('/dashboard/kaprodi', fn() => view('dashboard.kaprodi'))->name('dashboard.kaprodi');
-// Route::get('/profile', [AuthController::class, 'showProfile'])->name('profile')->middleware('auth');
+Route::middleware(['auth', 'role:dospem'])->group(function () {
+    Route::get('/dospem/dashboard', [DashboardDospemController::class, 'index'])->name('dashboard.dospem');
+});
+
+Route::middleware(['auth', 'role:dosen'])->group(function () {
+    Route::get('/dosen/dashboard', [DashboardDosenController::class, 'index'])->name('dashboard.dosen');
+});
+
+Route::middleware(['auth', 'role:mahasiswa'])->group(function () {
+    Route::get('/mahasiswa/dashboard', [DashboardMahasiswaController::class, 'index'])->name('dashboard.mahasiswa');
+});

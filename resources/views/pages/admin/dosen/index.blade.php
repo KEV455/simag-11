@@ -25,9 +25,16 @@
                             <i class="mdi mdi-plus-circle-outline mr-2"></i>Tambah Dosen Baru
                         </a>
 
+                        {{-- Import Template --}}
+                        <a href="{{ asset('template-import/template-excel-import-dosen.xlsx') }}"
+                            class="btn bg-blue-violet text-white px-4 mt-0 mb-3"
+                            title="Download Template File Import Dosen">
+                            <i class="fa-solid fa-cloud-arrow-down"></i>
+                        </a>
+
                         {{-- tombol modal import dosen --}}
                         <button type="button" class="btn btn-success px-4 mt-0 mb-3" data-toggle="modal"
-                            data-animation="bounce" data-target=".modalCreate">
+                            data-animation="bounce" data-target=".modalCreate" title="Import Data Dosen">
                             <i class="fa-solid fa-cloud-arrow-up"></i>&ensp; Import
                         </button>
 

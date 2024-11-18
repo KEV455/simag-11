@@ -65,6 +65,7 @@ class AuthController extends Controller
     {
         Session::flush();
         Auth::logout();
+        Alert::toast('Anda baru saja logout ...', 'success');
         return redirect()->route('login');
     }
 }

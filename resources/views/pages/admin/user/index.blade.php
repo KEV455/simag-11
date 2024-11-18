@@ -53,7 +53,7 @@
                                                 <a href="#" class="mr-2" data-animation="bounce">
                                                     <i class="fas fa-edit text-info font-16"></i>
                                                 </a>
-                                                <a href="#">
+                                                <a href="{{ route('admin.user.destroy', $data->id) }}">
                                                     <i class="fas fa-trash-alt text-danger font-16"></i>
                                                 </a>
                                             </td>
@@ -90,65 +90,67 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="nama">Nama </label>
-                                    <input type="text" class="form-control @error('nama') is-invalid @enderror"
-                                        id="nama" name="nama" placeholder="Masukkan Nama ">
-                                    @error('nama')
-                                        <div id="nama" class="form-text pb-1">
+                                    <label for="create_name">Nama</label>
+                                    <input type="text" class="form-control @error('create_name') is-invalid @enderror"
+                                        id="create_name" name="create_name" placeholder="Masukkan Nama ">
+                                    @error('create_name')
+                                        <div id="create_name" class="form-text pb-1">
                                             {{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="username">Username </label>
-                                    <input type="text" class="form-control @error('username') is-invalid @enderror"
-                                        id="username" name="username" placeholder="Masukkan username ">
-                                    @error('username')
-                                        <div id="username" class="form-text pb-1">
+                                    <label for="create_username">Username</label>
+                                    <input type="text"
+                                        class="form-control @error('create_username') is-invalid @enderror"
+                                        id="create_username" name="create_username" placeholder="Masukkan username ">
+                                    @error('create_username')
+                                        <div id="create_username" class="form-text pb-1">
                                             {{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="email">Email </label>
-                                    <input type="text" class="form-control @error('email') is-invalid @enderror"
-                                        id="email" name="email" placeholder="Masukkan email ">
-                                    @error('email')
-                                        <div id="email" class="form-text pb-1">
+                                    <label for="create_email">Email</label>
+                                    <input type="text" class="form-control @error('create_email') is-invalid @enderror"
+                                        id="create_email" name="create_email" placeholder="Masukkan email ">
+                                    @error('create_email')
+                                        <div id="create_email" class="form-text pb-1">
                                             {{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="password">password </label>
-                                    <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                        id="password" name="password" placeholder="Masukkan password ">
-                                    @error('password')
-                                        <div id="password" class="form-text pb-1">
-                                            {{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="password">Konfirmasi Password </label>
-                                    <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                        id="password" name="password" placeholder="Masukkan konfirmasi password ">
-                                    @error('password')
-                                        <div id="password" class="form-text pb-1">
-                                            {{ $message }}</div>
+                                    <label for="create_password">Password</label>
+                                    <input type="password"
+                                        class="form-control @error('create_password') is-invalid @enderror"
+                                        id="create_password" name="create_password" placeholder="Masukkan password">
+                                    @error('create_password')
+                                        <div id="create_password" class="form-text pb-1">{{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>
 
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="role">Role</label>
-                                    <select class="form-control @error('role') is-invalid @enderror" id="role"
-                                        name="role">
+                                    <label for="create_password_confirmation">Konfirmasi Password</label>
+                                    <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                        id="create_password_confirmation" name="create_password_confirmation"
+                                        placeholder="Masukkan konfirmasi password">
+                                    @error('create_password_confirmation')
+                                        <div id="create_password_confirmation" class="form-text pb-1">{{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="create_role">Role</label>
+                                    <select class="form-control @error('create_role') is-invalid @enderror"
+                                        id="create_role" name="create_role">
                                         <option value="">Pilih Role</option>
                                         <option value="admin">Admin</option>
                                         <option value="mahasiswa">Mahasiswa</option>
@@ -157,8 +159,8 @@
                                         <option value="kaprodi">Kaprodi</option>
                                         <option value="koordinator">Koordinator Magang</option>
                                     </select>
-                                    @error('role')
-                                        <div id="role" class="form-text pb-1">
+                                    @error('create_role')
+                                        <div id="create_role" class="form-text pb-1">
                                             {{ $message }}</div>
                                     @enderror
                                 </div>

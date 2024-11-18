@@ -33,3 +33,7 @@ body {
 .text-salmon {
     color: salmon !important;
 }
+
+.bg-blue-violet {
+    background-color: blueviolet !important;
+}

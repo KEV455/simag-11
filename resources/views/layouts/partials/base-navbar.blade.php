@@ -59,6 +59,11 @@
                                     <i class="fa-solid fa-house-chimney"></i>
                                     <span>Dashboard</span>
                                 </a>
+                            @elseif (Auth()->user()->role == 'dosen')
+                                <a href="{{ route('dashboard.dosen') }}">
+                                    <i class="fa-solid fa-house-chimney"></i>
+                                    <span>Dashboard</span>
+                                </a>
                             @elseif (Auth()->user()->role == 'kaprodi')
                                 <a href="{{ route('dashboard.kaprodi') }}">
                                     <i class="fa-solid fa-house-chimney"></i>
@@ -103,9 +108,7 @@
                                     </li>
                                 </ul><!--end submenu-->
                             </li><!--end has-submenu-->
-                        @endif
 
-                        @if (Auth()->user()->role == 'admin')
                             <li class="has-submenu">
                                 <a href="#">
                                     <i class="fa-solid fa-gear"></i>
@@ -122,7 +125,7 @@
                             </li><!--end has-submenu-->
                         @endif
 
-                        {{-- Navbar Kaprodi --}}
+                        {{-- Navbar Koordinator --}}
                         @if (Auth()->user()->role == 'koordinator')
                             <li class="has-submenu">
                                 <a href="#">
@@ -188,6 +191,12 @@
                                 </ul><!--end submenu-->
                             </li><!--end has-submenu-->
                         @endif
+
+                        {{-- Navbar Dosen --}}
+
+                        {{-- Navbar Dosen Pembimbing --}}
+
+                        {{-- Navbar Mahasiswa --}}
 
                     </ul><!-- End navigation menu -->
                 </div> <!-- end navigation -->
