@@ -25,8 +25,42 @@
                         </span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="#"><i class="dripicons-user text-muted mr-2"></i>
-                            Profile</a>
+                        @if (Auth()->user()->role == 'admin')
+                            <a class="dropdown-item" href="{{ route('profile.admin.index') }}">
+                                <i class="dripicons-user text-muted mr-2"></i>
+                                Profile
+                            </a>
+                        @endif
+                        @if (Auth()->user()->role == 'dosen')
+                            <a class="dropdown-item" href="{{ route('profile.dosen.index') }}">
+                                <i class="dripicons-user text-muted mr-2"></i>
+                                Profile
+                            </a>
+                        @endif
+                        {{-- @if (Auth()->user()->role == 'dospem')
+                            <a class="dropdown-item" href="{{ route('profile.dospem.index') }}">
+                                <i class="dripicons-user text-muted mr-2"></i>
+                                Profile
+                            </a>
+                        @endif
+                        @if (Auth()->user()->role == 'mahasiswa')
+                            <a class="dropdown-item" href="{{ route('profile.mahasiswa.index') }}">
+                                <i class="dripicons-user text-muted mr-2"></i>
+                                Profile
+                            </a>
+                        @endif
+                        @if (Auth()->user()->role == 'kaprodi')
+                            <a class="dropdown-item" href="{{ route('profile.kaprodi.index') }}">
+                                <i class="dripicons-user text-muted mr-2"></i>
+                                Profile
+                            </a>
+                        @endif
+                        @if (Auth()->user()->role == 'koordinator')
+                            <a class="dropdown-item" href="{{ route('profile.koordinator.index') }}">
+                                <i class="dripicons-user text-muted mr-2"></i>
+                                Profile
+                            </a>
+                        @endif --}}
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('logout') }}"><i
                                 class="dripicons-exit text-muted mr-2"></i>

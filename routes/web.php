@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BerkasController;
@@ -10,7 +11,9 @@ use App\Http\Controllers\DashboardKaprodiController;
 use App\Http\Controllers\DashboardKoordinatorController;
 use App\Http\Controllers\DashboardMahasiswaController;
 use App\Http\Controllers\DosenController;
+
 use App\Http\Controllers\DosenPembimbingController;
+use App\Http\Controllers\DosenProfileController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\KaprodiController;
 use App\Http\Controllers\KategoriBidangController;
@@ -37,6 +40,8 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth', 'role:admin'])->group(function () {
     // Route for Admin
     Route::get('/admin/dashboard', [DashboardAdminController::class, 'index'])->name('dashboard.admin');
+    Route::get('/admin/profile', [AdminProfileController::class, 'index'])->name('profile.admin.index');
+    Route::put('/admin/profile/{id}/update', [AdminProfileController::class, 'update'])->name('profile.admin.update');
 
     // Route Manajemen Jurusan
     Route::get('/admin/manajemen-jurusan', [JurusanController::class, 'index'])->name('admin.jurusan.index');
@@ -132,6 +137,8 @@ Route::middleware(['auth', 'role:dospem'])->group(function () {
 
 Route::middleware(['auth', 'role:dosen'])->group(function () {
     Route::get('/dosen/dashboard', [DashboardDosenController::class, 'index'])->name('dashboard.dosen');
+    Route::get('/dosen/profile', [DosenProfileController::class, 'index'])->name('profile.dosen.index');
+    Route::put('/dosen/profile/{id}/update', [DosenProfileController::class, 'update'])->name('profile.dosen.update');
 });
 
 Route::middleware(['auth', 'role:mahasiswa'])->group(function () {
