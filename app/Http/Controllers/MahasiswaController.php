@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\MahasiswaImport;
 use App\Models\Mahasiswa;
 use App\Models\Prodi;
 use App\Models\User;
@@ -9,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Storage;
 
 class MahasiswaController extends Controller
 {
@@ -175,5 +178,47 @@ class MahasiswaController extends Controller
         Alert::success('Success', 'Mahasiswa Berhasil Dihapus');
 
         return redirect()->route('admin.mahasiswa.index');
+    }
+
+    public function import(Request $request)
+    {
+        // Validasi file
+        $request->validate([
+            'file' => 'required|mimes:csv,xls,xlsx',
+        ]);
+
+        // Mengecek apakah ada file yang diunggah
+        if ($request->hasFile('file')) {
+            // Simpan file yang diunggah ke folder 'import/mahasiswa' di disk 'public'
+            $uploadedFile = $request->file('file');
+            $filePath = $uploadedFile->store('import/mahasiswa', 'public');
+
+            try {
+                // Dapatkan path absolut dari file
+                $absolutePath = Storage::disk('public')->path($filePath);
+
+                // Import data mahasiswa dari file yang diunggah
+                Excel::import(new MahasiswaImport(), $absolutePath);
+
+                // Hapus file setelah import berhasil
+                Storage::disk('public')->delete($filePath);
+
+                // Beri notifikasi sukses
+                Alert::success('Success', 'Data Mahasiswa Berhasil Diimport');
+            } catch (\Exception $e) {
+                // Beri notifikasi jika terjadi kesalahan
+                Alert::error('Error', 'Data Mahasiswa Gagal Diimport: ' . $e->getMessage());
+
+                // Hapus file jika terjadi kesalahan
+                Storage::disk('public')->delete($filePath);
+            }
+
+            // Redirect ke halaman sebelumnya
+            return redirect()->back();
+        }
+
+        // Jika tidak ada file yang diunggah
+        Alert::error('Error', 'Tidak ada file yang diunggah');
+        return redirect()->back();
     }
 }

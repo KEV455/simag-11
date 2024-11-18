@@ -6,9 +6,7 @@ use App\Models\Dosen;
 use App\Models\Prodi;
 use App\Models\User;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Concerns\ToCollection;
-use Mockery\Undefined;
 
 class DosenImport implements ToCollection
 {
