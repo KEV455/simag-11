@@ -70,7 +70,7 @@
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title mt-0" id="myLargeModalLabel">Ubah
-                                                            Kaprodi</h5>
+                                                            Dosen Pembimbing</h5>
                                                         <button type="button" class="close" data-dismiss="modal"
                                                             aria-hidden="true">×</button>
                                                     </div>
@@ -83,12 +83,13 @@
                                                             <div class="row">
                                                                 <div class="col-md-12">
                                                                     <div class="form-group">
-                                                                        <label for="dosen">Dosen
-
+                                                                        <label for="update_id_dosen">Dosen
+                                                                            <span class="text-primary">*(Bawaan:
+                                                                                {{ $item->dosen->nama_dosen }})</span>
                                                                         </label>
                                                                         <select
-                                                                            class="form-control @error('dosen') is-invalid @enderror"
-                                                                            id="dosen" name="dosen">
+                                                                            class="form-control @error('update_id_dosen') is-invalid @enderror"
+                                                                            id="update_id_dosen" name="update_id_dosen">
                                                                             <option value="">Pilih Dosen
                                                                             </option>
                                                                             @foreach ($dosen as $data)
@@ -98,22 +99,20 @@
                                                                                 </option>
                                                                             @endforeach
                                                                         </select>
-                                                                        @error('dosen')
-                                                                            <div id="dosen" class="form-text pb-1">
+                                                                        @error('update_id_dosen')
+                                                                            <div id="update_id_dosen" class="form-text pb-1">
                                                                                 {{ $message }}
                                                                             </div>
                                                                         @enderror
                                                                     </div>
                                                                 </div>
 
-
-
                                                                 <div class="col-md-12">
                                                                     <div class="form-group">
-                                                                        <label for="status">Status</label>
+                                                                        <label for="update_status">Status</label>
                                                                         <select
-                                                                            class="form-control @error('status') is-invalid @enderror"
-                                                                            id="status" name="status">
+                                                                            class="form-control @error('update_status') is-invalid @enderror"
+                                                                            id="update_status" name="update_status">
                                                                             <option value="">Pilih Status
                                                                             </option>
                                                                             <option value="Aktif"
@@ -123,8 +122,8 @@
                                                                                 {{ $item->status == 'Tidak Aktif' ? 'selected' : '' }}>
                                                                                 Tidak Aktif</option>
                                                                         </select>
-                                                                        @error('status')
-                                                                            <div id="status" class="form-text pb-1">
+                                                                        @error('update_status')
+                                                                            <div id="update_status" class="form-text pb-1">
                                                                                 {{ $message }}</div>
                                                                         @enderror
                                                                     </div>
@@ -171,17 +170,17 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="dosen">Dosen</label>
-                                    <select class="form-control @error('dosen') is-invalid @enderror" id="dosen"
-                                        name="dosen">
+                                    <label for="create_id_dosen">Dosen</label>
+                                    <select class="form-control @error('create_id_dosen') is-invalid @enderror"
+                                        id="create_id_dosen" name="create_id_dosen">
                                         <option value="">Pilih Dosen</option>
                                         @foreach ($dosen as $data)
                                             <option value="{{ $data->id }}">{{ $data->nama_dosen }}
                                             </option>
                                         @endforeach
                                     </select>
-                                    @error('dosen')
-                                        <div id="dosen" class="form-text pb-1">
+                                    @error('create_id_dosen')
+                                        <div id="create_id_dosen" class="form-text pb-1">
                                             {{ $message }}</div>
                                     @enderror
                                 </div>
@@ -189,15 +188,15 @@
 
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="status">Status</label>
-                                    <select class="form-control @error('status') is-invalid @enderror" id="status"
-                                        name="status">
+                                    <label for="create_status">Status</label>
+                                    <select class="form-control @error('create_status') is-invalid @enderror"
+                                        id="create_status" name="create_status">
                                         <option value="">Pilih Status</option>
                                         <option value="Aktif">Aktif</option>
                                         <option value="Tidak Aktif">Tidak Aktif</option>
                                     </select>
-                                    @error('status')
-                                        <div id="status" class="form-text pb-1">
+                                    @error('create_status')
+                                        <div id="create_status" class="form-text pb-1">
                                             {{ $message }}</div>
                                     @enderror
                                 </div>

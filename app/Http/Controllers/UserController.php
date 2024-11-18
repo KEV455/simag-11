@@ -4,10 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
-use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
@@ -37,26 +36,26 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'nama' => ['required', 'string', Rule::unique('users', 'name')],
-            'username' => ['required', 'string', Rule::unique('users', 'username')],
-            'email' => ['required', 'string', 'email', Rule::unique('users', 'email')],
-            'password' => ['required', 'confirmed', 'min:8'], // `confirmed` mencocokkan dengan `password_confirmation`
-            'role' => ['required'],
+            'create_name' => ['required', 'string', Rule::unique('users', 'name')],
+            'create_username' => ['required', 'string', Rule::unique('users', 'username')],
+            'create_email' => ['required', 'string', 'email', Rule::unique('users', 'email')],
+            'create_password' => ['required', 'confirmed', 'min:8'], // `confirmed` mencocokkan dengan `password_confirmation`
+            'create_role' => ['required'],
         ]);
 
-        $slug = Str::slug($validated['nama']);
         $user = new User;
-        $user->name = $slug;
-        $user->username = $validated['username'];
-        $user->email = $validated['email'];
-        $user->password = Hash::make($request->password);
-        $user->role = $validated['role'];
+        $user->name = $validated['create_name'];
+        $user->username = $validated['create_username'];
+        $user->email = $validated['create_email'];
+        $user->password = Hash::make($validated['create_password']);
+        $user->role = $validated['create_role'];
         $user->save();
 
         Alert::success('Success', 'User Berhasil Ditambahkan');
 
         return redirect()->route('admin.user.index');
     }
+
 
     /**
      * Display the specified resource.
@@ -87,6 +86,20 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // Mendapatkan ID pengguna yang sedang login
+        $currentUserId = Auth::user()->id;
+
+        // Jika ID pengguna yang ingin dihapus sama dengan ID pengguna yang sedang login
+        if ($currentUserId == $id) {
+            Alert::error('Error', 'Anda tidak bisa menghapus user diri sendiri.');
+            return redirect()->route('admin.user.index');
+        }
+
+        // Menghapus user jika bukan diri sendiri
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        Alert::success('Success', 'User Berhasil Dihapus');
+        return redirect()->route('admin.user.index');
     }
 }

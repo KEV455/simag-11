@@ -25,11 +25,18 @@
                             <i class="mdi mdi-plus-circle-outline mr-2"></i>Tambah Mahasiswa Baru
                         </a>
 
+                        {{-- Import Template --}}
+                        <a href="{{ asset('template-import/template-excel-import-mahasiswa.xlsx') }}"
+                            class="btn bg-blue-violet text-white px-4 mt-0 mb-3"
+                            title="Download Template File Import Mahasiswa">
+                            <i class="fa-solid fa-cloud-arrow-down"></i>
+                        </a>
+
                         {{-- tombol modal import mahasiswa --}}
-                        {{-- <button type="button" class="btn btn-success px-4 mt-0 mb-3" data-toggle="modal"
-                            data-animation="bounce" data-target=".modalCreate">
+                        <button type="button" class="btn btn-success px-4 mt-0 mb-3" data-toggle="modal"
+                            data-animation="bounce" data-target=".modalCreate" title="Import Data Mahasiswa">
                             <i class="fa-solid fa-cloud-arrow-up"></i>&ensp; Import
-                        </button> --}}
+                        </button>
 
                         <div class="table-responsive">
                             @php
@@ -88,7 +95,7 @@
     </div>
 
     <!--  Modal Import Mahasiswa -->
-    {{-- <div class="modal fade modalCreate" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    <div class="modal fade modalCreate" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -128,7 +135,7 @@
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
-    </div><!-- /.modal --> --}}
+    </div><!-- /.modal -->
 @endsection
 
 @section('bottom-script')

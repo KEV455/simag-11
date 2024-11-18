@@ -169,7 +169,7 @@
 
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label for="tanggal_dibuka">Tanggal Dibuka</label>
+                                                <label for="tanggal_dibuka">Tanggal Pendaftaran Dibuka</label>
                                                 <input type="date"
                                                     class="form-control @error('tanggal_dibuka') is-invalid @enderror"
                                                     id="tanggal_dibuka" name="tanggal_dibuka"
@@ -184,7 +184,7 @@
 
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label for="tanggal_ditutup">Tanggal Ditutup</label>
+                                                <label for="tanggal_ditutup">Tanggal Pendaftaran Ditutup</label>
                                                 <input type="date"
                                                     class="form-control @error('tanggal_ditutup') is-invalid @enderror"
                                                     id="tanggal_ditutup" name="tanggal_ditutup"
@@ -198,7 +198,7 @@
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label for="tanggal_magang_dimulai">Tanggal Magang Dibuka</label>
+                                                <label for="tanggal_magang_dimulai">Tanggal Mulai Magang</label>
                                                 <input type="date"
                                                     class="form-control @error('tanggal_magang_dimulai') is-invalid @enderror"
                                                     id="tanggal_magang_dimulai" name="tanggal_magang_dimulai"
@@ -212,7 +212,7 @@
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label for="tanggal_magang_ditutup">Tanggal Magang Ditutup</label>
+                                                <label for="tanggal_magang_ditutup">Tanggal Selesai Magang</label>
                                                 <input type="date"
                                                     class="form-control @error('tanggal_magang_ditutup') is-invalid @enderror"
                                                     id="tanggal_magang_ditutup" name="tanggal_magang_ditutup"
@@ -430,7 +430,7 @@
 
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="tanggal_dibuka">Tanggal Dibuka</label>
+                                    <label for="tanggal_dibuka">Tanggal Pendaftaran Dibuka</label>
                                     <input type="date"
                                         class="form-control @error('tanggal_dibuka') is-invalid @enderror"
                                         id="tanggal_dibuka" name="tanggal_dibuka"
@@ -444,7 +444,7 @@
 
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="tanggal_ditutup">Tanggal Ditutup</label>
+                                    <label for="tanggal_ditutup">Tanggal Pendaftaran Ditutup</label>
                                     <input type="date"
                                         class="form-control @error('tanggal_ditutup') is-invalid @enderror"
                                         id="tanggal_ditutup" name="tanggal_ditutup"
@@ -457,7 +457,7 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="tanggal_magang_dimulai">Tanggal Magang Dibuka</label>
+                                    <label for="tanggal_magang_dimulai">Tanggal Mulai Magang</label>
                                     <input type="date"
                                         class="form-control @error('tanggal_magang_dimulai') is-invalid @enderror"
                                         id="tanggal_magang_dimulai" name="tanggal_magang_dimulai"
@@ -470,7 +470,7 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="tanggal_magang_ditutup">Tanggal Magang Ditutup</label>
+                                    <label for="tanggal_magang_ditutup">Tanggal Selesai Magang</label>
                                     <input type="date"
                                         class="form-control @error('tanggal_magang_ditutup') is-invalid @enderror"
                                         id="tanggal_magang_ditutup" name="tanggal_magang_ditutup"
