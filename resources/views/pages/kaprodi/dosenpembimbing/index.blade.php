@@ -49,10 +49,13 @@
                                             <td class="text-left">{{ $item->dosen->prodi->nama_program_studi }}</td>
                                             <td class="text-left">{{ $item->status }}</td>
                                             <td>
+                                                <a href="#"><i class="fa-solid fa-eye text-primary font-16"
+                                                        title="Mahasiswa"></i></a>
                                                 <a href="{{ route('kaprodi.dospem.update', $item->id) }}" class="mr-2"
                                                     data-toggle="modal" data-animation="bounce"
                                                     data-target=".modalUpdate{{ $item->id }}"><i
                                                         class="fas fa-edit text-info font-16"></i></a>
+
                                                 <a href="{{ route('kaprodi.dospem.destroy', $item->id) }}"><i
                                                         class="fas fa-trash-alt text-danger font-16"></i></a>
                                             </td>
