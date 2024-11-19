@@ -24,6 +24,7 @@ use App\Http\Controllers\LowonganController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MahasiswaProfileController;
 use App\Http\Controllers\MitraController;
+use App\Http\Controllers\PengajuanMitraMandiriController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\UserController;
 
@@ -154,4 +155,10 @@ Route::middleware(['auth', 'role:mahasiswa'])->group(function () {
     Route::get('/mahasiswa/dashboard', [DashboardMahasiswaController::class, 'index'])->name('dashboard.mahasiswa');
     Route::get('/mahasiswa/profile', [MahasiswaProfileController::class, 'index'])->name('profile.mahasiswa.index');
     Route::put('/mahasiswa/profile/{id}/update', [MahasiswaProfileController::class, 'update'])->name('profile.mahasiswa.update');
+
+    // Route Pengajuan Mitra Mandiri
+    Route::get('/mahasiswa/pengajuan-mitra-mandiri', [PengajuanMitraMandiriController::class, 'index'])->name('mahasiswa.mitra.mandiri.index');
+    Route::get('/mahasiswa/manajemen-mitra-mandiri/create', [PengajuanMitraMandiriController::class, 'create'])->name('mahasiswa.mitra.mandiri.create');
+    Route::post('/mahasiswa/pengajuan-mitra-mandiri/{id}/store', [PengajuanMitraMandiriController::class, 'store'])->name('mahasiswa.mitra.mandiri.store');
+    Route::get('/mahasiswa/pengajuan-mitra-mandiri/{id}/delete', [PengajuanMitraMandiriController::class, 'destroy'])->name('mahasiswa.mitra.mandiri.destroy');
 });
