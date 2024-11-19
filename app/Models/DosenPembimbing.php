@@ -15,4 +15,9 @@ class DosenPembimbing extends Model
     {
         return $this->belongsTo(Dosen::class, 'id_dosen', 'id');
     }
+
+    public function pembimbing_magang()
+    {
+        return $this->hasMany(PembimbingMagang::class);
+    }
 }

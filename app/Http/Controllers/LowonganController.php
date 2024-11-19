@@ -69,7 +69,7 @@ class LowonganController extends Controller
             'status' => $validated['status'],
         ]);
 
-        $prodi_convert = collect($validated['berkas']);
+        $prodi_convert = collect($validated['prodi']);
 
         $prodi = Prodi::all();
         $check_prodi = $prodi_convert->except(

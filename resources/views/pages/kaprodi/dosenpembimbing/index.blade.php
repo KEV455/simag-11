@@ -49,7 +49,8 @@
                                             <td class="text-left">{{ $item->dosen->prodi->nama_program_studi }}</td>
                                             <td class="text-left">{{ $item->status }}</td>
                                             <td>
-                                                <a href="#"><i class="fa-solid fa-eye text-primary font-16"
+                                                <a href="{{ route('kaprodi.pembimbing.magang.index', $item->id) }}"><i
+                                                        class="fa-solid fa-eye text-primary font-16"
                                                         title="Mahasiswa"></i></a>
                                                 <a href="{{ route('kaprodi.dospem.update', $item->id) }}" class="mr-2"
                                                     data-toggle="modal" data-animation="bounce"

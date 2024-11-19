@@ -26,4 +26,9 @@ class Mahasiswa extends Model
     {
         return $this->belongsTo(User::class, 'id_user', 'id');
     }
+
+    public function mahasiswa()
+    {
+        return $this->belongsTo(Mahasiswa::class, 'id_mahasiswa', 'id');
+    }
 }

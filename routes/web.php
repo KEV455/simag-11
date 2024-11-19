@@ -18,6 +18,7 @@ use App\Http\Controllers\KoordinatorController;
 use App\Http\Controllers\LowonganController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MitraController;
+use App\Http\Controllers\PembimbingMagangController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\UserController;
 
@@ -124,6 +125,12 @@ Route::middleware(['auth', 'role:kaprodi'])->group(function () {
     Route::post('/kaprodi/manajemen-dosen-pembimbing/store', [DosenPembimbingController::class, 'store'])->name('kaprodi.dospem.store');
     Route::put('/kaprodi/manajemen-dosen-pembimbing/{id}/update', [DosenPembimbingController::class, 'update'])->name('kaprodi.dospem.update');
     Route::get('/kaprodi/manajemen-dosen-pembimbing/{id}/delete', [DosenPembimbingController::class, 'destroy'])->name('kaprodi.dospem.destroy');
+
+    //Route Pembimbing Magang
+    Route::get('/kaprodi/manajemen-pembimbing-magang/{id}', [PembimbingMagangController::class, 'index'])->name('kaprodi.pembimbing.magang.index');
+    Route::get('/kaprodi/manajemen-pembimbing-magang/{id}/create', [PembimbingMagangController::class, 'create'])->name('kaprodi.pembimbing.magang.create');
+    Route::post('/kaprodi/manajemen-pembimbing-magang/{id}/store', [PembimbingMagangController::class, 'store'])->name('kaprodi.pembimbing.magang.store');
+    Route::get('/kaprodi/manajemen-pembimbing-magang/{id}/delete', [PembimbingMagangController::class, 'destroy'])->name('kaprodi.pembimbing.magang.destroy');
 });
 
 Route::middleware(['auth', 'role:dospem'])->group(function () {
