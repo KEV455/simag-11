@@ -292,11 +292,11 @@
 
                                                                     <input class="form-check-input" type="checkbox"
                                                                         value="{{ $dataitem->id }}" name="prodi[]"
-                                                                        id="{{ $dataitem->id }}"
+                                                                        id="prodi_{{ $dataitem->id }}"
                                                                         @if ($isChecked) checked @endif>
 
                                                                     <label class="form-check-label"
-                                                                        for="{{ $dataitem->id }}">
+                                                                        for="prodi_{{ $dataitem->id }}">
                                                                         {{ $dataitem->nama_program_studi }}
                                                                     </label>
                                                                 </div>
@@ -342,11 +342,11 @@
 
                                                                     <input class="form-check-input" type="checkbox"
                                                                         value="{{ $dataitem->id }}" name="berkas[]"
-                                                                        id="{{ $dataitem->id }}"
+                                                                        id="berkas_{{ $dataitem->id }}"
                                                                         @if ($isChecked) checked @endif>
 
                                                                     <label class="form-check-label"
-                                                                        for="{{ $dataitem->id }}">
+                                                                        for="berkas_{{ $dataitem->id }}">
                                                                         {{ $dataitem->nama_berkas }}
                                                                     </label>
                                                                 </div>
@@ -515,7 +515,6 @@
                                     <thead>
                                         <tr class="text-nowrap">
                                             <th>Program Studi
-
                                                 @error('prodi')
                                                     <div id="prodi" class="text-danger py-1">
                                                         *pilih minimal satu prodi
@@ -527,15 +526,15 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($prodi as $item)
+                                        @foreach ($prodi as $data)
                                             <tr>
                                                 <td class="d-flex">
                                                     <div class="form-check my-auto">
                                                         <input class="form-check-input" type="checkbox"
-                                                            value="{{ $item->id }}" name="prodi[]"
-                                                            id="{{ $item->id }}">
-                                                        <label class="form-check-label" for="{{ $item->id }}">
-                                                            {{ $item->nama_program_studi }}
+                                                            value="{{ $data->id }}" name="prodi[]"
+                                                            id="prodi_{{ $data->id }}">
+                                                        <label class="form-check-label" for="prodi_{{ $data->id }}">
+                                                            {{ $data->nama_program_studi }}
                                                         </label>
                                                     </div>
                                                 </td>
@@ -550,7 +549,6 @@
                                     <thead>
                                         <tr class="text-nowrap">
                                             <th>Berkas
-
                                                 @error('berkas')
                                                     <div id="berkas" class="text-danger py-1">
                                                         *pilih minimal satu berkas
@@ -568,8 +566,8 @@
                                                     <div class="form-check my-auto">
                                                         <input class="form-check-input" type="checkbox"
                                                             value="{{ $item->id }}" name="berkas[]"
-                                                            id="{{ $item->id }}">
-                                                        <label class="form-check-label" for="{{ $item->id }}">
+                                                            id="berkas_{{ $item->id }}">
+                                                        <label class="form-check-label" for="berkas_{{ $item->id }}">
                                                             {{ $item->nama_berkas }}
                                                         </label>
                                                     </div>
@@ -579,6 +577,7 @@
                                     </tbody>
                                 </table>
                             </div>
+
 
                         </div>
 

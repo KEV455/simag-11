@@ -78,6 +78,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     // Route Manjemen User
     Route::get('/admin/manajemen-user', [UserController::class, 'index'])->name('admin.user.index');
     Route::post('/admin/manajemen-user/store', [UserController::class, 'store'])->name('admin.user.store');
+    Route::put('/admin/manajemen-user/{id}/update', [UserController::class, 'update'])->name('admin.user.update');
     Route::get('/admin/manajemen-user/{id}/delete', [UserController::class, 'destroy'])->name('admin.user.destroy');
 
     // Route Manajemen Kaprodi

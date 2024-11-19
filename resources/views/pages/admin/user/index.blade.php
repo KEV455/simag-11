@@ -50,9 +50,10 @@
                                             <td class="text-left">{{ $data->email }}</td>
                                             <td class="text-left">{{ $data->role }}</td>
                                             <td>
-                                                <a href="#" class="mr-2" data-animation="bounce">
-                                                    <i class="fas fa-edit text-info font-16"></i>
-                                                </a>
+                                                <a href="{{ route('admin.user.update', $data->id) }}" class="mr-2"
+                                                    data-toggle="modal" data-animation="bounce"
+                                                    data-target=".modalUpdate{{ $data->id }}"><i
+                                                        class="fas fa-edit text-info font-16"></i></a>
                                                 <a href="{{ route('admin.user.destroy', $data->id) }}">
                                                     <i class="fas fa-trash-alt text-danger font-16"></i>
                                                 </a>
@@ -62,6 +63,142 @@
                                         @php
                                             $no++;
                                         @endphp
+
+                                        <!--  Modal Update content for the above example -->
+                                        <div class="modal fade modalUpdate{{ $data->id }}" tabindex="-1" role="dialog"
+                                            aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title mt-0" id="myLargeModalLabel">Ubah User
+                                                        </h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-hidden="true">×</button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="{{ route('admin.user.update', $data->id) }}"
+                                                            method="POST">
+                                                            @method('put')
+                                                            @csrf
+
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <label for="name">Nama</label>
+                                                                        <input type="text"
+                                                                            class="form-control @error('name') is-invalid @enderror"
+                                                                            id="name" name="name"
+                                                                            placeholder="Masukkan Nama "
+                                                                            value="{{ $data->name }}">
+                                                                        @error('name')
+                                                                            <div id="name" class="form-text pb-1">
+                                                                                {{ $message }}</div>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <label for="username">Username</label>
+                                                                        <input type="text"
+                                                                            class="form-control @error('username') is-invalid @enderror"
+                                                                            id="username" name="username"
+                                                                            placeholder="Masukkan username "
+                                                                            value="{{ $data->username }}">
+                                                                        @error('username')
+                                                                            <div id="username" class="form-text pb-1">
+                                                                                {{ $message }}</div>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <label for="email">Email</label>
+                                                                        <input type="text"
+                                                                            class="form-control @error('email') is-invalid @enderror"
+                                                                            id="email" name="email"
+                                                                            placeholder="Masukkan email "
+                                                                            value="{{ $data->email }}">
+                                                                        @error('email')
+                                                                            <div id="email" class="form-text pb-1">
+                                                                                {{ $message }}</div>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <label for="password">Password</label>
+                                                                        <input type="password"
+                                                                            class="form-control @error('password') is-invalid @enderror"
+                                                                            id="password" name="password"
+                                                                            placeholder="Masukkan password">
+                                                                        @error('password')
+                                                                            <div id="password" class="form-text pb-1">
+                                                                                {{ $message }}</div>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <label for="password_confirmation">Konfirmasi
+                                                                            Password</label>
+                                                                        <input type="password"
+                                                                            class="form-control @error('password') is-invalid @enderror"
+                                                                            id="password_confirmation"
+                                                                            name="password_confirmation"
+                                                                            placeholder="Masukkan konfirmasi password">
+                                                                        @error('password_confirmation')
+                                                                            <div id="password_confirmation"
+                                                                                class="form-text pb-1">{{ $message }}
+                                                                            </div>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <label for="role">Role</label>
+                                                                        <select
+                                                                            class="form-control @error('role') is-invalid @enderror"
+                                                                            id="role" name="role">
+                                                                            <option value="">Pilih Role</option>
+                                                                            <option value="admin"
+                                                                                {{ $data->role == 'admin' ? 'selected' : '' }}>
+                                                                                Admin</option>
+                                                                            <option value="mahasiswa"
+                                                                                {{ $data->role == 'mahasiswa' ? 'selected' : '' }}>
+                                                                                Mahasiswa</option>
+                                                                            <option value="dosen"
+                                                                                {{ $data->role == 'dosen' ? 'selected' : '' }}>
+                                                                                Dosen</option>
+                                                                            <option value="dospem"
+                                                                                {{ $data->role == 'dospem' ? 'selected' : '' }}>
+                                                                                Dosen Pembimbing
+                                                                            </option>
+                                                                            <option value="kaprodi"
+                                                                                {{ $data->role == 'kaprodi' ? 'selected' : '' }}>
+                                                                                Kaprodi</option>
+                                                                            <option
+                                                                                value="koordinator"{{ $data->role == 'koordinator' ? 'selected' : '' }}>
+                                                                                Koordinator Magang
+                                                                            </option>
+                                                                        </select>
+                                                                        @error('role')
+                                                                            <div id="role" class="form-text pb-1">
+                                                                                {{ $message }}</div>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <button type="submit"
+                                                                class="btn btn-sm btn-primary">Simpan</button>
+                                                            <button type="button" class="btn btn-sm btn-danger"
+                                                                data-dismiss="modal">Batal</button>
+                                                        </form>
+                                                    </div>
+                                                </div><!-- /.modal-content -->
+                                            </div><!-- /.modal-dialog -->
+                                        </div><!-- /.modal -->
                                     @endforeach
                                 </tbody>
                             </table>
