@@ -37,7 +37,7 @@
                                 Profile
                             </a>
                         @endif
-                        {{-- @if (Auth()->user()->role == 'dospem')
+                        @if (Auth()->user()->role == 'dospem')
                             <a class="dropdown-item" href="{{ route('profile.dospem.index') }}">
                                 <i class="dripicons-user text-muted mr-2"></i>
                                 Profile
@@ -60,7 +60,7 @@
                                 <i class="dripicons-user text-muted mr-2"></i>
                                 Profile
                             </a>
-                        @endif --}}
+                        @endif
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('logout') }}"><i
                                 class="dripicons-exit text-muted mr-2"></i>

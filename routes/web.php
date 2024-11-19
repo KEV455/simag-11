@@ -11,15 +11,18 @@ use App\Http\Controllers\DashboardKaprodiController;
 use App\Http\Controllers\DashboardKoordinatorController;
 use App\Http\Controllers\DashboardMahasiswaController;
 use App\Http\Controllers\DosenController;
-
 use App\Http\Controllers\DosenPembimbingController;
 use App\Http\Controllers\DosenProfileController;
+use App\Http\Controllers\DospemProfileController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\KaprodiController;
+use App\Http\Controllers\KaprodiProfileController;
 use App\Http\Controllers\KategoriBidangController;
 use App\Http\Controllers\KoordinatorController;
+use App\Http\Controllers\KoordinatorProfileController;
 use App\Http\Controllers\LowonganController;
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\MahasiswaProfileController;
 use App\Http\Controllers\MitraController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\UserController;
@@ -93,6 +96,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 Route::middleware(['auth', 'role:koordinator'])->group(function () {
     Route::get('/koordinator/dashboard', [DashboardKoordinatorController::class, 'index'])->name('dashboard.koordinator');
+    Route::get('/koordinator/profile', [KoordinatorProfileController::class, 'index'])->name('profile.koordinator.index');
+    Route::put('/koordinator/profile/{id}/update', [KoordinatorProfileController::class, 'update'])->name('profile.koordinator.update');
 
     // Route Manajemen Kategori Bidang
     Route::get('/koordinator/manajemen-kategori-bidang', [KategoriBidangController::class, 'index'])->name('koordinator.kategori.bidang.index');
@@ -123,6 +128,8 @@ Route::middleware(['auth', 'role:koordinator'])->group(function () {
 
 Route::middleware(['auth', 'role:kaprodi'])->group(function () {
     Route::get('/kaprodi/dashboard', [DashboardKaprodiController::class, 'index'])->name('dashboard.kaprodi');
+    Route::get('/kaprodi/profile', [KaprodiProfileController::class, 'index'])->name('profile.kaprodi.index');
+    Route::put('/kaprodi/profile/{id}/update', [KaprodiProfileController::class, 'update'])->name('profile.kaprodi.update');
 
     // Route Dosen Pembimbing
     Route::get('/kaprodi/manajemen-dosen-pembimbing', [DosenPembimbingController::class, 'index'])->name('kaprodi.dospem.index');
@@ -133,6 +140,8 @@ Route::middleware(['auth', 'role:kaprodi'])->group(function () {
 
 Route::middleware(['auth', 'role:dospem'])->group(function () {
     Route::get('/dospem/dashboard', [DashboardDospemController::class, 'index'])->name('dashboard.dospem');
+    Route::get('/dospem/profile', [DospemProfileController::class, 'index'])->name('profile.dospem.index');
+    Route::put('/dospem/profile/{id}/update', [DospemProfileController::class, 'update'])->name('profile.dospem.update');
 });
 
 Route::middleware(['auth', 'role:dosen'])->group(function () {
@@ -143,4 +152,6 @@ Route::middleware(['auth', 'role:dosen'])->group(function () {
 
 Route::middleware(['auth', 'role:mahasiswa'])->group(function () {
     Route::get('/mahasiswa/dashboard', [DashboardMahasiswaController::class, 'index'])->name('dashboard.mahasiswa');
+    Route::get('/mahasiswa/profile', [MahasiswaProfileController::class, 'index'])->name('profile.mahasiswa.index');
+    Route::put('/mahasiswa/profile/{id}/update', [MahasiswaProfileController::class, 'update'])->name('profile.mahasiswa.update');
 });
