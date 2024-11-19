@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mahasiswa;
+use App\Models\MitraMandiri;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardMahasiswaController extends Controller
 {
@@ -11,7 +15,12 @@ class DashboardMahasiswaController extends Controller
      */
     public function index()
     {
-        $data = [];
+        $user =  User::where('id', Auth::user()->id)->first();
+        $mahasiswa = Mahasiswa::where('id_user', $user->id)->first();
+
+        $data = [
+            'mitras_mandiri_count' => MitraMandiri::where('id_mahasiswa', $mahasiswa->id)->count(),
+        ];
 
         return view('dashboard.mahasiswa', $data);
     }
