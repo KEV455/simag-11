@@ -24,6 +24,7 @@ use App\Http\Controllers\LowonganController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MahasiswaProfileController;
 use App\Http\Controllers\MitraController;
+use App\Http\Controllers\MitraMandiriController;
 use App\Http\Controllers\PembimbingMagangController;
 use App\Http\Controllers\PengajuanMitraMandiriController;
 use App\Http\Controllers\ProdiController;
@@ -126,6 +127,14 @@ Route::middleware(['auth', 'role:koordinator'])->group(function () {
     Route::post('/koordinator/manajemen-lowongan/create', [LowonganController::class, 'store'])->name('koordinator.lowongan.create');
     Route::get('/koordinator/manajemen-lowongan/delete/{id}', [LowonganController::class, 'destroy'])->name('koordinator.lowongan.destroy');
     Route::put('/koordinator/manajemen-lowongan/{id}/update', [LowonganController::class, 'update'])->name('koordinator.lowongan.update');
+
+    // Route Manajemen Mitra Mandiri
+    Route::get('/koordinator/manajemen-mitra-mandiri', [MitraMandiriController::class, 'index'])->name('koordinator.mitra.mandiri.index');
+    Route::get('/koordinator/manajemen-mitra-mandiri/{id}/show', [MitraMandiriController::class, 'show'])->name('koordinator.mitra.mandiri.show');
+    Route::put('/koordinator/manajemen-mitra-mandiri/{id}/update', [MitraMandiriController::class, 'update'])->name('koordinator.mitra.mandiri.update');
+    Route::get('/koordinator/manajemen-mitra-mandiri/{id}/delete', [MitraMandiriController::class, 'destroy'])->name('koordinator.mitra.mandiri.destroy');
+    Route::get('/koordinator/manajemen-mitra-mandiri/{id}/diterima', [MitraMandiriController::class, 'diterima'])->name('koordinator.mitra.mandiri.diterima');
+    Route::get('/koordinator/manajemen-mitra-mandiri/{id}/ditolak', [MitraMandiriController::class, 'ditolak'])->name('koordinator.mitra.mandiri.ditolak');
 });
 
 Route::middleware(['auth', 'role:kaprodi'])->group(function () {

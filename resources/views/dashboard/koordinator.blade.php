@@ -70,20 +70,22 @@
 
                     @if (Auth()->user()->role == 'koordinator')
                         <div class="col-lg-4">
-                            <div class="card hospital-info card-hover card-rounded">
-                                <div class="card-body">
-                                    <h4 class="header-title mt-0 mb-3">Mitra Mandiri</h4>
-                                    <div class="media">
-                                        <div class="data-icon align-self-center">
-                                            <i class="fa-solid fa-handshake-angle rounded-circle text-bg-info"></i>
+                            <a href="{{ route('koordinator.mitra.mandiri.index') }}">
+                                <div class="card hospital-info card-hover card-rounded">
+                                    <div class="card-body">
+                                        <h4 class="header-title mt-0 mb-3">Mitra Mandiri</h4>
+                                        <div class="media">
+                                            <div class="data-icon align-self-center">
+                                                <i class="fa-solid fa-handshake-angle rounded-circle text-bg-info"></i>
+                                            </div>
+                                            <div class="media-body ml-3 align-self-center text-right">
+                                                <h3 class="mt-0">{{ $mitra_mandiri_count }}</h3>
+                                                <p class="text-muted mb-0 text-nowrap">Daftar Mitra Mandiri</p>
+                                            </div><!--end media body-->
                                         </div>
-                                        <div class="media-body ml-3 align-self-center text-right">
-                                            <h3 class="mt-0">--</h3>
-                                            <p class="text-muted mb-0 text-nowrap">Daftar Mitra Mandiri</p>
-                                        </div><!--end media body-->
-                                    </div>
-                                </div><!--end card-body-->
-                            </div><!--end card-->
+                                    </div><!--end card-body-->
+                                </div><!--end card-->
+                            </a>
                         </div><!-- end col-->
                     @endif
 
