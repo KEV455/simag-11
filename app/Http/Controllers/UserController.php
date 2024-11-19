@@ -78,7 +78,33 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validated = $request->validate([
+            'name' => ['required', 'string'],
+            'username' => ['required', 'string', Rule::unique('users', 'username')->ignore($id)],
+            'email' => ['required', 'string', 'email', Rule::unique('users', 'email')->ignore($id)],
+            'password' => ['nullable', 'confirmed', 'min:8'],
+            'role' => ['required'],
+        ]);
+
+        // Persiapkan data yang akan diupdate
+        $data = [
+            'name' => $validated['name'],
+            'username' => $validated['username'],
+            'email' => $validated['email'],
+            'role' => $validated['role'],
+        ];
+
+        // Update password hanya jika field password diisi
+        if (!$validated['password'] == null) {
+            $data['password'] = Hash::make($validated['password']);
+        }
+
+        // Update data user
+        User::where('id', $id)->update($data);
+
+        Alert::success('Success', 'Data User Berhasil Diubah');
+
+        return redirect()->route('admin.user.index');
     }
 
     /**
