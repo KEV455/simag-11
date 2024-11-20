@@ -51,7 +51,7 @@
                                             <td>
                                                 <a href="{{ route('kaprodi.pembimbing.magang.index', $item->id) }}"><i
                                                         class="fa-solid fa-eye text-primary font-16"
-                                                        title="Mahasiswa"></i></a>
+                                                        title="Mahasiswa"></i></a> &ensp;
                                                 <a href="{{ route('kaprodi.dospem.update', $item->id) }}" class="mr-2"
                                                     data-toggle="modal" data-animation="bounce"
                                                     data-target=".modalUpdate{{ $item->id }}"><i
