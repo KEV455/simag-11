@@ -37,3 +37,16 @@ body {
 .bg-blue-violet {
     background-color: blueviolet !important;
 }
+
+.fw-bold {
+    font-weight: bold !important;
+}
+
+.fw-medium {
+    font-weight: medium !important;
+}
+
+.main-widgets-icon {
+    max-width: 120px; /* Sesuaikan ukuran maksimum gambar */
+    margin-right: 15px; /* Jarak default ke teks */
+}

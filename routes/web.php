@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BerkasController;
+use App\Http\Controllers\DaftarMagangController;
 use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\DashboardDosenController;
 use App\Http\Controllers\DashboardDospemController;
@@ -178,4 +179,8 @@ Route::middleware(['auth', 'role:mahasiswa'])->group(function () {
     Route::get('/mahasiswa/manajemen-mitra-mandiri/create', [PengajuanMitraMandiriController::class, 'create'])->name('mahasiswa.mitra.mandiri.create');
     Route::post('/mahasiswa/pengajuan-mitra-mandiri/{id}/store', [PengajuanMitraMandiriController::class, 'store'])->name('mahasiswa.mitra.mandiri.store');
     Route::get('/mahasiswa/pengajuan-mitra-mandiri/{id}/delete', [PengajuanMitraMandiriController::class, 'destroy'])->name('mahasiswa.mitra.mandiri.destroy');
+
+    // Route Pendaftaran Magang
+    Route::get('/mahasiswa/pendaftaran-magang', [DaftarMagangController::class, 'index'])->name('mahasiswa.daftar.magang.index');
+    Route::get('/mahasiswa/pendaftaran-magang/{id}/show', [DaftarMagangController::class, 'show'])->name('mahasiswa.daftar.magang.show');
 });

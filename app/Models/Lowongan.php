@@ -30,6 +30,6 @@ class Lowongan extends Model
     }
     public function lowongan_prodi()
     {
-        return $this->hasMany(LowonganProdi::class);
+        return $this->hasMany(LowonganProdi::class, 'id_lowongan', 'id');
     }
 }
