@@ -60,7 +60,7 @@
                                             </div>
                                             <div class="media-body ml-3 align-self-center text-right">
                                                 <h5 class="mt-0">Cari Lowongan Magang</h5>
-                                                <p class="text-muted mb-0 text-nowrap">Pendaftarab Program Magang</p>
+                                                <p class="text-muted mb-0 text-nowrap">Pendaftaran Program Magang</p>
                                             </div><!--end media body-->
                                         </div>
                                     </div><!--end card-body-->

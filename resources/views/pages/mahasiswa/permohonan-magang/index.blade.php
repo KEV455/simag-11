@@ -55,7 +55,7 @@
                                             </td>
                                             <td class="text-left">{{ $item->status_diterima }}</td>
                                             <td>
-                                                <a href="#">
+                                                <a href="{{ route('mahasiswa.permohonan.magang.destroy', $item->id) }}">
                                                     <i class="fas fa-trash-alt text-danger font-16"></i>
                                                 </a>
                                             </td>
@@ -81,17 +81,47 @@
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 @if ($item->berkas_pelamar && $item->berkas_pelamar->count() > 0)
-                                                                    @foreach ($item->berkas_pelamar as $dataBerkas)
-                                                                        <div class="accordion-body collapse show"
-                                                                            id="panel-body-1" data-parent="#accordion">
-                                                                            <iframe
-                                                                                src="{{ asset('storage/' . $dataBerkas->file) }}"
-                                                                                width="100%" height="700px"></iframe>
-                                                                        </div>
-                                                                    @endforeach
+                                                                    {{-- Accordion --}}
+                                                                    <div class="accordion" id="accordionExample">
+                                                                        @foreach ($item->berkas_pelamar as $index => $dataBerkas)
+                                                                            <div class="card">
+                                                                                <!-- Header untuk tombol accordion -->
+                                                                                <div class="card-header"
+                                                                                    id="heading-{{ $index }}">
+                                                                                    <h5 class="mb-0">
+                                                                                        <button
+                                                                                            class="btn btn-link {{ $loop->first ? '' : 'collapsed' }}"
+                                                                                            type="button"
+                                                                                            data-toggle="collapse"
+                                                                                            data-target="#collapse-{{ $index }}"
+                                                                                            aria-expanded="{{ $loop->first ? 'true' : 'false' }}"
+                                                                                            aria-controls="collapse-{{ $index }}">
+                                                                                            {{ $dataBerkas->berkas_lowongan->berkas->nama_berkas }}
+                                                                                        </button>
+                                                                                    </h5>
+                                                                                </div>
+
+                                                                                <!-- Konten accordion -->
+                                                                                <div id="collapse-{{ $index }}"
+                                                                                    class="collapse {{ $loop->first ? 'show' : '' }}"
+                                                                                    aria-labelledby="heading-{{ $index }}"
+                                                                                    data-parent="#accordionExample">
+                                                                                    <div class="card-body"> 
+                                                                                        <iframe
+                                                                                            src="{{ asset('storage/' . $dataBerkas->file) }}"
+                                                                                            width="100%" height="700px"
+                                                                                            style="border: none;"></iframe>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        @endforeach
+                                                                    </div>
+                                                                @else
+                                                                    <p class="text-muted">Berkas pelamar belum tersedia.</p>
                                                                 @endif
                                                             </div>
                                                         </div>
+
                                                     </div>
                                                 </div><!-- /.modal-content -->
                                             </div><!-- /.modal-dialog -->
@@ -108,4 +138,26 @@
             <!--end col-->
         </div>
     </div>
+@endsection
+
+@section('bottom-script')
+    <script>
+        $(document).ready(function() {
+            // Menyimpan status elemen yang terbuka
+            $('#accordionExample .collapse').on('shown.bs.collapse', function() {
+                localStorage.setItem('activeAccordion', $(this).attr('id'));
+            });
+
+            // Menghapus status jika elemen tertutup
+            $('#accordionExample .collapse').on('hidden.bs.collapse', function() {
+                localStorage.removeItem('activeAccordion');
+            });
+
+            // Membuka elemen berdasarkan status terakhir
+            var activeAccordion = localStorage.getItem('activeAccordion');
+            if (activeAccordion) {
+                $('#' + activeAccordion).collapse('show');
+            }
+        });
+    </script>
 @endsection

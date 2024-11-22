@@ -193,6 +193,7 @@ Route::middleware(['auth', 'role:mahasiswa'])->group(function () {
 
     //route permohonan Magang mahasiswa
     Route::get('/mahasiswa/permohonan-magang', [PermohonanMagangMahasiswaController::class, 'index'])->name('mahasiswa.permohonan.magang.index');
+    Route::get('/mahasiswa/permohonan-magang/{id}/delete', [PermohonanMagangMahasiswaController::class, 'destroy'])->name('mahasiswa.permohonan.magang.destroy');
 
     //Route Logbook Mahasiswa
     Route::get('/mahasiswa/logbook-mahasiswa', [LogbookController::class, 'index'])->name('mahasiswa.logbook.index');

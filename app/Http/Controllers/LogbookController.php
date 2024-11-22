@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Logbook;
+use App\Models\Mahasiswa;
+use App\Models\PelamarMagang;
+use App\Models\PesertaMagang;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LogbookController extends Controller
 {
@@ -11,8 +17,28 @@ class LogbookController extends Controller
      */
     public function index()
     {
-        return view('pages.mahasiswa.logbook.index');
+        // Ambil data user yang sedang login
+        $user = User::findOrFail(Auth::id());
+
+        // Ambil data mahasiswa berdasarkan user ID
+        $mahasiswa = Mahasiswa::where('id_user', $user->id)->firstOrFail();
+
+        // Ambil data pelamar magang dengan status 'diterima'
+        $pelamar_magang = PelamarMagang::where('id_mahasiswa', $mahasiswa->id)
+            ->where('status_diterima', 'Diterima')
+            ->firstOrFail();
+
+        // Ambil data peserta magang berdasarkan pelamar magang
+        $peserta_magang = PesertaMagang::where('id_pelamar_magang', $pelamar_magang->id)
+            ->firstOrFail();
+
+        // Ambil logbook berdasarkan id_peserta_magang
+        $logbooks = Logbook::where('id_peserta_magang', $peserta_magang->id)->get();
+
+        // Return data ke view
+        return view('pages.mahasiswa.logbook.index', compact('logbooks', 'pelamar_magang'));
     }
+
 
     /**
      * Show the form for creating a new resource.
