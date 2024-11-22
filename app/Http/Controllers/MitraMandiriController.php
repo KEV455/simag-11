@@ -96,7 +96,7 @@ class MitraMandiriController extends Controller
         // Update data mitra
         $mitra_mandiri->update($updateData);
 
-        Alert::success('Success', 'Mitra Mandiri Berhasil Disetujui');
+        Alert::success('Success', 'Mitra Mandiri Berhasil Ditolak');
 
         return redirect()->route('koordinator.mitra.mandiri.index');
     }

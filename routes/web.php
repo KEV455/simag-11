@@ -22,6 +22,7 @@ use App\Http\Controllers\KategoriBidangController;
 use App\Http\Controllers\KoordinatorController;
 use App\Http\Controllers\KoordinatorProfileController;
 use App\Http\Controllers\LogbookController;
+use App\Http\Controllers\LamaranMagangController;
 use App\Http\Controllers\LowonganController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MahasiswaProfileController;
@@ -140,6 +141,13 @@ Route::middleware(['auth', 'role:koordinator'])->group(function () {
     Route::get('/koordinator/manajemen-mitra-mandiri/{id}/delete', [MitraMandiriController::class, 'destroy'])->name('koordinator.mitra.mandiri.destroy');
     Route::get('/koordinator/manajemen-mitra-mandiri/{id}/diterima', [MitraMandiriController::class, 'diterima'])->name('koordinator.mitra.mandiri.diterima');
     Route::get('/koordinator/manajemen-mitra-mandiri/{id}/ditolak', [MitraMandiriController::class, 'ditolak'])->name('koordinator.mitra.mandiri.ditolak');
+
+    // Route Manajemen Permohonan Magang Mahasiswa
+    Route::get('/koordinator/manajemen-pelamar-magang', [LamaranMagangController::class, 'index'])->name('koordinator.pelamar.magang.index');
+    Route::get('/koordinator/manajemen-pelamar-magang/diterima', [LamaranMagangController::class, 'pelamar_magang_disetujui'])->name('koordinator.pelamar.magang.diterima.index');
+    Route::get('/koordinator/manajemen-pelamar-magang/ditolak', [LamaranMagangController::class, 'pelamar_magang_ditolak'])->name('koordinator.pelamar.magang.ditolak.index');
+    Route::get('/koordinator/manajemen-pelamar-magang/{id}/diterima', [LamaranMagangController::class, 'diterima'])->name('koordinator.pelamar.magang.diterima');
+    Route::get('/koordinator/manajemen-pelamar-magang/{id}/ditolak', [LamaranMagangController::class, 'ditolak'])->name('koordinator.pelamar.magang.ditolak');
 });
 
 Route::middleware(['auth', 'role:kaprodi'])->group(function () {
@@ -197,4 +205,9 @@ Route::middleware(['auth', 'role:mahasiswa'])->group(function () {
 
     //Route Logbook Mahasiswa
     Route::get('/mahasiswa/logbook-mahasiswa', [LogbookController::class, 'index'])->name('mahasiswa.logbook.index');
+    Route::get('/mahasiswa/logbook-mahasiswa/{id}/create', [LogbookController::class, 'create'])->name('mahasiswa.logbook.create');
+    Route::post('/mahasiswa/logbook-mahasiswa/{id}/store', [LogbookController::class, 'store'])->name('mahasiswa.logbook.store');
+    Route::get('/mahasiswa/logbook-mahasiswa/{id}/edit', [LogbookController::class, 'edit'])->name('mahasiswa.logbook.edit');
+    Route::put('/mahasiswa/logbook-mahasiswa/{id}/update', [LogbookController::class, 'update'])->name('mahasiswa.logbook.update');
+    Route::get('/mahasiswa/logbook-mahasiswa/{id}/delete', [LogbookController::class, 'destroy'])->name('mahasiswa.logbook.destroy');
 });

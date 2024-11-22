@@ -43,7 +43,8 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <a href="{#" class="btn btn-primary px-4 mt-0 mb-3" data-animation="bounce"><i
+                        <a href="{{ route('mahasiswa.logbook.create', $peserta_magang->id) }}"
+                            class="btn btn-primary px-4 mt-0 mb-3" data-animation="bounce"><i
                                 class="mdi mdi-plus-circle-outline mr-2"></i>Tambah Logbook
                             Baru</a>
                         <div class="table-responsive">
@@ -78,10 +79,11 @@
                                             <td class="text-left">{{ dateConversion($item->tanggal_kegiatan) }}</td>
                                             <td class="text-left">{{ $item->deskripsi_kegiatan }}</td>
                                             <td>
-                                                <a href="#" class="mr-2" data-animation="bounce">
+                                                <a href="{{ route('mahasiswa.logbook.edit', $item->id) }}" class="mr-2"
+                                                    data-animation="bounce">
                                                     <i class="fas fa-edit text-info font-16"></i>
                                                 </a>
-                                                <a href="#">
+                                                <a href="{{ route('mahasiswa.logbook.destroy', $item->id) }}">
                                                     <i class="fas fa-trash-alt text-danger font-16"></i>
                                                 </a>
                                             </td>

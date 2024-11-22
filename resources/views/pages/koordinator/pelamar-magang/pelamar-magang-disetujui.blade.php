@@ -1,7 +1,7 @@
 @extends('layouts.base.base-template')
 
 @section('title')
-    <title>Permohonan Magang Mahasiswa | SiMagang</title>
+    <title>Permohonan Magang Mahasiswa Disetujui | SiMagang</title>
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-title-box">
-                    <h4 class="page-title">Permohonan Magang Mahasiswa</h4>
+                    <h4 class="page-title">Permohonan Magang Mahasiswa Disetujui</h4>
                 </div>
                 <!--end page-title-box-->
             </div>
@@ -20,6 +20,15 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
+                        <a href="{{ route('koordinator.pelamar.magang.index') }}"
+                            class="btn btn-warning px-4 mt-0 mb-3" data-animation="bounce">
+                            <i class="fa-solid fa-clock"></i>&ensp;Lamaran Menunggu
+                        </a>&ensp;
+                        <a href="{{ route('koordinator.pelamar.magang.ditolak.index') }}"
+                            class="btn btn-danger px-4 mt-0 mb-3" data-animation="bounce">
+                            <i class="fa-solid fa-circle-xmark"></i>&ensp;Lamaran Ditolak
+                        </a>
+
                         <div class="table-responsive">
                             @php
                                 $no = 1;
@@ -29,39 +38,31 @@
                                 <thead class="thead-light">
                                     <tr class="text-center">
                                         <th width="10%">No</th>
+                                        <th class="text-left">Nama Mahasiswa</th>
+                                        <th class="text-left">Nim Mahasiswa</th>
+                                        <th class="text-left">Program Studi</th>
                                         <th class="text-left">Nama Mitra</th>
                                         <th class="text-left">Lowongan</th>
-                                        <th class="text-left">Email</th>
                                         <th class="text-center">Berkas</th>
-                                        <th class="text-left">Status Diterima</th>
-                                        <th width="10%">Action</th>
                                     </tr>
                                     <!--end tr-->
                                 </thead>
 
                                 <tbody>
-                                    @foreach ($pelamar_magang as $item)
+                                    @foreach ($pelamar_magang_menunggu as $item)
                                         <tr class="text-center">
                                             <td>{{ $no }}</td>
+                                            <td class="text-left">{{ $item->mahasiswa->nama_mahasiswa }}</td>
+                                            <td class="text-left">{{ $item->mahasiswa->nim }}</td>
+                                            <td class="text-left">{{ $item->mahasiswa->prodi->nama_program_studi }}</td>
                                             <td class="text-left">{{ $item->lowongan->mitra->nama }}</td>
                                             <td class="text-left">{{ $item->lowongan->nama }}</td>
-                                            <td class="text-left">{{ $item->lowongan->mitra->email }}</td>
                                             <td class="text-center">
                                                 <button type="button" class="btn btn-primary px-4 mt-0 mb-3"
                                                     data-toggle="modal" data-animation="bounce" data-target=".modalView">
                                                     <i class="fa-solid fa-file-circle-check"></i>&ensp;
                                                     Lihat Berkas Saya
                                                 </button>
-                                            </td>
-                                            <td class="text-left">{{ $item->status_diterima }}</td>
-                                            <td>
-                                                @if ($item->status_diterima == 'Diterima')
-                                                    -
-                                                @else
-                                                    <a href="{{ route('mahasiswa.permohonan.magang.destroy', $item->id) }}">
-                                                        <i class="fas fa-trash-alt text-danger font-16"></i>
-                                                    </a>
-                                                @endif
                                             </td>
                                         </tr>
                                         <!--end tr-->
@@ -76,7 +77,8 @@
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title mt-0" id="myLargeModalLabel">Berkas Lamaran -
-                                                            {{ $item->lowongan->nama }} ({{ $item->lowongan->mitra->nama }})
+                                                            {{ $item->lowongan->nama }}
+                                                            ({{ $item->lowongan->mitra->nama }})
                                                         </h5>
                                                         <button type="button" class="close" data-dismiss="modal"
                                                             aria-hidden="true">×</button>
@@ -114,7 +116,8 @@
                                                                                         <iframe
                                                                                             src="{{ asset('storage/' . $dataBerkas->file) }}"
                                                                                             width="100%" height="700px"
-                                                                                            style="border: none;"></iframe>
+                                                                                            style="border: none;">
+                                                                                        </iframe>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
