@@ -93,7 +93,7 @@
                     @if (Auth()->user()->role == 'mahasiswa')
                         <div class="col-lg-4">
                             <div class="card hospital-info card-hover card-rounded">
-                                <a href="#">
+                                <a href="{{ route('mahasiswa.logbook.index') }}">
                                     <div class="card-body">
                                         <h4 class="header-title mt-0 mb-3">Log Book Magang</h4>
                                         <div class="media">

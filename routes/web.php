@@ -21,6 +21,7 @@ use App\Http\Controllers\KaprodiProfileController;
 use App\Http\Controllers\KategoriBidangController;
 use App\Http\Controllers\KoordinatorController;
 use App\Http\Controllers\KoordinatorProfileController;
+use App\Http\Controllers\LogbookController;
 use App\Http\Controllers\LowonganController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MahasiswaProfileController;
@@ -193,4 +194,6 @@ Route::middleware(['auth', 'role:mahasiswa'])->group(function () {
     //route permohonan Magang mahasiswa
     Route::get('/mahasiswa/permohonan-magang', [PermohonanMagangMahasiswaController::class, 'index'])->name('mahasiswa.permohonan.magang.index');
 
+    //Route Logbook Mahasiswa
+    Route::get('/mahasiswa/logbook-mahasiswa', [LogbookController::class, 'index'])->name('mahasiswa.logbook.index');
 });
