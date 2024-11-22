@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BerkasPelamar;
 use App\Models\Mahasiswa;
 use App\Models\PelamarMagang;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Storage;
 
 class PermohonanMagangMahasiswaController extends Controller
 {
@@ -73,6 +76,27 @@ class PermohonanMagangMahasiswaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $pelamar_magang = PelamarMagang::findOrFail($id);
+        $berkas_pelamar = BerkasPelamar::where('id_pelamar_magang', $id)->get();
+
+        foreach ($berkas_pelamar as $berkas) {
+            if ($berkas->file != null) {
+
+                $filePath = $berkas->file;
+
+                // Periksa apakah file tersebut benar-benar ada di penyimpanan
+                if (Storage::disk('public')->exists($filePath)) {
+                    // Hapus file terkait dari penyimpanan
+                    Storage::disk('public')->delete($filePath);
+                }
+            }
+        }
+
+
+        $pelamar_magang->delete();
+
+        Alert::success('Success', 'Pelamar Magang Berhasil Dihapus');
+
+        return redirect()->route('mahasiswa.permohonan.magang.index');
     }
 }

@@ -84,7 +84,7 @@ class DaftarMagangController extends Controller
         $prodiMhsAvailable = in_array($mahasiswa->id_prodi, $lowonganProdi);
 
         if ($lowongan->status == 'Tidak Aktif') {
-            Alert::error('Success', 'Maaf, Lowongan Tidak Aktif');
+            Alert::error('Success', 'Maaf, Lowongan Tidak Tersedia');
             return redirect()->route('mahasiswa.daftar.magang.index');
         }
 
