@@ -26,8 +26,10 @@ use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MahasiswaProfileController;
 use App\Http\Controllers\MitraController;
 use App\Http\Controllers\MitraMandiriController;
+use App\Http\Controllers\PelamarMagangController;
 use App\Http\Controllers\PembimbingMagangController;
 use App\Http\Controllers\PengajuanMitraMandiriController;
+use App\Http\Controllers\PermohonanMagangMahasiswaController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\UserController;
 
@@ -183,4 +185,12 @@ Route::middleware(['auth', 'role:mahasiswa'])->group(function () {
     // Route Pendaftaran Magang
     Route::get('/mahasiswa/pendaftaran-magang', [DaftarMagangController::class, 'index'])->name('mahasiswa.daftar.magang.index');
     Route::get('/mahasiswa/pendaftaran-magang/{id}/show', [DaftarMagangController::class, 'show'])->name('mahasiswa.daftar.magang.show');
+
+    //Route Pelamar Magang
+    Route::get('/mahasiswa/pendaftaran-magang/{id}/create', [PelamarMagangController::class, 'index'])->name('mahasiswa.pelamar.magang.index');
+    Route::post('/mahasiswa/pendaftaran-magang/{id}/store', [PelamarMagangController::class, 'store'])->name('mahasiswa.pelamar.magang.store');
+
+    //route permohonan Magang mahasiswa
+    Route::get('/mahasiswa/permohonan-magang', [PermohonanMagangMahasiswaController::class, 'index'])->name('mahasiswa.permohonan.magang.index');
+
 });

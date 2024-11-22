@@ -135,7 +135,8 @@
                                     <a href="{{ route('mahasiswa.daftar.magang.show', $dataLowongan->id) }}"
                                         class="btn btn-sm btn-primary" id="sa-success">Detail
                                         Lowongan&ensp;<i class="fa-solid fa-circle-info"></i></a>
-                                    <a href="#" class="btn btn-sm btn-success" data-dismiss="modal">Daftar
+                                    <a href="{{ route('mahasiswa.pelamar.magang.index', $dataLowongan->id) }}"
+                                        class="btn btn-sm btn-success" data-dismiss="modal">Daftar
                                         Sekarang&ensp;<i class="fa-solid fa-right-to-bracket"></i></a>
                                 </div>
                             </div>

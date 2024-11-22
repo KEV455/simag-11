@@ -72,7 +72,7 @@
                     @if (Auth()->user()->role == 'mahasiswa')
                         <div class="col-lg-4">
                             <div class="card hospital-info card-hover card-rounded">
-                                <a href="#">
+                                <a href="{{ route('mahasiswa.permohonan.magang.index') }}">
                                     <div class="card-body">
                                         <h4 class="header-title mt-0 mb-3">Permohonan Magang</h4>
                                         <div class="media">
@@ -80,7 +80,7 @@
                                                 <i class="fa-solid fa-file-circle-check rounded-circle text-warning"></i>
                                             </div>
                                             <div class="media-body ml-3 align-self-center text-right">
-                                                <h3 class="mt-0">--</h3>
+                                                <h3 class="mt-0">{{ $pelamar_magang_count }}</h3>
                                                 <p class="text-muted mb-0 text-nowrap">Permohonan Magang Saya</p>
                                             </div><!--end media body-->
                                         </div>

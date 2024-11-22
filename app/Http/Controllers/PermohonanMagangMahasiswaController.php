@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
-use App\Models\MitraMandiri;
 use App\Models\PelamarMagang;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class DashboardMahasiswaController extends Controller
+class PermohonanMagangMahasiswaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,11 +19,10 @@ class DashboardMahasiswaController extends Controller
         $mahasiswa = Mahasiswa::where('id_user', $user->id)->first();
 
         $data = [
-            'mitras_mandiri_count' => MitraMandiri::where('id_mahasiswa', $mahasiswa->id)->count(),
-            'pelamar_magang_count' => PelamarMagang::where('id_mahasiswa', $mahasiswa->id)->count(),
+            'pelamar_magang' => PelamarMagang::where('id_mahasiswa', $mahasiswa->id)->get(),
         ];
 
-        return view('dashboard.mahasiswa', $data);
+        return view('pages.mahasiswa.permohonan-magang.index', $data);
     }
 
     /**
