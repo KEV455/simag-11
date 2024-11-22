@@ -91,24 +91,27 @@
                     @endif
 
                     @if (Auth()->user()->role == 'mahasiswa')
-                        <div class="col-lg-4">
-                            <div class="card hospital-info card-hover card-rounded">
-                                <a href="#">
-                                    <div class="card-body">
-                                        <h4 class="header-title mt-0 mb-3">Log Book Magang</h4>
-                                        <div class="media">
-                                            <div class="data-icon align-self-center">
-                                                <i class="fa-solid fa-person-chalkboard rounded-circle text-success"></i>
+                        @if ($pelamar_magang)
+                            <div class="col-lg-4">
+                                <div class="card hospital-info card-hover card-rounded">
+                                    <a href="#">
+                                        <div class="card-body">
+                                            <h4 class="header-title mt-0 mb-3">Log Book Magang</h4>
+                                            <div class="media">
+                                                <div class="data-icon align-self-center">
+                                                    <i
+                                                        class="fa-solid fa-person-chalkboard rounded-circle text-success"></i>
+                                                </div>
+                                                <div class="media-body ml-3 align-self-center text-right">
+                                                    <h4 class="mt-0">{{ $pelamar_magang->lowongan->mitra->nama }}</h4>
+                                                    <p class="text-muted mb-0 text-nowrap">Daftar Log Book Magang Saya</p>
+                                                </div><!--end media body-->
                                             </div>
-                                            <div class="media-body ml-3 align-self-center text-right">
-                                                <h3 class="mt-0">--</h3>
-                                                <p class="text-muted mb-0 text-nowrap">Daftar Log Book Magang Saya</p>
-                                            </div><!--end media body-->
-                                        </div>
-                                    </div><!--end card-body-->
-                                </a>
-                            </div><!--end card-->
-                        </div><!-- end col-->
+                                        </div><!--end card-body-->
+                                    </a>
+                                </div><!--end card-->
+                            </div><!-- end col-->
+                        @endif
                     @endif
 
                     @if (Auth()->user()->role == 'mahasiswa')

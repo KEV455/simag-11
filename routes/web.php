@@ -21,6 +21,7 @@ use App\Http\Controllers\KaprodiProfileController;
 use App\Http\Controllers\KategoriBidangController;
 use App\Http\Controllers\KoordinatorController;
 use App\Http\Controllers\KoordinatorProfileController;
+use App\Http\Controllers\LamaranMagangController;
 use App\Http\Controllers\LowonganController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MahasiswaProfileController;
@@ -139,6 +140,13 @@ Route::middleware(['auth', 'role:koordinator'])->group(function () {
     Route::get('/koordinator/manajemen-mitra-mandiri/{id}/delete', [MitraMandiriController::class, 'destroy'])->name('koordinator.mitra.mandiri.destroy');
     Route::get('/koordinator/manajemen-mitra-mandiri/{id}/diterima', [MitraMandiriController::class, 'diterima'])->name('koordinator.mitra.mandiri.diterima');
     Route::get('/koordinator/manajemen-mitra-mandiri/{id}/ditolak', [MitraMandiriController::class, 'ditolak'])->name('koordinator.mitra.mandiri.ditolak');
+
+    // Route Manajemen Permohonan Magang Mahasiswa
+    Route::get('/koordinator/manajemen-pelamar-magang', [LamaranMagangController::class, 'index'])->name('koordinator.pelamar.magang.index');
+    Route::get('/koordinator/manajemen-pelamar-magang/diterima', [LamaranMagangController::class, 'pelamar_magang_disetujui'])->name('koordinator.pelamar.magang.diterima.index');
+    Route::get('/koordinator/manajemen-pelamar-magang/ditolak', [LamaranMagangController::class, 'pelamar_magang_ditolak'])->name('koordinator.pelamar.magang.ditolak.index');
+    Route::get('/koordinator/manajemen-pelamar-magang/{id}/diterima', [LamaranMagangController::class, 'diterima'])->name('koordinator.pelamar.magang.diterima');
+    Route::get('/koordinator/manajemen-pelamar-magang/{id}/ditolak', [LamaranMagangController::class, 'ditolak'])->name('koordinator.pelamar.magang.ditolak');
 });
 
 Route::middleware(['auth', 'role:kaprodi'])->group(function () {

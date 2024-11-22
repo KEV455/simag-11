@@ -19,9 +19,13 @@ class DashboardMahasiswaController extends Controller
         $user =  User::where('id', Auth::user()->id)->first();
         $mahasiswa = Mahasiswa::where('id_user', $user->id)->first();
 
+        // mengambil data pelamar magang yang disetujui dan peserta memiliki data peserta magang
+        $pelamar_magang = PelamarMagang::where('id_mahasiswa', $mahasiswa->id)->where('status_diterima', 'Diterima')->first();
+
         $data = [
             'mitras_mandiri_count' => MitraMandiri::where('id_mahasiswa', $mahasiswa->id)->count(),
             'pelamar_magang_count' => PelamarMagang::where('id_mahasiswa', $mahasiswa->id)->count(),
+            'pelamar_magang' => $pelamar_magang,
         ];
 
         return view('dashboard.mahasiswa', $data);

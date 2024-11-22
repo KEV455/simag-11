@@ -7,6 +7,7 @@ use App\Models\KategoriBidang;
 use App\Models\Lowongan;
 use App\Models\LowonganProdi;
 use App\Models\Mahasiswa;
+use App\Models\PelamarMagang;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -84,7 +85,7 @@ class DaftarMagangController extends Controller
         $prodiMhsAvailable = in_array($mahasiswa->id_prodi, $lowonganProdi);
 
         if ($lowongan->status == 'Tidak Aktif') {
-            Alert::error('Success', 'Maaf, Lowongan Tidak Tersedia');
+            Alert::error('Invalid', 'Maaf, Lowongan Tidak Tersedia');
             return redirect()->route('mahasiswa.daftar.magang.index');
         }
 

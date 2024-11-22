@@ -176,7 +176,8 @@
                                     <li class="has-submenu">
                                         <a href="#">Mitra Mandiri</a>
                                         <ul class="submenu">
-                                            <li><a href="">Daftar Mitra Mandiri</a></li>
+                                            <li><a href="{{ route('koordinator.mitra.mandiri.index') }}">Daftar Mitra
+                                                    Mandiri</a></li>
                                         </ul>
                                     </li><!--end has-submenu-->
                                     <li class="has-submenu">
@@ -190,7 +191,8 @@
                                     <li class="has-submenu">
                                         <a href="#">Pelamar Magang</a>
                                         <ul class="submenu">
-                                            <li><a href="">Daftar Pelamar Magang</a></li>
+                                            <li><a href="{{ route('koordinator.pelamar.magang.index') }}">Daftar
+                                                    Pelamar Magang</a></li>
                                         </ul>
                                     </li><!--end has-submenu-->
                                     <li class="has-submenu">
@@ -231,7 +233,24 @@
                         {{-- Navbar Dosen Pembimbing --}}
 
                         {{-- Navbar Mahasiswa --}}
-
+                        @if (Auth()->user()->role == 'mahasiswa')
+                            <li class="has-submenu">
+                                <a href="#">
+                                    <i class="fa-solid fa-book"></i>
+                                    <span>Magang</span>
+                                </a>
+                                <ul class="submenu">
+                                    <li>
+                                        <a href="{{ route('mahasiswa.daftar.magang.index') }}">
+                                            Daftar Magang
+                                        </a>
+                                        <a href="{{ route('mahasiswa.permohonan.magang.index') }}">
+                                            Permohonan Magang
+                                        </a>
+                                    </li>
+                                </ul><!--end submenu-->
+                            </li><!--end has-submenu-->
+                        @endif
                     </ul><!-- End navigation menu -->
                 </div> <!-- end navigation -->
             </div> <!-- end container-fluid -->

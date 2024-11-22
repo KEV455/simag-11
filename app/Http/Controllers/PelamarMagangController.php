@@ -21,7 +21,7 @@ class PelamarMagangController extends Controller
     public function index($id)
     {
         // mengambil data pelamar magang untuk lowongan sekarang
-        $pelamarMagangLowongan = PelamarMagang::where('id_lowongan', $id)->first();
+        $pelamarMagangLowongan = PelamarMagang::where('id_lowongan', $id)->where('status_diterima', 'Menunggu')->first();
         $flag_lamaran_magang = false;
 
         if ($pelamarMagangLowongan) {
@@ -48,7 +48,15 @@ class PelamarMagangController extends Controller
         $prodiMhsAvailable = in_array($mahasiswa->id_prodi, $lowonganProdi);
 
         if ($lowongan->status == 'Tidak Aktif') {
-            Alert::error('Success', 'Maaf, Lowongan Tidak Aktif');
+            Alert::error('Invalid', 'Maaf, Lowongan Tidak Aktif');
+            return redirect()->route('mahasiswa.daftar.magang.index');
+        }
+
+        // mengambil data pelamar magang yang disetujui dan peserta memiliki data peserta magang
+        $pelamar_magang = PelamarMagang::where('id_mahasiswa', $mahasiswa->id)->where('status_diterima', 'Diterima')->first();
+
+        if ($pelamar_magang) {
+            Alert::error('Invalid', 'Maaf Anda telah Diterima di Program Magang Lain');
             return redirect()->route('mahasiswa.daftar.magang.index');
         }
 

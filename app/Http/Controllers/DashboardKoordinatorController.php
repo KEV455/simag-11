@@ -7,6 +7,7 @@ use App\Models\KategoriBidang;
 use App\Models\Lowongan;
 use App\Models\Mitra;
 use App\Models\MitraMandiri;
+use App\Models\PelamarMagang;
 use Illuminate\Http\Request;
 
 class DashboardKoordinatorController extends Controller
@@ -22,6 +23,7 @@ class DashboardKoordinatorController extends Controller
             'berkas_count' => Berkas::count(),
             'lowongan_count' => Lowongan::count(),
             'mitra_mandiri_count' => MitraMandiri::count(),
+            'pelamar_magang_menunggu_count' => PelamarMagang::where('status_diterima', 'Menunggu')->count()
         ];
 
         return view('dashboard.koordinator', $data);
