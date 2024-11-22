@@ -176,7 +176,8 @@
 
                             <div class="my-3">
                                 @if ($prodiMhsAvailable)
-                                    <a href="#" class="btn btn-success px-3">Daftar Sekarang&ensp;<i
+                                    <a href="{{ route('mahasiswa.pelamar.magang.index', $lowongan->id) }}"
+                                        class="btn btn-success px-3">Daftar Sekarang&ensp;<i
                                             class="fa-solid fa-right-to-bracket"></i></a>
                                 @else
                                     <a href="{{ url()->previous() }}" class="btn btn-outline-danger px-3">Anda Tidak Bisa

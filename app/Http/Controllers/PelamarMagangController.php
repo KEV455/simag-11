@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\BerkasLowongan;
 use App\Models\BerkasPelamar;
 use App\Models\Lowongan;
+use App\Models\LowonganProdi;
 use App\Models\Mahasiswa;
 use App\Models\PelamarMagang;
 use App\Models\User;
@@ -19,9 +20,42 @@ class PelamarMagangController extends Controller
      */
     public function index($id)
     {
+        // mengambil data pelamar magang untuk lowongan sekarang
+        $pelamarMagangLowongan = PelamarMagang::where('id_lowongan', $id)->first();
+        $flag_lamaran_magang = false;
+
+        if ($pelamarMagangLowongan) {
+            $flag_lamaran_magang = true;
+        }
+
+        if ($flag_lamaran_magang) {
+            Alert::info('Oops', 'Maaf, Anda Sudah Mendaftar di Lowongan ini');
+            return redirect()->route('mahasiswa.daftar.magang.index');
+        }
+
+        $lowongan = Lowongan::findOrFail($id);
+        $user =  User::where('id', Auth::user()->id)->first();
+
+        // Ambil data mahasiswa berdasarkan user
+        $mahasiswa = Mahasiswa::where('id_user', $user->id)->firstOrFail();
+
+        // Ambil data lowongan prodi terkait lowongan ini
+        $lowonganProdi = LowonganProdi::where('id_lowongan', $id)
+            ->pluck('id_prodi') // Hanya ambil kolom id_prodi
+            ->toArray();
+
+        // Cek apakah id_prodi mahasiswa ada di data lowongan prodi
+        $prodiMhsAvailable = in_array($mahasiswa->id_prodi, $lowonganProdi);
+
+        if ($lowongan->status == 'Tidak Aktif') {
+            Alert::error('Success', 'Maaf, Lowongan Tidak Aktif');
+            return redirect()->route('mahasiswa.daftar.magang.index');
+        }
+
         $data = [
             'lowongan' => Lowongan::findOrFail($id),
-            'berkas_lowongan' => BerkasLowongan::where('id_lowongan', $id)->get()
+            'berkas_lowongan' => BerkasLowongan::where('id_lowongan', $id)->get(),
+            'prodiMhsAvailable' => $prodiMhsAvailable,
         ];
 
         return view('pages.mahasiswa.pelamar-magang.index', $data);

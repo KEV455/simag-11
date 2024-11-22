@@ -186,7 +186,7 @@ Route::middleware(['auth', 'role:mahasiswa'])->group(function () {
     Route::get('/mahasiswa/pendaftaran-magang', [DaftarMagangController::class, 'index'])->name('mahasiswa.daftar.magang.index');
     Route::get('/mahasiswa/pendaftaran-magang/{id}/show', [DaftarMagangController::class, 'show'])->name('mahasiswa.daftar.magang.show');
 
-    //Route Pelamar Magang
+    // Route Pelamar Magang
     Route::get('/mahasiswa/pendaftaran-magang/{id}/create', [PelamarMagangController::class, 'index'])->name('mahasiswa.pelamar.magang.index');
     Route::post('/mahasiswa/pendaftaran-magang/{id}/store', [PelamarMagangController::class, 'store'])->name('mahasiswa.pelamar.magang.store');
 

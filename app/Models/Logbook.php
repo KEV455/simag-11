@@ -8,6 +8,7 @@ class Logbook extends Model
 {
     protected $fillable = [
         'judul_kegiatan',
+        'status_kehadiran',
         'dokumentasi_kegiatan',
         'deskripsi_kegiatan',
         'tanggal_kegiatan',

@@ -15,12 +15,15 @@ class PermohonanMagangMahasiswaController extends Controller
      */
     public function index()
     {
-        $user =  User::where('id', Auth::user()->id)->first();
-        $mahasiswa = Mahasiswa::where('id_user', $user->id)->first();
+        $user = User::findOrFail(Auth::id());
+        $mahasiswa = Mahasiswa::where('id_user', $user->id)->firstOrFail();
 
         $data = [
-            'pelamar_magang' => PelamarMagang::where('id_mahasiswa', $mahasiswa->id)->get(),
+            'pelamar_magang' => PelamarMagang::where('id_mahasiswa', $mahasiswa->id)
+                ->with('berkas_pelamar') // Load relasi berkas pelamar
+                ->get(),
         ];
+
 
         return view('pages.mahasiswa.permohonan-magang.index', $data);
     }

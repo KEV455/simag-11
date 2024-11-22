@@ -22,7 +22,7 @@ class PelamarMagang extends Model
     }
     public function berkas_pelamar()
     {
-        return $this->hasMany(BerkasPelamar::class);
+        return $this->hasMany(BerkasPelamar::class, 'id_pelamar_magang', 'id');
     }
     public function peserta_magang()
     {

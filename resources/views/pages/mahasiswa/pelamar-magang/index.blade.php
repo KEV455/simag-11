@@ -104,8 +104,14 @@
 
                             </div>
 
-                            <button type="submit" class="btn btn-sm btn-primary" id="sa-success">Tambah</button>
-                            <a href="{{ url()->previous() }}" class="btn btn-sm btn-danger" data-dismiss="modal">Batal</a>
+                            @if ($prodiMhsAvailable)
+                                <button type="submit" class="btn btn-sm btn-primary" id="sa-success">Submit</button>
+                                <a href="{{ url()->previous() }}" class="btn btn-sm btn-danger"
+                                    data-dismiss="modal">Batal</a>
+                            @else
+                                <a href="{{ url()->previous() }}" class="btn btn-outline-danger px-3">Anda Tidak Bisa
+                                    Mendaftar</a>
+                            @endif
                         </form>
                     </div>
                     <!--end card-body-->

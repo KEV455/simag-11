@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('logbooks', function (Blueprint $table) {
             $table->id();
             $table->string('judul_kegiatan', 255)->nullable(false);
+            $table->enum('status_kehadiran', ['hadir', 'alpa', 'tidak ada keterangan'])->nullable(false);
             $table->string('dokumentasi_kegiatan', 255)->nullable(false);
             $table->text('deskripsi_kegiatan')->nullable(false);
             $table->date('tanggal_kegiatan')->nullable(false);
