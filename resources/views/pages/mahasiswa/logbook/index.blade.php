@@ -76,7 +76,11 @@
                                                     alt="Foto Kegiatan">
                                             </td>
                                             <td class="text-left">{{ $item->status_kehadiran }}</td>
-                                            <td class="text-left">{{ dateConversion($item->tanggal_kegiatan) }}</td>
+                                            <td class="text-left">
+                                                {{ $item->tanggal_kegiatan
+                                                    ? \Carbon\Carbon::parse($item->tanggal_kegiatan)->locale('id')->translatedFormat('j F Y')
+                                                    : '-' }}
+                                            </td>
                                             <td class="text-left">{{ $item->deskripsi_kegiatan }}</td>
                                             <td>
                                                 <a href="{{ route('mahasiswa.logbook.edit', $item->id) }}" class="mr-2"

@@ -83,18 +83,26 @@
                                                 id="dokumentasi" name="dokumentasi" onchange="displayFileName()">
                                             <label class="custom-file-label" for="dokumentasi" id="fileLabel">
                                                 <!-- Menampilkan nama file yang diunggah sebelumnya jika ada -->
-                                                @if (session('dokumentasi'))
+                                                {{-- @if (session('dokumentasi'))
                                                     {{ session('dokumentasi') }}
                                                 @elseif ($logbook->dokumentasi_kegiatan)
                                                     {{ $logbook->dokumentasi_kegiatan }}
-                                                @else
-                                                    Choose file
-                                                @endif
+                                                @else --}}
+                                                Choose file
+                                                {{-- @endif --}}
                                             </label>
                                             @error('dokumentasi')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
+                                        @if ($logbook->dokumentasi_kegiatan !== null)
+                                            <a href="{{ asset('storage/' . $logbook->dokumentasi_kegiatan) }}"
+                                                target="_blank">
+                                                <img width="250" class="img-thumbnail img-fluid"
+                                                    src="{{ asset('storage/' . $logbook->dokumentasi_kegiatan) }}"
+                                                    alt="Foto Kegiatan">
+                                            </a>
+                                        @endif
                                     </div>
                                 </div>
 
