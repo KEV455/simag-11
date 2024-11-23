@@ -76,7 +76,7 @@
                                         <div class="custom-file mb-3">
                                             <input type="file"
                                                 class="custom-file-input form-control @error('dokumentasi') is-invalid @enderror"
-                                                id="dokumentasi" name="dokumentasi" onchange="displayFileName()">
+                                                id="dokumentasi" name="dokumentasi" onchange="displayFileName()" required>
                                             <label class="custom-file-label" for="dokumentasi" id="fileLabel">
                                                 <!-- Menampilkan nama file yang diunggah sebelumnya jika ada -->
                                                 {{ session('dokumentasi') ? session('dokumentasi') : 'Choose file' }}

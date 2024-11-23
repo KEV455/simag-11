@@ -75,7 +75,7 @@ class LogbookController extends Controller
                     }
                 }
             ],
-            'dokumentasi' => ['image', 'mimes:png,jpg,jpeg', 'max:5120'],
+            'dokumentasi' => ['requierd', 'image', 'mimes:png,jpg,jpeg', 'max:5120'],
             'deskripsi' => ['required', 'string'],
             'status' => ['required', 'string'],
         ]);
