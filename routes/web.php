@@ -23,6 +23,7 @@ use App\Http\Controllers\KoordinatorController;
 use App\Http\Controllers\KoordinatorProfileController;
 use App\Http\Controllers\LogbookController;
 use App\Http\Controllers\LamaranMagangController;
+use App\Http\Controllers\LaporanAkhirController;
 use App\Http\Controllers\LowonganController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MahasiswaProfileController;
@@ -210,4 +211,9 @@ Route::middleware(['auth', 'role:mahasiswa'])->group(function () {
     Route::get('/mahasiswa/logbook-mahasiswa/{id}/edit', [LogbookController::class, 'edit'])->name('mahasiswa.logbook.edit');
     Route::put('/mahasiswa/logbook-mahasiswa/{id}/update', [LogbookController::class, 'update'])->name('mahasiswa.logbook.update');
     Route::get('/mahasiswa/logbook-mahasiswa/{id}/delete', [LogbookController::class, 'destroy'])->name('mahasiswa.logbook.destroy');
+
+    //Route Laporan AKhir
+    Route::get('/mahasiswa/laporan-akhir', [LaporanAkhirController::class, 'index'])->name('mahasiswa.laporan.akhir.index');
+    Route::post('/mahasiswa/laporan-akhir/store', [LaporanAkhirController::class, 'store'])->name('mahasiswa.laporan.akhir.store');
+    Route::get('/mahasiswa/laporan-akhir/{id}/delete', [LaporanAkhirController::class, 'destroy'])->name('mahasiswa.laporan.akhir.destroy');
 });
