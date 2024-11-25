@@ -16,16 +16,17 @@ class DashboardDospemController extends Controller
      */
     public function index()
     {
-        // Ambil data user yang sedang login
-        $user = User::findOrFail(Auth::id());
+        // get data user aktif
+        $user =  User::where('id', Auth::user()->id)->first();
 
-        // Ambil data dosen berdasarkan user ID
-        $dosen = Dosen::where('id_user', $user->id)->firstOrFail();
+        // mengambil data dosen
+        $dosen = Dosen::where('id_user', $user->id)->first();
 
-        // Ambil data dosen pembimbing berdasarkan dosen ID
-        $dosen_pembimbing = DosenPembimbing::where('id_dosen', $dosen->id)->first();
+        // mengambil data dosen pembimbing
+        $dospem = DosenPembimbing::where('id_dosen', $dosen->id)->first();
+
         $data = [
-            'pembimbing_magang' => PembimbingMagang::where('id_dosen_pembimbing', $dosen_pembimbing->id)->count()
+            'pembimbing_magang_count' => PembimbingMagang::where('id_dosen_pembimbing', $dospem->id)->count()
         ];
 
         return view('dashboard.dospem', $data);

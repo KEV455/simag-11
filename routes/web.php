@@ -33,6 +33,7 @@ use App\Http\Controllers\MitraMandiriController;
 use App\Http\Controllers\PelamarMagangController;
 use App\Http\Controllers\PembimbingMagangController;
 use App\Http\Controllers\PengajuanMitraMandiriController;
+use App\Http\Controllers\PenilaianMagangController;
 use App\Http\Controllers\PermohonanMagangMahasiswaController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\TranskripNilaiDPLController;
@@ -176,7 +177,12 @@ Route::middleware(['auth', 'role:dospem'])->group(function () {
     Route::get('/dospem/profile', [DospemProfileController::class, 'index'])->name('profile.dospem.index');
     Route::put('/dospem/profile/{id}/update', [DospemProfileController::class, 'update'])->name('profile.dospem.update');
 
-    //Route Mahasiswa Bimbingan
+    // Route Penilaian Magang
+    Route::get('/dospem/penilaian-magang-mahasiswa/index.php', [PenilaianMagangController::class, 'index'])->name('dospem.penilaian.magang.index');
+    Route::get('/dospem/penilaian-magang-mahasiswa/{id}/show', [PenilaianMagangController::class, 'show'])->name('dospem.penilaian.magang.show');
+    Route::post('/dospem/penilaian-magang-mahasiswa/{id}/store', [PenilaianMagangController::class, 'store'])->name('dospem.penilaian.magang.store');
+
+    // Route Mahasiswa Bimbingan
     Route::get('/dospem/manajemen-mahasiswa', [MahasiswaBimbinganController::class, 'index'])->name('dospem.mahasiswa.bimbingan.index');
     Route::get('/dospem/manajemen-mahasiswa/{id}/show', [MahasiswaBimbinganController::class, 'show'])->name('dospem.mahasiswa.bimbingan.show');
 });

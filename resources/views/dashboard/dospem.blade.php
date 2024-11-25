@@ -55,7 +55,7 @@
                                                 <i class="fa-solid fa-graduation-cap rounded-circle text-deep-sky-blue"></i>
                                             </div>
                                             <div class="media-body ml-3 align-self-center text-right">
-                                                <h3 class="mt-0">{{ $pembimbing_magang }}</h3>
+                                                <h3 class="mt-0">{{ $pembimbing_magang_count }}</h3>
                                                 <p class="text-muted mb-0 text-nowrap">Daftar Mahasiswa Bimbingan</p>
                                             </div><!--end media body-->
                                         </div>
@@ -65,6 +65,26 @@
                         </div><!-- end col-->
                     @endif
 
+                    @if (Auth()->user()->role == 'dospem')
+                        <div class="col-lg-4">
+                            <div class="card hospital-info card-hover card-rounded">
+                                <a href="{{ route('dospem.penilaian.magang.index') }}">
+                                    <div class="card-body">
+                                        <h4 class="header-title mt-0 mb-3">Penilaian Magang</h4>
+                                        <div class="media">
+                                            <div class="data-icon align-self-center">
+                                                <i class="fa-solid fa-square-poll-vertical rounded-circle text-orange"></i>
+                                            </div>
+                                            <div class="media-body ml-3 align-self-center text-right">
+                                                <h4 class="mt-0">{{ Auth()->user()->name }}</h4>
+                                                <p class="text-muted mb-0 text-nowrap">Konversi Nilai Magang Mahasiswa</p>
+                                            </div><!--end media body-->
+                                        </div>
+                                    </div><!--end card-body-->
+                                </a>
+                            </div><!--end card-->
+                        </div><!-- end col-->
+                    @endif
                 </div><!--end row-->
             </div><!--end col-->
         </div><!--end row-->
