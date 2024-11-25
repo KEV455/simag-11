@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dosen;
+use App\Models\DosenPembimbing;
+use App\Models\PembimbingMagang;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardDospemController extends Controller
 {
@@ -11,7 +16,17 @@ class DashboardDospemController extends Controller
      */
     public function index()
     {
-        $data = [];
+        // Ambil data user yang sedang login
+        $user = User::findOrFail(Auth::id());
+
+        // Ambil data dosen berdasarkan user ID
+        $dosen = Dosen::where('id_user', $user->id)->firstOrFail();
+
+        // Ambil data dosen pembimbing berdasarkan dosen ID
+        $dosen_pembimbing = DosenPembimbing::where('id_dosen', $dosen->id)->first();
+        $data = [
+            'pembimbing_magang' => PembimbingMagang::where('id_dosen_pembimbing', $dosen_pembimbing->id)->count()
+        ];
 
         return view('dashboard.dospem', $data);
     }

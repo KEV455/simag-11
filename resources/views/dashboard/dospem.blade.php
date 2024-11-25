@@ -55,7 +55,7 @@
                                                 <i class="fa-solid fa-graduation-cap rounded-circle text-deep-sky-blue"></i>
                                             </div>
                                             <div class="media-body ml-3 align-self-center text-right">
-                                                <h3 class="mt-0">--</h3>
+                                                <h3 class="mt-0">{{ $pembimbing_magang }}</h3>
                                                 <p class="text-muted mb-0 text-nowrap">Daftar Mahasiswa Bimbingan</p>
                                             </div><!--end media body-->
                                         </div>
