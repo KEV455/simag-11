@@ -137,6 +137,54 @@
                         @endif
                     @endif
 
+                    @if (Auth()->user()->role == 'mahasiswa')
+                        @if ($pelamar_magang)
+                            <div class="col-lg-4">
+                                <div class="card hospital-info card-hover card-rounded">
+                                    <a href="{{ route('mahasiswa.transkrip.nilai.dpl.index') }}">
+                                        <div class="card-body">
+                                            <h4 class="header-title mt-0 mb-3">Transkrip Nilai DPL</h4>
+                                            <div class="media">
+                                                <div class="data-icon align-self-center">
+                                                    <i class="fa-solid fa-group-arrows-rotate rounded-circle text-pink"></i>
+                                                </div>
+                                                <div class="media-body ml-3 align-self-center text-right">
+                                                    <h4 class="mt-0">{{ $pelamar_magang->lowongan->mitra->nama }}</h4>
+                                                    <p class="text-muted mb-0 text-nowrap">Upload Transkrip Nilai DPL Magang
+                                                    </p>
+                                                </div><!--end media body-->
+                                            </div>
+                                        </div><!--end card-body-->
+                                    </a>
+                                </div><!--end card-->
+                            </div><!-- end col-->
+                        @endif
+                    @endif
+
+                    @if (Auth()->user()->role == 'mahasiswa')
+                        @if ($pelamar_magang)
+                            <div class="col-lg-4">
+                                <div class="card hospital-info card-hover card-rounded">
+                                    <a href="#">
+                                        <div class="card-body">
+                                            <h4 class="header-title mt-0 mb-3">Nilai Magang</h4>
+                                            <div class="media">
+                                                <div class="data-icon align-self-center">
+                                                    <i
+                                                        class="fa-solid fa-square-poll-vertical rounded-circle text-orange"></i>
+                                                </div>
+                                                <div class="media-body ml-3 align-self-center text-right">
+                                                    <h4 class="mt-0">{{ $pelamar_magang->lowongan->mitra->nama }}</h4>
+                                                    <p class="text-muted mb-0 text-nowrap">Nilai Magang Saya</p>
+                                                </div><!--end media body-->
+                                            </div>
+                                        </div><!--end card-body-->
+                                    </a>
+                                </div><!--end card-->
+                            </div><!-- end col-->
+                        @endif
+                    @endif
+
                 </div><!--end row-->
             </div><!--end col-->
         </div><!--end row-->

@@ -34,6 +34,7 @@ use App\Http\Controllers\PembimbingMagangController;
 use App\Http\Controllers\PengajuanMitraMandiriController;
 use App\Http\Controllers\PermohonanMagangMahasiswaController;
 use App\Http\Controllers\ProdiController;
+use App\Http\Controllers\TranskripNilaiDPLController;
 use App\Http\Controllers\UserController;
 
 Route::middleware(['guest'])->group(function () {
@@ -162,7 +163,7 @@ Route::middleware(['auth', 'role:kaprodi'])->group(function () {
     Route::put('/kaprodi/manajemen-dosen-pembimbing/{id}/update', [DosenPembimbingController::class, 'update'])->name('kaprodi.dospem.update');
     Route::get('/kaprodi/manajemen-dosen-pembimbing/{id}/delete', [DosenPembimbingController::class, 'destroy'])->name('kaprodi.dospem.destroy');
 
-    //Route Pembimbing Magang
+    // Route Pembimbing Magang
     Route::get('/kaprodi/manajemen-pembimbing-magang/{id}', [PembimbingMagangController::class, 'index'])->name('kaprodi.pembimbing.magang.index');
     Route::get('/kaprodi/manajemen-pembimbing-magang/{id}/create', [PembimbingMagangController::class, 'create'])->name('kaprodi.pembimbing.magang.create');
     Route::post('/kaprodi/manajemen-pembimbing-magang/{id}/store', [PembimbingMagangController::class, 'store'])->name('kaprodi.pembimbing.magang.store');
@@ -200,11 +201,11 @@ Route::middleware(['auth', 'role:mahasiswa'])->group(function () {
     Route::get('/mahasiswa/pendaftaran-magang/{id}/create', [PelamarMagangController::class, 'index'])->name('mahasiswa.pelamar.magang.index');
     Route::post('/mahasiswa/pendaftaran-magang/{id}/store', [PelamarMagangController::class, 'store'])->name('mahasiswa.pelamar.magang.store');
 
-    //route permohonan Magang mahasiswa
+    // Route permohonan Magang mahasiswa
     Route::get('/mahasiswa/permohonan-magang', [PermohonanMagangMahasiswaController::class, 'index'])->name('mahasiswa.permohonan.magang.index');
     Route::get('/mahasiswa/permohonan-magang/{id}/delete', [PermohonanMagangMahasiswaController::class, 'destroy'])->name('mahasiswa.permohonan.magang.destroy');
 
-    //Route Logbook Mahasiswa
+    // Route Logbook Mahasiswa
     Route::get('/mahasiswa/logbook-mahasiswa', [LogbookController::class, 'index'])->name('mahasiswa.logbook.index');
     Route::get('/mahasiswa/logbook-mahasiswa/{id}/create', [LogbookController::class, 'create'])->name('mahasiswa.logbook.create');
     Route::post('/mahasiswa/logbook-mahasiswa/{id}/store', [LogbookController::class, 'store'])->name('mahasiswa.logbook.store');
@@ -212,8 +213,13 @@ Route::middleware(['auth', 'role:mahasiswa'])->group(function () {
     Route::put('/mahasiswa/logbook-mahasiswa/{id}/update', [LogbookController::class, 'update'])->name('mahasiswa.logbook.update');
     Route::get('/mahasiswa/logbook-mahasiswa/{id}/delete', [LogbookController::class, 'destroy'])->name('mahasiswa.logbook.destroy');
 
-    //Route Laporan AKhir
+    // Route Laporan AKhir
     Route::get('/mahasiswa/laporan-akhir', [LaporanAkhirController::class, 'index'])->name('mahasiswa.laporan.akhir.index');
     Route::post('/mahasiswa/laporan-akhir/store', [LaporanAkhirController::class, 'store'])->name('mahasiswa.laporan.akhir.store');
     Route::get('/mahasiswa/laporan-akhir/{id}/delete', [LaporanAkhirController::class, 'destroy'])->name('mahasiswa.laporan.akhir.destroy');
+
+    // Route Transkrip Nilai DPL
+    Route::get('/mahasiswa/transkrip-nilai-dpl', [TranskripNilaiDPLController::class, 'index'])->name('mahasiswa.transkrip.nilai.dpl.index');
+    Route::post('/mahasiswa/transkrip-nilai-dpl/store', [TranskripNilaiDPLController::class, 'store'])->name('mahasiswa.transkrip.nilai.dpl.store');
+    Route::get('/mahasiswa/transkrip-nilai-dpl/{id}/delete', [TranskripNilaiDPLController::class, 'destroy'])->name('mahasiswa.transkrip.nilai.dpl.destroy');
 });

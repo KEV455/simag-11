@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\LaporanAkhirMagang;
 use App\Models\Mahasiswa;
 use App\Models\PelamarMagang;
 use App\Models\PesertaMagang;
+use App\Models\TranskripNilaiDPL;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class LaporanAkhirController extends Controller
+class TranskripNilaiDPLController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,22 +34,22 @@ class LaporanAkhirController extends Controller
         $peserta_magang = PesertaMagang::where('id_pelamar_magang', $pelamar_magang->id)
             ->firstOrFail();
 
-        $laporan_akhir = LaporanAkhirMagang::where('id_peserta_magang', $peserta_magang->id)->get();
-        $laporan_akhir_count = LaporanAkhirMagang::where('id_peserta_magang', $peserta_magang->id)->count();
-        $laporan_akhir_count = $laporan_akhir->count(); // Hitung jumlah data dari koleksi
-        $flag_laprak = false;
+        $transkrip_nilai_dpl = TranskripNilaiDPL::where('id_peserta_magang', $peserta_magang->id)->get();
+        $transkrip_nilai_dpl_count = TranskripNilaiDPL::where('id_peserta_magang', $peserta_magang->id)->count();
+        $transkrip_nilai_dpl_count = $transkrip_nilai_dpl->count(); // Hitung jumlah data dari koleksi
+        $flag_transkrip = false;
 
-        if ($laporan_akhir_count > 0) {
-            $flag_laprak = true;
+        if ($transkrip_nilai_dpl_count > 0) {
+            $flag_transkrip = true;
         }
 
         $data = [
-            'laporan_akhir' => $laporan_akhir,
-            'laporan_akhir_count' => $laporan_akhir_count,
-            'flag_laprak' => $flag_laprak
+            'transkrip_nilai_dpl' => $transkrip_nilai_dpl,
+            'transkrip_nilai_dpl_count' => $transkrip_nilai_dpl_count,
+            'flag_transkrip' => $flag_transkrip
         ];
 
-        return view('pages.mahasiswa.laporan-akhir.index', $data);
+        return view('pages.mahasiswa.transkrip-nilai-dpl.index', $data);
     }
 
     /**
@@ -80,9 +80,9 @@ class LaporanAkhirController extends Controller
         $peserta_magang = PesertaMagang::where('id_pelamar_magang', $pelamar_magang->id)
             ->firstOrFail();
 
-        $validated = $request->validate(
+        $request->validate(
             [
-                'file' => ['required', 'mimes:pdf', 'max:20480'],
+                'file' => ['required', 'mimes:pdf', 'max:5120'],
             ]
         );
 
@@ -92,20 +92,20 @@ class LaporanAkhirController extends Controller
         if ($request->hasFile('file')) {
             $uploadedFile = $request->file('file');
 
-            // Simpan file di storage/app/public/mitra-foto dan ambil path relatif
-            $path = $uploadedFile->store('laporan-akhir', 'public');
+            // Simpan file di storage/app/public/transkrip-nilai-dpl dan ambil path relatif
+            $path = $uploadedFile->store('transkrip-nilai-dpl', 'public');
 
             // Simpan path relatif ke database
             $saveData['file'] = $path;
         }
 
-        $laporan = new LaporanAkhirMagang();
-        $laporan->file_laporan_akhir = $saveData['file'];
+        $laporan = new TranskripNilaiDPL();
+        $laporan->file_transkrip_nilai = $saveData['file'];
         $laporan->id_peserta_magang = $peserta_magang->id;
         $laporan->save();
 
-        Alert::success('Succes', 'Laporan Akhir Berhasil Ditambahkan');
-        return redirect()->route('mahasiswa.laporan.akhir.index');
+        Alert::success('Succes', 'Transkrip Nilai DPL Berhasil Ditambahkan');
+        return redirect()->route('mahasiswa.transkrip.nilai.dpl.index');
     }
 
     /**
@@ -137,12 +137,12 @@ class LaporanAkhirController extends Controller
      */
     public function destroy(string $id)
     {
-        $laporan_akhir = LaporanAkhirMagang::findOrFail($id);
+        $transkrip_nilai_dpl = TranskripNilaiDPL::findOrFail($id);
 
-        // Periksa apakah ada file yang terkait dengan laporan_akhir
-        if ($laporan_akhir->file_laporan_akhir != null) {
+        // Periksa apakah ada file yang terkait dengan transkrip_nilai_dpl
+        if ($transkrip_nilai_dpl->file_transkrip_nilai != null) {
             // Pastikan path yang tersimpan di database adalah path relatif dari 'storage/app/public'
-            $filePath = $laporan_akhir->file_laporan_akhir;
+            $filePath = $transkrip_nilai_dpl->file_transkrip_nilai;
 
             // Periksa apakah file tersebut benar-benar ada di penyimpanan
             if (Storage::disk('public')->exists($filePath)) {
@@ -152,10 +152,10 @@ class LaporanAkhirController extends Controller
         }
 
         // Hapus catatan dari database
-        $laporan_akhir->delete();
+        $transkrip_nilai_dpl->delete();
 
-        Alert::success('Success', 'Laporan Akhir Berhasil Dihapus');
+        Alert::success('Success', 'Transkrip Nilai DPL Berhasil Dihapus');
 
-        return redirect()->route('mahasiswa.laporan.akhir.index');
+        return redirect()->route('mahasiswa.transkrip.nilai.dpl.index');
     }
 }

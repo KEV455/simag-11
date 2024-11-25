@@ -20,8 +20,14 @@ class PelamarMagangController extends Controller
      */
     public function index($id)
     {
+        $lowongan = Lowongan::findOrFail($id);
+        $user =  User::where('id', Auth::user()->id)->first();
+
+        // Ambil data mahasiswa berdasarkan user
+        $mahasiswa = Mahasiswa::where('id_user', $user->id)->firstOrFail();
+
         // mengambil data pelamar magang untuk lowongan sekarang
-        $pelamarMagangLowongan = PelamarMagang::where('id_lowongan', $id)->where('status_diterima', 'Menunggu')->first();
+        $pelamarMagangLowongan = PelamarMagang::where('id_lowongan', $id)->where('id_mahasiswa', $mahasiswa->id)->where('status_diterima', 'Menunggu')->first();
         $flag_lamaran_magang = false;
 
         if ($pelamarMagangLowongan) {
@@ -32,12 +38,6 @@ class PelamarMagangController extends Controller
             Alert::info('Oops', 'Maaf, Anda Sudah Mendaftar di Lowongan ini');
             return redirect()->route('mahasiswa.daftar.magang.index');
         }
-
-        $lowongan = Lowongan::findOrFail($id);
-        $user =  User::where('id', Auth::user()->id)->first();
-
-        // Ambil data mahasiswa berdasarkan user
-        $mahasiswa = Mahasiswa::where('id_user', $user->id)->firstOrFail();
 
         // Ambil data lowongan prodi terkait lowongan ini
         $lowonganProdi = LowonganProdi::where('id_lowongan', $id)

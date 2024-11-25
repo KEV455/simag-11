@@ -1,7 +1,7 @@
 @extends('layouts.base.base-template')
 
 @section('title')
-    <title>Manajemen Laporan Akhir Magang | SiMagang</title>
+    <title>Manajemen Transkrip Nilai DPL Magang | SiMagang</title>
 @endsection
 
 @section('top-css')
@@ -61,7 +61,7 @@
             <div class="col-sm-12">
                 <div class="page-title-box">
                     <!--end /div-->
-                    <h4 class="page-title">Laporan Akhir Magang</h4>
+                    <h4 class="page-title">Transkrip Nilai DPL</h4>
                 </div>
                 <!--end page-title-box-->
             </div>
@@ -74,23 +74,23 @@
             <div class="col-lg-3">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="header-title mt-0 mb-3">Menu Laporan Akhir</h4>
+                        <h4 class="header-title mt-0 mb-3">Menu Transkrip Nilai DPL</h4>
                         <div class="files-nav">
                             <div class="nav flex-column nav-pills" id="files-tab" aria-orientation="vertical">
                                 <a class="nav-link active" id="files-projects-tab" data-toggle="pill" href="#files-projects"
                                     aria-selected="true">
                                     <i class="em em-file_folder mr-3 text-warning d-inline-block"></i>
                                     <div class="d-inline-block align-self-center">
-                                        <h5 class="m-0">Unggah Laporan Akhir</h5>
+                                        <h5 class="m-0">Unggah Transkrip Nilai DPL</h5>
                                     </div>
                                 </a>
                                 <a class="nav-link  align-items-center" id="files-pdf-tab" data-toggle="pill"
                                     href="#files-pdf" aria-selected="false">
                                     <i class="em em-file_folder mr-3 text-warning d-inline-block"></i>
                                     <div class="d-inline-block align-self-center">
-                                        <h5 class="m-0">Daftar Laporan Akhir</h5>
+                                        <h5 class="m-0">Daftar Transkrip Nilai DPL</h5>
                                     </div>
-                                    <span class="badge badge-success ml-auto">{{ $laporan_akhir_count }}</span>
+                                    <span class="badge badge-success ml-auto">{{ $transkrip_nilai_dpl_count }}</span>
                                 </a>
                             </div>
                         </div>
@@ -102,18 +102,18 @@
                 <div class="">
                     <div class="tab-content" id="files-tabContent">
                         <div class="tab-pane fade show active" id="files-projects">
-                            {{-- Form Create Laporan --}}
+                            {{-- Form Create Transkrip --}}
                             <div class="card">
                                 <div class="card-body">
-                                    <form action="{{ route('mahasiswa.laporan.akhir.store') }}" method="POST"
+                                    <form action="{{ route('mahasiswa.transkrip.nilai.dpl.store') }}" method="POST"
                                         enctype="multipart/form-data">
                                         @csrf
 
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label" for="file">File Laporan
-                                                        <span class="text-primary">*(Wajib, .pdf only, max 20Mb)</span>
+                                                    <label class="form-label" for="file">File Transkrip
+                                                        <span class="text-primary">*(Wajib, .pdf only, max 5Mb)</span>
                                                     </label>
                                                     <div class="custom-file">
                                                         <input type="file"
@@ -130,7 +130,7 @@
                                             </div>
                                         </div>
 
-                                        @if (!$flag_laprak)
+                                        @if (!$flag_transkrip)
                                             <button type="submit" class="btn btn-sm btn-primary"
                                                 id="sa-success">Submit</button>
                                         @endif
@@ -140,23 +140,23 @@
                         </div><!--end tab-pane-->
 
                         <div class="tab-pane fade" id="files-pdf">
-                            <h4 class="mt-0 header-title mb-3">Laporan Akhir Magang</h4>
+                            <h4 class="mt-0 header-title mb-3">Transkrip Nilai DPL Magang</h4>
                             <div class="file-box-content">
-                                @if ($laporan_akhir->isEmpty())
-                                    <span>Laporan Akhir Belum Ditambahkan</span>
+                                @if ($transkrip_nilai_dpl->isEmpty())
+                                    <span>Transkrip Nilai DPL Belum Ditambahkan</span>
                                 @else
-                                    @foreach ($laporan_akhir as $data)
+                                    @foreach ($transkrip_nilai_dpl as $data)
                                         <div class="file-box" title="">
                                             <div class="row">
                                                 <div class="col d-flex">
-                                                    <a href="{{ route('mahasiswa.laporan.akhir.destroy', $data->id) }}"
+                                                    <a href="{{ route('mahasiswa.transkrip.nilai.dpl.destroy', $data->id) }}"
                                                         class="mr-auto my-auto">
                                                         <i
                                                             class="fa-regular fa-trash-can panduan-text-size text-danger"></i>
                                                     </a>
                                                 </div>
                                                 <div class="col d-flex">
-                                                    <a href="{{ asset('storage/' . $data->file_laporan_akhir) }}"
+                                                    <a href="{{ asset('storage/' . $data->file_transkrip_nilai) }}"
                                                         target="_blank" class="ml-auto my-auto">
                                                         <i class="fa-solid fa-download panduan-text-size text-success"></i>
                                                     </a>
@@ -165,7 +165,7 @@
                                             <div class="text-center py-3">
                                                 <i class="far fa-file-pdf text-primary"></i>
                                                 <h6 class="text-truncate">
-                                                    Laporan Akhir.pdf
+                                                    Transkrip_Nilai_DPL.pdf
                                                 </h6>
                                             </div>
                                         </div>

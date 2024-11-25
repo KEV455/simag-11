@@ -224,11 +224,31 @@
                                             Dosen Pembimbing
                                         </a>
                                     </li>
+                                    <li>
+                                        <a href="#">
+                                            Konversi Nilai Magang
+                                        </a>
+                                    </li>
                                 </ul><!--end submenu-->
                             </li><!--end has-submenu-->
                         @endif
 
                         {{-- Navbar Dosen --}}
+                        @if (Auth()->user()->role == 'dosen')
+                            <li class="has-submenu">
+                                <a href="#">
+                                    <i class="fa-solid fa-user"></i>
+                                    <span>Profil</span>
+                                </a>
+                                <ul class="submenu">
+                                    <li>
+                                        <a href="{{ route('profile.dosen.index') }}">
+                                            Profil Saya
+                                        </a>
+                                    </li>
+                                </ul><!--end submenu-->
+                            </li><!--end has-submenu-->
+                        @endif
 
                         {{-- Navbar Dosen Pembimbing --}}
 
@@ -246,6 +266,9 @@
                                         </a>
                                         <a href="{{ route('mahasiswa.permohonan.magang.index') }}">
                                             Permohonan Magang
+                                        </a>
+                                        <a href="{{ route('mahasiswa.mitra.mandiri.index') }}">
+                                            Pengajuan Mitra Mandiri
                                         </a>
                                     </li>
                                 </ul><!--end submenu-->

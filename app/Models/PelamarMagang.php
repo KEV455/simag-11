@@ -28,4 +28,9 @@ class PelamarMagang extends Model
     {
         return $this->hasMany(PesertaMagang::class);
     }
+
+    public function nilai_magang()
+    {
+        return $this->hasMany(NilaiMagang::class);
+    }
 }
