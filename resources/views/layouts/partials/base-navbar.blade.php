@@ -251,6 +251,24 @@
                         @endif
 
                         {{-- Navbar Dosen Pembimbing --}}
+                        @if (Auth()->user()->role == 'dospem')
+                            <li class="has-submenu">
+                                <a href="#">
+                                    <i class="fa-solid fa-book"></i>
+                                    <span>Magang</span>
+                                </a>
+                                <ul class="submenu">
+                                    <li>
+                                        <a href="#">
+                                            Logbook Kegiatan
+                                        </a>
+                                        <a href="{{ route('dospem.penilaian.magang.index') }}">
+                                            Penilaian Magang
+                                        </a>
+                                    </li>
+                                </ul><!--end submenu-->
+                            </li><!--end has-submenu-->
+                        @endif
 
                         {{-- Navbar Mahasiswa --}}
                         @if (Auth()->user()->role == 'mahasiswa')
