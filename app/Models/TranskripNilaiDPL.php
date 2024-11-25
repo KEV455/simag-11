@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class TranskripNilaiDPL extends Model
 {
+    // Tentukan nama tabel secara eksplisit
+    protected $table = 'transkrip_nilai_dpls';
+
     protected $fillable = [
         'file_transkrip_nilai',
         'id_peserta_magang'

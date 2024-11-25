@@ -224,6 +224,11 @@
                                             Dosen Pembimbing
                                         </a>
                                     </li>
+                                    <li>
+                                        <a href="#">
+                                            Konversi Nilai Magang
+                                        </a>
+                                    </li>
                                 </ul><!--end submenu-->
                             </li><!--end has-submenu-->
                         @endif
