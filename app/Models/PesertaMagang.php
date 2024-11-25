@@ -17,11 +17,11 @@ class PesertaMagang extends Model
     }
     public function logbook()
     {
-        return $this->hasMany(Logbook::class);
+        return $this->hasMany(Logbook::class, 'id_peserta_magang');
     }
     public function laporan_akhir_magang()
     {
-        return $this->hasMany(LaporanAkhirMagang::class);
+        return $this->hasMany(LaporanAkhirMagang::class, 'id_peserta_magang', 'id');
     }
 
     public function transkrip_nilai_dpl()

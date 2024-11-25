@@ -33,6 +33,6 @@ class Mahasiswa extends Model
     }
     public function pelamar_magang()
     {
-        return $this->hasMany(PelamarMagang::class);
+        return $this->hasMany(PelamarMagang::class, 'id_mahasiswa');
     }
 }

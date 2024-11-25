@@ -25,6 +25,7 @@ use App\Http\Controllers\LogbookController;
 use App\Http\Controllers\LamaranMagangController;
 use App\Http\Controllers\LaporanAkhirController;
 use App\Http\Controllers\LowonganController;
+use App\Http\Controllers\MahasiswaBimbinganController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MahasiswaProfileController;
 use App\Http\Controllers\MitraController;
@@ -174,6 +175,10 @@ Route::middleware(['auth', 'role:dospem'])->group(function () {
     Route::get('/dospem/dashboard', [DashboardDospemController::class, 'index'])->name('dashboard.dospem');
     Route::get('/dospem/profile', [DospemProfileController::class, 'index'])->name('profile.dospem.index');
     Route::put('/dospem/profile/{id}/update', [DospemProfileController::class, 'update'])->name('profile.dospem.update');
+
+    //Route Mahasiswa Bimbingan
+    Route::get('/dospem/manajemen-mahasiswa', [MahasiswaBimbinganController::class, 'index'])->name('dospem.mahasiswa.bimbingan.index');
+    Route::get('/dospem/manajemen-mahasiswa/{id}/show', [MahasiswaBimbinganController::class, 'show'])->name('dospem.mahasiswa.bimbingan.show');
 });
 
 Route::middleware(['auth', 'role:dosen'])->group(function () {
