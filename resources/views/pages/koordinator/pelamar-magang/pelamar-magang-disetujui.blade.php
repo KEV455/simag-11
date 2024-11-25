@@ -20,8 +20,8 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <a href="{{ route('koordinator.pelamar.magang.index') }}"
-                            class="btn btn-warning px-4 mt-0 mb-3" data-animation="bounce">
+                        <a href="{{ route('koordinator.pelamar.magang.index') }}" class="btn btn-warning px-4 mt-0 mb-3"
+                            data-animation="bounce">
                             <i class="fa-solid fa-clock"></i>&ensp;Lamaran Menunggu
                         </a>&ensp;
                         <a href="{{ route('koordinator.pelamar.magang.ditolak.index') }}"
@@ -61,7 +61,7 @@
                                                 <button type="button" class="btn btn-primary px-4 mt-0 mb-3"
                                                     data-toggle="modal" data-animation="bounce" data-target=".modalView">
                                                     <i class="fa-solid fa-file-circle-check"></i>&ensp;
-                                                    Lihat Berkas Saya
+                                                    Lihat Berkas
                                                 </button>
                                             </td>
                                         </tr>

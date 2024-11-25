@@ -44,7 +44,7 @@ class LamaranMagangController extends Controller
         $pelamar_magang = PelamarMagang::findOrFail($id);
 
         // Hitung jumlah pelamar magang pada lowongan terkait
-        $pelamar_magang_count = PelamarMagang::where('id_lowongan', $pelamar_magang->id_lowongan)->count();
+        $pelamar_magang_count = PelamarMagang::where('id_lowongan', $pelamar_magang->id_lowongan)->where('status_diterima', 'Diterima')->count();
 
         // Ambil data jumlah kuota lowongan
         $lowongan = $pelamar_magang->lowongan;
@@ -57,6 +57,16 @@ class LamaranMagangController extends Controller
 
         // Update status diterima pada pelamar magang
         $pelamar_magang->update(['status_diterima' => 'Diterima']);
+
+        // mengambil semua pelamar magang milik mahasiswa
+        $pelamar_magang_mhs = PelamarMagang::where('id_mahasiswa', $pelamar_magang->id_mahasiswa)->where('status_diterima', 'Menunggu')->get();
+
+        // update seluruh data pelamar magang mhs selain yang di izinkan agar otomatis tertolak
+        foreach ($pelamar_magang_mhs as $pm_mhs) {
+            if ($pm_mhs->id != $pelamar_magang->id) {
+                $pm_mhs->update(['status_diterima' => 'Ditolak']);
+            }
+        }
 
         // Buat data peserta magang
         $peserta_magang = new PesertaMagang();

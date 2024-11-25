@@ -81,7 +81,7 @@
                                     aria-selected="true">
                                     <i class="em em-file_folder mr-3 text-warning d-inline-block"></i>
                                     <div class="d-inline-block align-self-center">
-                                        <h5 class="m-0">Tambah Laporan Akhir Baru</h5>
+                                        <h5 class="m-0">Unggah Laporan Akhir</h5>
                                     </div>
                                 </a>
                                 <a class="nav-link  align-items-center" id="files-pdf-tab" data-toggle="pill"
@@ -112,17 +112,16 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label" for="file">File Laporan<span
-                                                            class="text-primary">
-                                                            *(Wajib, .pdf only, max
-                                                            20Mb)</span></label>
-                                                    <div class="custom-file mb-3">
+                                                    <label class="form-label" for="file">File Laporan
+                                                        <span class="text-primary">*(Wajib, .pdf only, max 20Mb)</span>
+                                                    </label>
+                                                    <div class="custom-file">
                                                         <input type="file"
                                                             class="custom-file-input form-control @error('file') is-invalid @enderror"
-                                                            id="file" name="file" onchange="displayFileName()">
+                                                            id="file" name="file" onchange="displayFileName()"
+                                                            required>
                                                         <label class="custom-file-label" for="file"
-                                                            id="fileLabel">Choose
-                                                            file</label>
+                                                            id="fileLabel">Choose file</label>
                                                         @error('file')
                                                             <div class="invalid-feedback">{{ $message }}</div>
                                                         @enderror
@@ -131,9 +130,10 @@
                                             </div>
                                         </div>
 
-                                        <button type="submit" class="btn btn-sm btn-primary"
-                                            id="sa-success">Tambah</button>
-                                        <button type="reset" class="btn btn-sm btn-grey" id="resetButton">Reset</button>
+                                        @if (!$flag_laprak)
+                                            <button type="submit" class="btn btn-sm btn-primary"
+                                                id="sa-success">Submit</button>
+                                        @endif
                                     </form>
                                 </div>
                             </div>
@@ -195,26 +195,16 @@
     {{-- upload file name --}}
     <script>
         function displayFileName() {
-            const input = document.getElementById('dokumen_file');
+            const input = document.getElementById('file');
             const label = document.getElementById('fileLabel');
-            const fileName = input.files[0].name;
-            label.textContent = fileName;
+
+            // Pastikan ada file yang dipilih
+            if (input.files && input.files.length > 0) {
+                const fileName = input.files[0].name;
+                label.textContent = fileName; // Tampilkan nama file di label
+            } else {
+                label.textContent = 'Choose file'; // Kembali ke teks default jika tidak ada file
+            }
         }
-    </script>
-
-    {{-- reset upload file --}}
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const uploadForm = document.getElementById("uploadForm");
-            const resetButton = document.getElementById("resetButton");
-            const fileInput = document.getElementById("dokumen_file");
-            const fileLabel = document.getElementById("fileLabel");
-
-            resetButton.addEventListener("click", function() {
-                // Reset the file input value and label text
-                fileInput.value = "";
-                fileLabel.textContent = "Choose file";
-            });
-        });
     </script>
 @endsection

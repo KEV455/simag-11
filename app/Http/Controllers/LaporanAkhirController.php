@@ -36,6 +36,12 @@ class LaporanAkhirController extends Controller
 
         $laporan_akhir = LaporanAkhirMagang::where('id_peserta_magang', $peserta_magang->id)->get();
         $laporan_akhir_count = LaporanAkhirMagang::where('id_peserta_magang', $peserta_magang->id)->count();
+        $laporan_akhir_count = $laporan_akhir->count(); // Hitung jumlah data dari koleksi
+        $flag_laprak = false;
+
+        if ($laporan_akhir_count > 0) {
+            $flag_laprak = true;
+        }
 
         $data = [
             'mahasiswa' => $mahasiswa,
@@ -43,7 +49,9 @@ class LaporanAkhirController extends Controller
             'peserta_magang' => $peserta_magang,
             'laporan_akhir' => $laporan_akhir,
             'laporan_akhir_count' => $laporan_akhir_count,
+            'flag_laprak' => $flag_laprak
         ];
+
         return view('pages.mahasiswa.laporan-akhir.index', $data);
     }
 

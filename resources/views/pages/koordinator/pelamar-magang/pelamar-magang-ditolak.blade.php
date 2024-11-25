@@ -61,7 +61,7 @@
                                                 <button type="button" class="btn btn-primary px-4 mt-0 mb-3"
                                                     data-toggle="modal" data-animation="bounce" data-target=".modalView">
                                                     <i class="fa-solid fa-file-circle-check"></i>&ensp;
-                                                    Lihat Berkas Saya
+                                                    Lihat Berkas
                                                 </button>
                                             </td>
                                         </tr>
