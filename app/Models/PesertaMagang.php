@@ -23,4 +23,9 @@ class PesertaMagang extends Model
     {
         return $this->hasMany(LaporanAkhirMagang::class);
     }
+
+    public function transkrip_nilai_dpl()
+    {
+        return $this->hasMany(TranskripNilaiDPL::class);
+    }
 }
