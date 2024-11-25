@@ -165,7 +165,7 @@
                                             <div class="text-center py-3">
                                                 <i class="far fa-file-pdf text-primary"></i>
                                                 <h6 class="text-truncate">
-                                                    Laporan_Akhir.pdf
+                                                    Laporan Akhir.pdf
                                                 </h6>
                                             </div>
                                         </div>

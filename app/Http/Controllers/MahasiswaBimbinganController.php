@@ -5,32 +5,41 @@ namespace App\Http\Controllers;
 use App\Models\Dosen;
 use App\Models\DosenPembimbing;
 use App\Models\PembimbingMagang;
+use App\Models\PesertaMagang;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class DashboardDospemController extends Controller
+class MahasiswaBimbinganController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        // get data user aktif
-        $user =  User::where('id', Auth::user()->id)->first();
+        // Ambil data user yang sedang login
+        $user = User::findOrFail(Auth::id());
 
-        // mengambil data dosen
-        $dosen = Dosen::where('id_user', $user->id)->first();
+        // Ambil data dosen berdasarkan user ID
+        $dosen = Dosen::where('id_user', $user->id)->firstOrFail();
 
-        // mengambil data dosen pembimbing
-        $dospem = DosenPembimbing::where('id_dosen', $dosen->id)->first();
+        // Ambil data dosen pembimbing berdasarkan dosen ID
+        $dosen_pembimbing = DosenPembimbing::where('id_dosen', $dosen->id)->first();
+
+        $pembimbing_magang = PembimbingMagang::with(['mahasiswa.pelamar_magang' => function ($query) {
+            $query->where('status_diterima', 'Diterima');
+        }, 'mahasiswa.pelamar_magang.peserta_magang.laporan_akhir_magang'])->where('id_dosen_pembimbing', $dosen_pembimbing->id)->get();
 
         $data = [
-            'pembimbing_magang_count' => PembimbingMagang::where('id_dosen_pembimbing', $dospem->id)->count()
+            'dosen' => $dosen,
+            'dosen_pembimbing' => $dosen_pembimbing,
+            'pembimbing_magang' => $pembimbing_magang,
+            // 'lowongan_diterima' => $lowongan_diterima,
         ];
 
-        return view('dashboard.dospem', $data);
+        return view('pages.dospem.mahasiswabimbingan.index', $data);
     }
+
 
     /**
      * Show the form for creating a new resource.

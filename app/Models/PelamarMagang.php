@@ -26,7 +26,7 @@ class PelamarMagang extends Model
     }
     public function peserta_magang()
     {
-        return $this->hasMany(PesertaMagang::class);
+        return $this->hasMany(PesertaMagang::class, 'id_pelamar_magang');
     }
 
     public function nilai_magang()

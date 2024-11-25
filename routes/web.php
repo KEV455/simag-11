@@ -25,6 +25,7 @@ use App\Http\Controllers\LogbookController;
 use App\Http\Controllers\LamaranMagangController;
 use App\Http\Controllers\LaporanAkhirController;
 use App\Http\Controllers\LowonganController;
+use App\Http\Controllers\MahasiswaBimbinganController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MahasiswaProfileController;
 use App\Http\Controllers\MitraController;
@@ -180,6 +181,10 @@ Route::middleware(['auth', 'role:dospem'])->group(function () {
     Route::get('/dospem/penilaian-magang-mahasiswa/index.php', [PenilaianMagangController::class, 'index'])->name('dospem.penilaian.magang.index');
     Route::get('/dospem/penilaian-magang-mahasiswa/{id}/show', [PenilaianMagangController::class, 'show'])->name('dospem.penilaian.magang.show');
     Route::post('/dospem/penilaian-magang-mahasiswa/{id}/store', [PenilaianMagangController::class, 'store'])->name('dospem.penilaian.magang.store');
+
+    // Route Mahasiswa Bimbingan
+    Route::get('/dospem/manajemen-mahasiswa', [MahasiswaBimbinganController::class, 'index'])->name('dospem.mahasiswa.bimbingan.index');
+    Route::get('/dospem/manajemen-mahasiswa/{id}/show', [MahasiswaBimbinganController::class, 'show'])->name('dospem.mahasiswa.bimbingan.show');
 });
 
 Route::middleware(['auth', 'role:dosen'])->group(function () {
