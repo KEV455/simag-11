@@ -50,7 +50,8 @@
                                                     {{ $item->lowongan->nama }} - {{ $item->lowongan->mitra->nama }}
                                                 @endforeach
                                             </td>
-                                            <td class="text-center"> <a href="#"><i
+                                            <td class="text-center"> <a
+                                                    href="{{ route('dospem.mahasiswa.bimbingan.logbook') }}"><i
                                                         class="fa-solid fa-eye text-primary font-16"
                                                         title="Mahasiswa"></i></a> &ensp;</td>
                                             <td class="text-left">

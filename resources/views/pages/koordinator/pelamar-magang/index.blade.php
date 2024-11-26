@@ -60,7 +60,8 @@
                                             <td class="text-left">{{ $item->lowongan->nama }}</td>
                                             <td class="text-center">
                                                 <button type="button" class="btn btn-primary px-4 mt-0 mb-3"
-                                                    data-toggle="modal" data-animation="bounce" data-target=".modalView">
+                                                    data-toggle="modal" data-animation="bounce"
+                                                    data-target=".modalView{{ $item->id }}">
                                                     <i class="fa-solid fa-file-circle-check"></i>&ensp;
                                                     Lihat Berkas
                                                 </button>
@@ -83,7 +84,7 @@
                                         @endphp
 
                                         <!--  Modal Add new content for the above example -->
-                                        <div class="modal fade modalView" tabindex="-1" role="dialog"
+                                        <div class="modal fade modalView{{ $item->id }}" tabindex="-1" role="dialog"
                                             aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-lg">
                                                 <div class="modal-content">

@@ -185,6 +185,8 @@ Route::middleware(['auth', 'role:dospem'])->group(function () {
     // Route Mahasiswa Bimbingan
     Route::get('/dospem/manajemen-mahasiswa', [MahasiswaBimbinganController::class, 'index'])->name('dospem.mahasiswa.bimbingan.index');
     Route::get('/dospem/manajemen-mahasiswa/{id}/show', [MahasiswaBimbinganController::class, 'show'])->name('dospem.mahasiswa.bimbingan.show');
+
+    Route::get('/dospem/manajemen-mahasiswa/logbook', [MahasiswaBimbinganController::class, 'logbook'])->name('dospem.mahasiswa.bimbingan.logbook');
 });
 
 Route::middleware(['auth', 'role:dosen'])->group(function () {

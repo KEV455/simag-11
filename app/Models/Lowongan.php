@@ -32,4 +32,8 @@ class Lowongan extends Model
     {
         return $this->hasMany(LowonganProdi::class, 'id_lowongan', 'id');
     }
+    public function pelamar_magang()
+    {
+        return $this->hasMany(PelamarMagang::class, 'id');
+    }
 }

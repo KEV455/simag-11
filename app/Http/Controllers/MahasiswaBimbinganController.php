@@ -88,4 +88,10 @@ class MahasiswaBimbinganController extends Controller
     {
         //
     }
+
+
+    public function logbook()
+    {
+        return view('pages.dospem.penilaian-magang.show');
+    }
 }
