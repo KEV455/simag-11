@@ -50,7 +50,7 @@
                     @if (Auth()->user()->role == 'kaprodi')
                         <div class="col-lg-4">
                             <div class="card hospital-info card-hover card-rounded">
-                                <a href="#">
+                                <a href="{{ route('kaprodi.validasi.nilai.index') }}">
                                     <div class="card-body">
                                         <h4 class="header-title mt-0 mb-3">Validasi Nilai Magang</h4>
                                         <div class="media">
@@ -58,7 +58,7 @@
                                                 <i class="fa-solid fa-check-double rounded-circle text-orange"></i>
                                             </div>
                                             <div class="media-body ml-3 align-self-center text-right">
-                                                <h4 class="mt-0">--</h4>
+                                                <h4 class="mt-0">Validasi Nilai</h4>
                                                 <p class="text-muted mb-0 text-nowrap">Validasi Nilai Magang Mahasiswa</p>
                                             </div><!--end media body-->
                                         </div>
