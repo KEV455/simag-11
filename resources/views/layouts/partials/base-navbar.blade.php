@@ -225,8 +225,8 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#">
-                                            Konversi Nilai Magang
+                                        <a href="{{ route('kaprodi.validasi.nilai.index') }}">
+                                            Validasi Nilai Magang
                                         </a>
                                     </li>
                                 </ul><!--end submenu-->
@@ -259,7 +259,7 @@
                                 </a>
                                 <ul class="submenu">
                                     <li>
-                                        <a href="#">
+                                        <a href="{{ route('dospem.mahasiswa.bimbingan.index') }}">
                                             Logbook Kegiatan
                                         </a>
                                         <a href="{{ route('dospem.penilaian.magang.index') }}">

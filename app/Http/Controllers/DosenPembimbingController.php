@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Dosen;
 use App\Models\DosenPembimbing;
 use App\Models\Kaprodi;
-use App\Models\Mahasiswa;
-use App\Models\PembimbingMagang;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

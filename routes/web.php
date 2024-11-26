@@ -38,6 +38,7 @@ use App\Http\Controllers\PermohonanMagangMahasiswaController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\TranskripNilaiDPLController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ValidasiNilaiMagangController;
 
 Route::middleware(['guest'])->group(function () {
     // Route Authentication
@@ -170,6 +171,11 @@ Route::middleware(['auth', 'role:kaprodi'])->group(function () {
     Route::get('/kaprodi/manajemen-pembimbing-magang/{id}/create', [PembimbingMagangController::class, 'create'])->name('kaprodi.pembimbing.magang.create');
     Route::post('/kaprodi/manajemen-pembimbing-magang/{id}/store', [PembimbingMagangController::class, 'store'])->name('kaprodi.pembimbing.magang.store');
     Route::get('/kaprodi/manajemen-pembimbing-magang/{id}/delete', [PembimbingMagangController::class, 'destroy'])->name('kaprodi.pembimbing.magang.destroy');
+
+    // Route Validasi Nilai Magang
+    Route::get('/kaprodi/validasi-nilai-magang/daftar-dospem', [ValidasiNilaiMagangController::class, 'index'])->name('kaprodi.validasi.nilai.index');
+    Route::get('/kaprodi/validasi-nilai-magang/{id}/daftar-mahasiswa', [ValidasiNilaiMagangController::class, 'show'])->name('kaprodi.validasi.nilai.show');
+    Route::get('/kaprodi/validasi-nilai-magang/{id}/validasi-nilai', [ValidasiNilaiMagangController::class, 'validasi'])->name('kaprodi.validasi.nilai.validasi');
 });
 
 Route::middleware(['auth', 'role:dospem'])->group(function () {
