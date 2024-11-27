@@ -89,8 +89,8 @@ class MahasiswaBimbinganController extends Controller
     }
 
 
-    public function logbook()
+    public function logbook($id)
     {
-        return view('pages.dospem.penilaian-magang.show');
+        return view('pages.dospem.mahasiswabimbingan.show');
     }
 }
