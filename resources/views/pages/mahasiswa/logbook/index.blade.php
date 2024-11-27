@@ -43,10 +43,19 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <a href="{{ route('mahasiswa.logbook.create', $peserta_magang->id) }}"
-                            class="btn btn-primary px-4 mt-0 mb-3" data-animation="bounce"><i
-                                class="mdi mdi-plus-circle-outline mr-2"></i>Tambah Logbook
-                            Baru</a>
+                        @php
+                            // Konversi tanggal mulai dan tanggal tutup ke format yang dapat dibandingkan
+                            $tanggalMulai = \Carbon\Carbon::parse($lowongan->tanggal_magang_dimulai);
+                            $tanggalTutup = \Carbon\Carbon::parse($lowongan->tanggal_magang_ditutup);
+                            $tanggalSekarang = now(); // Mendapatkan tanggal sekarang
+                        @endphp
+
+                        @if ($tanggalSekarang->between($tanggalMulai, $tanggalTutup))
+                            <a href="{{ route('mahasiswa.logbook.create', $peserta_magang->id) }}"
+                                class="btn btn-primary px-4 mt-0 mb-3" data-animation="bounce">
+                                <i class="mdi mdi-plus-circle-outline mr-2"></i>Tambah Logbook Baru
+                            </a>
+                        @endif
                         <div class="table-responsive">
                             @php
                                 $no = 1;

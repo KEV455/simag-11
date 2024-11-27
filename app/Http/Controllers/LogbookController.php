@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Logbook;
+use App\Models\Lowongan;
 use App\Models\Mahasiswa;
 use App\Models\PelamarMagang;
 use App\Models\PesertaMagang;
@@ -38,8 +39,11 @@ class LogbookController extends Controller
         // Ambil logbook berdasarkan id_peserta_magang
         $logbooks = Logbook::where('id_peserta_magang', $peserta_magang->id)->get();
 
+        // Ambil data lowongan
+        $lowongan = $pelamar_magang->lowongan;
+
         // Return data ke view
-        return view('pages.mahasiswa.logbook.index', compact('logbooks', 'pelamar_magang', 'peserta_magang'));
+        return view('pages.mahasiswa.logbook.index', compact('logbooks', 'pelamar_magang', 'peserta_magang', 'lowongan'));
     }
 
 
@@ -49,6 +53,16 @@ class LogbookController extends Controller
     public function create($id)
     {
         $peserta_magang = PesertaMagang::findOrFail($id);
+        $pelamar_magang = PelamarMagang::findOrFail($peserta_magang->id_pelamar_magang);
+        $lowongan = Lowongan::findOrFail($pelamar_magang->id_lowongan);
+
+        // Validasi: cek apakah tanggal sekarang berada dalam rentang tanggal magang
+        $currentDate = now();
+
+        if ($currentDate < $lowongan->tanggal_magang_dimulai || $currentDate > $lowongan->tanggal_magang_ditutup) {
+            Alert::info('Oops', 'Anda hanya dapat mengakses fitur ini selama periode magang berlangsung.');
+            return redirect()->back();
+        }
 
         $data = [
             'peserta_magang' => $peserta_magang
@@ -62,14 +76,25 @@ class LogbookController extends Controller
      */
     public function store(Request $request, $id)
     {
+        $peserta_magang = PesertaMagang::findOrFail($id);
+        $pelamar_magang = PelamarMagang::findOrFail($peserta_magang->id_pelamar_magang);
+        $lowongan = Lowongan::findOrFail($pelamar_magang->id_lowongan);
+
         // Validasi input form
         $validator = Validator::make($request->all(), [
             'judul_kegiatan' => ['required', 'string'],
             'tanggal_kegiatan' => [
                 'required',
                 'date',
-                function ($attribute, $value, $fail) {
+                function ($attribute, $value, $fail) use ($lowongan) {
+                    $tanggalMulai = $lowongan->tanggal_magang_dimulai;
+                    $tanggalSelesai = $lowongan->tanggal_magang_ditutup;
                     $now = now()->toDateString();
+
+                    if ($value < $tanggalMulai || $value > $tanggalSelesai) {
+                        $fail("Tanggal kegiatan harus berada dalam rentang $tanggalMulai hingga $tanggalSelesai.");
+                    }
+
                     if ($value > $now) {
                         $fail("Tidak boleh memasukkan tanggal kegiatan yang akan datang.");
                     }
@@ -128,7 +153,6 @@ class LogbookController extends Controller
         return redirect()->route('mahasiswa.logbook.index');
     }
 
-
     /**
      * Display the specified resource.
      */
@@ -156,14 +180,26 @@ class LogbookController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $logbook = Logbook::findOrFail($id);
+        $peserta_magang = PesertaMagang::findOrFail($logbook->id_peserta_magang);
+        $pelamar_magang = PelamarMagang::findOrFail($peserta_magang->id_pelamar_magang);
+        $lowongan = Lowongan::findOrFail($pelamar_magang->id_lowongan);
+
         // Validasi input form
         $validator = Validator::make($request->all(), [
             'judul_kegiatan' => ['required', 'string'],
             'tanggal_kegiatan' => [
                 'required',
                 'date',
-                function ($attribute, $value, $fail) {
+                function ($attribute, $value, $fail) use ($lowongan) {
+                    $tanggalMulai = $lowongan->tanggal_magang_dimulai;
+                    $tanggalSelesai = $lowongan->tanggal_magang_ditutup;
                     $now = now()->toDateString();
+
+                    if ($value < $tanggalMulai || $value > $tanggalSelesai) {
+                        $fail("Tanggal kegiatan harus berada dalam rentang $tanggalMulai hingga $tanggalSelesai.");
+                    }
+
                     if ($value > $now) {
                         $fail("Tidak boleh memasukkan tanggal kegiatan yang akan datang.");
                     }
