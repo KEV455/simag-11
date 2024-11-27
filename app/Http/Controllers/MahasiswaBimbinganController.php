@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Dosen;
 use App\Models\DosenPembimbing;
+use App\Models\Logbook;
 use App\Models\PembimbingMagang;
+use App\Models\PesertaMagang;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -91,6 +93,24 @@ class MahasiswaBimbinganController extends Controller
 
     public function logbook($id)
     {
-        return view('pages.dospem.mahasiswabimbingan.show');
+        // Ambil logbook berdasarkan peserta magang
+        $logbook = Logbook::where('id_peserta_magang', $id)
+            ->orderBy('tanggal_kegiatan', 'asc')
+            ->get()
+            ->groupBy(function ($item) {
+                return \Carbon\Carbon::parse($item->tanggal_kegiatan)->format('F Y'); // Kelompokkan berdasarkan Bulan dan Tahun
+            });
+
+        // Ambil nama mahasiswa dari relasi
+        $pesertaMagang = PesertaMagang::with('pelamar_magang.mahasiswa')
+            ->where('id', $id)
+            ->first();
+
+        $namaMahasiswa = $pesertaMagang->pelamar_magang->mahasiswa->nama_mahasiswa ?? 'Nama Mahasiswa Tidak Tersedia';
+
+        return view('pages.dospem.mahasiswabimbingan.show', [
+            'logbook' => $logbook,
+            'namaMahasiswa' => $namaMahasiswa
+        ]);
     }
 }
