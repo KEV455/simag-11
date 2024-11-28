@@ -239,7 +239,38 @@
                                                 </div>
                                             </div>
 
-                                            @if ($nilai == 'Belum Disetuui')
+                                            {{-- Apakah nilai ditemukan --}}
+                                            @if ($nilai)
+                                                {{-- Apakah nilai sudah disetujui --}}
+                                                @if ($nilai->validasi == 'Setuju')
+                                                    <a href="{{ url()->previous() }}"
+                                                        class="btn btn-sm btn-outline-danger" data-dismiss="modal">Nilai
+                                                        Sudah Divalidasi</a>
+                                                    {{-- Apakah nilai belum di setujui --}}
+                                                @elseif ($nilai->validasi == 'Belum Divalidasi')
+                                                    @if (!$laporan_akhir)
+                                                        <div class="alert alert-warning">
+                                                            Berkas Laporan Akhir belum diunggah.
+                                                        </div>
+                                                    @endif
+
+                                                    @if (!$transkrip_nilai_dpl)
+                                                        <div class="alert alert-warning">
+                                                            Berkas Transkrip Nilai DPL belum diunggah.
+                                                        </div>
+                                                    @endif
+
+                                                    @if ($laporan_akhir && $transkrip_nilai_dpl)
+                                                        <button type="submit" class="btn btn-sm btn-primary"
+                                                            id="sa-success">Simpan</button>
+                                                        <a href="{{ url()->previous() }}" class="btn btn-sm btn-danger"
+                                                            data-dismiss="modal">Batal</a>
+                                                    @else
+                                                        <a href="{{ url()->previous() }}" class="btn btn-sm btn-danger"
+                                                            data-dismiss="modal">Kembali</a>
+                                                    @endif
+                                                @endif
+                                            @else
                                                 @if (!$laporan_akhir)
                                                     <div class="alert alert-warning">
                                                         Berkas Laporan Akhir belum diunggah.
@@ -261,9 +292,6 @@
                                                     <a href="{{ url()->previous() }}" class="btn btn-sm btn-danger"
                                                         data-dismiss="modal">Kembali</a>
                                                 @endif
-                                            @else
-                                                <a href="{{ url()->previous() }}" class="btn btn-sm btn-outline-danger"
-                                                    data-dismiss="modal">Nilai Sudah Divalidasi</a>
                                             @endif
                                         </form>
                                     </div>

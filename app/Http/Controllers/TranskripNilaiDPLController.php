@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
+use App\Models\NilaiMagang;
 use App\Models\PelamarMagang;
 use App\Models\PesertaMagang;
 use App\Models\TranskripNilaiDPL;
@@ -138,6 +139,15 @@ class TranskripNilaiDPLController extends Controller
     public function destroy(string $id)
     {
         $transkrip_nilai_dpl = TranskripNilaiDPL::findOrFail($id);
+
+        // mengecek apakah data transkrip nilai memiliki data nilai yang sudah disetujui
+        $nilai_magang = NilaiMagang::where('id_transkrip_nilai_dpl', $id)->first();
+
+        if ($nilai_magang) {
+            // Menampilkan alert
+            Alert::info('Invalid', 'Transkrip nilai tidak diizinkan untuk dihapus');
+            return redirect()->back();
+        }
 
         // Periksa apakah ada file yang terkait dengan transkrip_nilai_dpl
         if ($transkrip_nilai_dpl->file_transkrip_nilai != null) {
