@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\LaporanAkhirMagang;
 use App\Models\Mahasiswa;
+use App\Models\NilaiMagang;
 use App\Models\PelamarMagang;
 use App\Models\PesertaMagang;
 use App\Models\User;
@@ -80,7 +81,7 @@ class LaporanAkhirController extends Controller
         $peserta_magang = PesertaMagang::where('id_pelamar_magang', $pelamar_magang->id)
             ->firstOrFail();
 
-        $validated = $request->validate(
+        $request->validate(
             [
                 'file' => ['required', 'mimes:pdf', 'max:20480'],
             ]
@@ -138,6 +139,15 @@ class LaporanAkhirController extends Controller
     public function destroy(string $id)
     {
         $laporan_akhir = LaporanAkhirMagang::findOrFail($id);
+
+        // mengecek apakah data laporan memiliki data nilai yang sudah disetujui
+        $nilai_magang = NilaiMagang::where('id_laporan_akhir_magang', $id)->first();
+
+        if ($nilai_magang) {
+            // Menampilkan alert
+            Alert::info('Invalid', 'Laporan tidak diizinkan untuk dihapus');
+            return redirect()->back();
+        }
 
         // Periksa apakah ada file yang terkait dengan laporan_akhir
         if ($laporan_akhir->file_laporan_akhir != null) {
