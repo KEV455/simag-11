@@ -50,9 +50,22 @@
                                                     {{ $item->lowongan->nama }} - {{ $item->lowongan->mitra->nama }}
                                                 @endforeach
                                             </td>
-                                            <td class="text-center"> <a href="#"><i
-                                                        class="fa-solid fa-eye text-primary font-16"
-                                                        title="Mahasiswa"></i></a> &ensp;</td>
+                                            <td class="text-center">
+                                                @foreach ($data->mahasiswa->pelamar_magang as $pelamar)
+                                                    @foreach ($pelamar->peserta_magang as $peserta)
+                                                        @if (isset($peserta->id))
+                                                            {{-- Periksa apakah id_peserta_magang tersedia --}}
+                                                            <a
+                                                                href="{{ route('dospem.mahasiswa.bimbingan.logbook', ['id' => $peserta->id]) }}">
+                                                                <i class="fa-solid fa-eye text-primary font-16"
+                                                                    title="Logbook Mahasiswa"></i>
+                                                            </a> &ensp;
+                                                        @else
+                                                            <span class="text-muted">Data tidak tersedia</span>
+                                                        @endif
+                                                    @endforeach
+                                                @endforeach
+                                            </td>
                                             <td class="text-left">
                                                 <button type="button" class="btn btn-primary px-4 mt-0 mb-3"
                                                     data-toggle="modal" data-animation="bounce"
@@ -82,20 +95,27 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         @foreach ($data->mahasiswa->pelamar_magang as $pelamar)
-                                                            @foreach ($pelamar->peserta_magang as $peserta)
-                                                                @if ($peserta->laporan_akhir_magang->isNotEmpty())
-                                                                    @foreach ($peserta->laporan_akhir_magang as $laporanAkhir)
-                                                                        <iframe
-                                                                            src="{{ asset('storage/' . $laporanAkhir->file_laporan_akhir) }}"
-                                                                            width="100%" height="700px"
-                                                                            style="border: none;">
-                                                                        </iframe>
-                                                                    @endforeach
-                                                                @else
-                                                                    <p class="text-muted">Laporan akhir belum tersedia.</p>
-                                                                @endif
-                                                            @endforeach
+                                                            @php
+                                                                // Mengumpulkan semua laporan akhir untuk pelamar
+                                                                $laporanAkhirCollection = $pelamar->peserta_magang->flatMap(
+                                                                    function ($peserta) {
+                                                                        return $peserta->laporan_akhir_magang;
+                                                                    },
+                                                                );
+                                                            @endphp
+
+                                                            @if ($laporanAkhirCollection->isNotEmpty())
+                                                                @foreach ($laporanAkhirCollection as $laporanAkhir)
+                                                                    <iframe
+                                                                        src="{{ asset('storage/' . $laporanAkhir->file_laporan_akhir) }}"
+                                                                        width="100%" height="700px" style="border: none;">
+                                                                    </iframe>
+                                                                @endforeach
+                                                            @else
+                                                                <p class="text-muted">Laporan akhir belum tersedia.</p>
+                                                            @endif
                                                         @endforeach
+
 
                                                     </div>
                                                 </div>
