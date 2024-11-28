@@ -165,7 +165,7 @@
                         @if ($pelamar_magang)
                             <div class="col-lg-4">
                                 <div class="card hospital-info card-hover card-rounded">
-                                    <a href="#">
+                                    <a href="{{ route('mahasiswa.nilai.magang.index') }}">
                                         <div class="card-body">
                                             <h4 class="header-title mt-0 mb-3">Nilai Magang</h4>
                                             <div class="media">

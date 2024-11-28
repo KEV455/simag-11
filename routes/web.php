@@ -30,6 +30,7 @@ use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MahasiswaProfileController;
 use App\Http\Controllers\MitraController;
 use App\Http\Controllers\MitraMandiriController;
+use App\Http\Controllers\NilaiMagangMahasiswaController;
 use App\Http\Controllers\PelamarMagangController;
 use App\Http\Controllers\PembimbingMagangController;
 use App\Http\Controllers\PengajuanMitraMandiriController;
@@ -241,4 +242,7 @@ Route::middleware(['auth', 'role:mahasiswa'])->group(function () {
     Route::get('/mahasiswa/transkrip-nilai-dpl', [TranskripNilaiDPLController::class, 'index'])->name('mahasiswa.transkrip.nilai.dpl.index');
     Route::post('/mahasiswa/transkrip-nilai-dpl/store', [TranskripNilaiDPLController::class, 'store'])->name('mahasiswa.transkrip.nilai.dpl.store');
     Route::get('/mahasiswa/transkrip-nilai-dpl/{id}/delete', [TranskripNilaiDPLController::class, 'destroy'])->name('mahasiswa.transkrip.nilai.dpl.destroy');
+
+    //Route Nilai Mahasiswa
+    Route::get('/mahsaiswa/nilai-magang', [NilaiMagangMahasiswaController::class, 'index'])->name('mahasiswa.nilai.magang.index');
 });
