@@ -25,8 +25,8 @@
                                     href="#laporan_transkrip">Berkas Laporan dan Transkrip</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="form_penilaian_tab" data-toggle="pill" href="#form_penilaian">Form
-                                    Penilaian</a>
+                                <a class="nav-link" id="form_penilaian_tab" data-toggle="pill" href="#form_penilaian">Lihat
+                                    Nilai</a>
                             </li>
                         </ul>
                     </div><!--end card-body-->
@@ -149,23 +149,40 @@
                                         <div class="card-box">
                                             <!-- Informasi Mahasiswa dan Magang -->
                                             <div class="row mb-3">
-                                                <div class="col-md-6">
-                                                    <p><strong>Nama Mahasiswa:</strong>
-                                                        {{ $pelamarMagang->mahasiswa->nama_mahasiswa }}</p>
+                                                <!-- Baris Pertama -->
+                                                <div class="col-md-6 mb-3">
+                                                    <div class="d-flex">
+                                                        <span class="label"><strong>Nama Mahasiswa</strong></span>
+                                                        <span class="value ms-2">:
+                                                            {{ $pelamarMagang->mahasiswa->nama_mahasiswa }}</span>
+                                                    </div>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <p><strong>Dosen Pembimbing:</strong>
-                                                        {{-- {{ $nilaiMagang->dosen_pembimbing->dosen->nama_dosen }}</p> --}}
+                                                <div class="col-md-6 mb-3">
+                                                    <div class="d-flex">
+                                                        <span class="label"><strong>Dosen Pembimbing</strong></span>
+                                                        <span class="value ms-2">:
+                                                            {{ $pembimbingMagang->dosen_pembimbing->dosen->nama_dosen }}</span>
+                                                    </div>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <p><strong>Nama Mitra:</strong>
-                                                        {{ $pelamarMagang->lowongan->mitra->nama }}</p>
+
+                                                <!-- Baris Kedua -->
+                                                <div class="col-md-6 mb-3">
+                                                    <div class="d-flex">
+                                                        <span class="label"><strong>Nama Mitra</strong></span>
+                                                        <span class="value ms-2">:
+                                                            {{ $pelamarMagang->lowongan->mitra->nama }}</span>
+                                                    </div>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <p><strong>Nama Lowongan:</strong>
-                                                        {{ $pelamarMagang->lowongan->nama }}</p>
+                                                <div class="col-md-6 mb-3">
+                                                    <div class="d-flex">
+                                                        <span class="label"><strong>Nama Lowongan</strong></span>
+                                                        <span class="value ms-2">:
+                                                            {{ $pelamarMagang->lowongan->nama }}</span>
+                                                    </div>
                                                 </div>
                                             </div>
+
+
 
                                             <!-- Tabel Nilai -->
                                             <table class="table table-bordered">
@@ -177,20 +194,21 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach ($nilaiMagang as $nilai)
+                                                    @forelse ($nilaiMagang as $nilai)
                                                         <tr>
                                                             <td>Magang Kerja Industri</td>
-                                                            <td>
-                                                                {{ $nilai->nilai_angka }}
-                                                            </td>
-                                                            <td>
-                                                                {{ $nilai->nilai_huruf }}
-                                                            </td>
+                                                            <td>{{ $nilai->nilai_angka }}</td>
+                                                            <td>{{ $nilai->nilai_huruf }}</td>
                                                         </tr>
-                                                    @endforeach
-
+                                                    @empty
+                                                        <tr>
+                                                            <td colspan="3" class="text-center"> Nilai belum
+                                                                tersedia</td>
+                                                        </tr>
+                                                    @endforelse
                                                 </tbody>
                                             </table>
+
                                         </div>
                                     </div>
                                 </div> <!--end col-->

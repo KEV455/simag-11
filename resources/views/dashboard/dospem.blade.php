@@ -27,7 +27,7 @@
             <div class="col-lg-12">
                 <div class="row">
                     @if (Auth()->user()->role == 'dospem')
-                        <div class="col-lg-4">
+                        {{-- <div class="col-lg-4">
                             <div class="card hospital-info card-hover card-rounded">
                                 <a href="#">
                                     <div class="card-body">
@@ -44,7 +44,7 @@
                                     </div><!--end card-body-->
                                 </a>
                             </div><!--end card-->
-                        </div><!-- end col-->
+                        </div><!-- end col--> --}}
                         <div class="col-lg-4">
                             <a href="{{ route('dospem.mahasiswa.bimbingan.index') }}">
                                 <div class="card hospital-info card-hover card-rounded">

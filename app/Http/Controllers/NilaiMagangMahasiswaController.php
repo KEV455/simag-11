@@ -6,6 +6,7 @@ use App\Models\LaporanAkhirMagang;
 use App\Models\Mahasiswa;
 use App\Models\NilaiMagang;
 use App\Models\PelamarMagang;
+use App\Models\PembimbingMagang;
 use App\Models\PesertaMagang;
 use App\Models\TranskripNilaiDPL;
 use App\Models\User;
@@ -39,8 +40,10 @@ class NilaiMagangMahasiswaController extends Controller
             $nilaiMagang = NilaiMagang::where('id_peserta_magang', $pesertaMagang->id)
                 ->where('validasi', 'Setuju') // Pastikan kolom status ada dan sesuai
                 ->get();
+            $pembimbingMagang = PembimbingMagang::where('id_mahasiswa', $mahasiswa->id)->first();
 
             $data = [
+                'pembimbingMagang' => $pembimbingMagang,
                 'pelamarMagang' => $pelamarMagang,
                 'pesertaMagang' => $pesertaMagang,
                 'nilaiMagang' => $nilaiMagang,

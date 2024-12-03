@@ -53,3 +53,12 @@ body {
 .panduan-text-size {
     font-size: 20px !important;
 }
+
+.label {
+    width: 150px; /* Atur lebar yang konsisten untuk label */
+    display: inline-block; /* Membuat label menjadi elemen blok untuk pengaturan sejajar */
+}
+
+.value {
+    flex: 1; /* Membuat nilai mengikuti setelah label dengan sisa ruang */
+}
