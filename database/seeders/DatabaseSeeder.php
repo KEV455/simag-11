@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Semester;
+use App\Models\TahunAjaran;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,6 +22,8 @@ class DatabaseSeeder extends Seeder
             BerkasSeeder::class,
             KaprodiSeeder::class,
             MahasiswaSeeder::class,
+            SemesterSeeder::class,
+            TahunAjaranSeeder::class,
         ]);
     }
 }

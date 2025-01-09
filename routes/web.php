@@ -37,6 +37,8 @@ use App\Http\Controllers\PengajuanMitraMandiriController;
 use App\Http\Controllers\PenilaianMagangController;
 use App\Http\Controllers\PermohonanMagangMahasiswaController;
 use App\Http\Controllers\ProdiController;
+use App\Http\Controllers\SemesterController;
+use App\Http\Controllers\TahunAjaranController;
 use App\Http\Controllers\TranskripNilaiDPLController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ValidasiNilaiMagangController;
@@ -107,6 +109,15 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::put('/admin/manajemen-mahasiswa/{id}/update', [MahasiswaController::class, 'update'])->name('admin.mahasiswa.update');
     Route::get('/admin/manajemen-mahasiswa/{id}/delete', [MahasiswaController::class, 'destroy'])->name('admin.mahasiswa.destroy');
     Route::post('/admin/manajemen-mahasiswa/import', [MahasiswaController::class, 'import'])->name('admin.mahasiswa.import');
+
+    // Route Manajemen Semester
+    Route::get('/admin/manajemen-semester', [SemesterController::class, 'index'])->name('admin.semester.index');
+    Route::post('/admin/manajemen-semester/create', [SemesterController::class, 'store'])->name('admin.semester.create');
+    Route::put('/admin/manajemen-semester/{id}/update', [SemesterController::class, 'update'])->name('admin.semester.update');
+
+    // Route Setting Semester
+    Route::get('/admin/manajemen-tahun-ajaran/edit', [TahunAjaranController::class, 'edit'])->name('admin.tahun.ajaran.edit');
+    Route::put('/admin/manajemen-tahun-ajaran/{id}/update', [TahunAjaranController::class, 'update'])->name('admin.tahun.ajaran.update');
 });
 
 Route::middleware(['auth', 'role:koordinator'])->group(function () {
@@ -128,7 +139,7 @@ Route::middleware(['auth', 'role:koordinator'])->group(function () {
     Route::put('/koordinator/manajemen-mitra/{id}/update', [MitraController::class, 'update'])->name('koordinator.mitra.update');
     Route::get('/koordinator/manajemen-mitra/delete/{id}', [MitraController::class, 'destroy'])->name('koordinator.mitra.destroy');
 
-    //Route Manaemen Berkas
+    // Route Manaemen Berkas
     Route::get('/koordinator/manajemen-berkas', [BerkasController::class, 'index'])->name('koordinator.berkas.index');
     Route::post('/koordinator/manajemen-berkas/create', [BerkasController::class, 'store'])->name('koordinator.berkas.create');
     Route::get('/koordinator/manajemen-berkas/delete/{id}', [BerkasController::class, 'destroy'])->name('koordinator.berkas.destroy');
@@ -243,6 +254,6 @@ Route::middleware(['auth', 'role:mahasiswa'])->group(function () {
     Route::post('/mahasiswa/transkrip-nilai-dpl/store', [TranskripNilaiDPLController::class, 'store'])->name('mahasiswa.transkrip.nilai.dpl.store');
     Route::get('/mahasiswa/transkrip-nilai-dpl/{id}/delete', [TranskripNilaiDPLController::class, 'destroy'])->name('mahasiswa.transkrip.nilai.dpl.destroy');
 
-    //Route Nilai Mahasiswa
+    // Route Nilai Mahasiswa
     Route::get('/mahsaiswa/nilai-magang', [NilaiMagangMahasiswaController::class, 'index'])->name('mahasiswa.nilai.magang.index');
 });

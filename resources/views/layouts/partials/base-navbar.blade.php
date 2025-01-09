@@ -154,7 +154,16 @@
                                             User
                                         </a>
                                     </li>
-
+                                    <li>
+                                        <a href="{{ route('admin.semester.index') }}">
+                                            Semester
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('admin.tahun.ajaran.edit') }}">
+                                            Setting Semester
+                                        </a>
+                                    </li>
                                 </ul><!--end submenu-->
                             </li><!--end has-submenu-->
                         @endif
