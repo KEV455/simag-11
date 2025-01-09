@@ -4,7 +4,6 @@
     <title>Manajemen Pembimbing Magang| SiMagang</title>
 @endsection
 
-
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -34,6 +33,7 @@
                                         <th class="text-left">Nama Mahasiswa</th>
                                         <th class="text-left">Angkatan</th>
                                         <th class="text-left">Nama Program Studi</th>
+                                        <th class="text-left">Tahun Ajaran</th>
                                         <th class="text-left">Aksi</th>
                                     </tr>
                                 </thead>
@@ -46,6 +46,7 @@
                                             <td class="text-left">{{ $data->mahasiswa->nama_mahasiswa }}</td>
                                             <td class="text-left">{{ $data->mahasiswa->angkatan }}</td>
                                             <td class="text-left">{{ $data->mahasiswa->prodi->nama_program_studi }}</td>
+                                            <td class="text-left">{{ $data->semester->nama_semester }}</td>
                                             <td>
                                                 <a href="{{ route('kaprodi.pembimbing.magang.destroy', $data->id) }}"><i
                                                         class="fas fa-trash-alt text-danger font-16"></i></a>

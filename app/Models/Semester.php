@@ -18,4 +18,12 @@ class Semester extends Model
     {
         return $this->hasMany(TahunAjaran::class);
     }
+    public function lowongan()
+    {
+        return $this->hasMany(Lowongan::class);
+    }
+    public function pembimbing_magang()
+    {
+        return $this->hasMany(PembimbingMagang::class);
+    }
 }

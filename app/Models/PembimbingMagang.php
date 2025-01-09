@@ -8,7 +8,8 @@ class PembimbingMagang extends Model
 {
     protected  $fillable = [
         'id_dosen_pembimbing',
-        'id_mahasiswa'
+        'id_mahasiswa',
+        'id_semester'
     ];
 
     public function dosen_pembimbing()
@@ -18,5 +19,9 @@ class PembimbingMagang extends Model
     public function mahasiswa()
     {
         return $this->belongsTo(Mahasiswa::class, 'id_mahasiswa', 'id');
+    }
+    public function semester()
+    {
+        return $this->belongsTo(Semester::class, 'id_semester', 'id');
     }
 }

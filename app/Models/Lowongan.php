@@ -16,7 +16,8 @@ class Lowongan extends Model
         'tanggal_magang_dimulai',
         'tanggal_magang_ditutup',
         'status',
-        'id_mitra'
+        'id_mitra',
+        'id_semester'
     ];
 
     public function mitra()
@@ -24,14 +25,21 @@ class Lowongan extends Model
         return $this->belongsTo(Mitra::class, 'id_mitra');
     }
 
+    public function semester()
+    {
+        return $this->belongsTo(Semester::class, 'id_semester');
+    }
+
     public function berkas_lowongan()
     {
         return $this->hasMany(BerkasLowongan::class);
     }
+
     public function lowongan_prodi()
     {
         return $this->hasMany(LowonganProdi::class, 'id_lowongan', 'id');
     }
+
     public function pelamar_magang()
     {
         return $this->hasMany(PelamarMagang::class, 'id');

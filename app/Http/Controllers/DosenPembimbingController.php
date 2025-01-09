@@ -42,7 +42,7 @@ class DosenPembimbingController extends Controller
             'dosen_pembimbing' => $dospem_by_prodi,
         ];
 
-        return view('pages.kaprodi.dosenpembimbing.index', $data);
+        return view('pages.kaprodi.dosen-pembimbing.index', $data);
     }
 
     /**
@@ -60,11 +60,13 @@ class DosenPembimbingController extends Controller
     {
         $validated = $request->validate([
             'create_id_dosen' => ['required'],
+            'create_kuota' => ['required'],
             'create_status' => ['required']
         ]);
 
         DosenPembimbing::create([
             'id_dosen' => $validated['create_id_dosen'],
+            'kuota' => $validated['create_kuota'],
             'status' => $validated['create_status'],
         ]);
 
@@ -105,6 +107,7 @@ class DosenPembimbingController extends Controller
 
         $validated = $request->validate([
             'update_id_dosen' => ['nullable', 'string', Rule::unique('dosen_pembimbings', 'id_dosen')->ignore($dospem->id, 'id')],
+            'update_kuota' => ['required'],
             'update_status' => ['required', 'string']
         ]);
 
@@ -141,6 +144,7 @@ class DosenPembimbingController extends Controller
 
         DosenPembimbing::where('id', $id)->update([
             'id_dosen' => $validated['update_id_dosen'] ?? $dospem->id_dosen,
+            'kuota' => $validated['update_kuota'],
             'status' => $validated['update_status'],
         ]);
 

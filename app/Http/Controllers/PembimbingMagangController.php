@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DosenPembimbing;
 use App\Models\Mahasiswa;
 use App\Models\PembimbingMagang;
+use App\Models\TahunAjaran;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -15,13 +16,14 @@ class PembimbingMagangController extends Controller
      */
     public function index($id)
     {
+        $tahun_ajaran_aktif = TahunAjaran::where('status', true)->first();
+
         $data = [
             'dosen_pembimbing' => DosenPembimbing::findOrFail($id),
-            'pembimbing_magang' => PembimbingMagang::where('id_dosen_pembimbing', $id)->get()
-
+            'pembimbing_magang' => PembimbingMagang::where('id_dosen_pembimbing', $id)->where('id_semester', $tahun_ajaran_aktif->id_semester)->get()
         ];
 
-        return view('pages.kaprodi.pembimbingmagang.index', $data);
+        return view('pages.kaprodi.pembimbing-magang.index', $data);
     }
 
     /**
@@ -29,13 +31,19 @@ class PembimbingMagangController extends Controller
      */
     public function create($id)
     {
+        $tahun_ajaran_aktif = TahunAjaran::where('status', true)->first();
+
         $data = [
             'dosen_pembimbing' => DosenPembimbing::findOrFail($id),
-            'pembimbing_magang' => PembimbingMagang::where('id_dosen_pembimbing', $id)->get(),
-            'mahasiswa' => Mahasiswa::whereNotIn('id', PembimbingMagang::pluck('id_mahasiswa'))->get(),
-
+            'pembimbing_magang' => PembimbingMagang::where('id_dosen_pembimbing', $id)->where('id_semester', $tahun_ajaran_aktif->id_semester)->get(),
+            'mahasiswa' => Mahasiswa::whereNotIn('id', function ($query) use ($tahun_ajaran_aktif) {
+                $query->select('id_mahasiswa')
+                    ->from('pembimbing_magangs')
+                    ->where('id_semester', $tahun_ajaran_aktif->id_semester);
+            })->get(),
         ];
-        return view('pages.kaprodi.pembimbingmagang.create', $data);
+
+        return view('pages.kaprodi.pembimbing-magang.create', $data);
     }
 
     /**
@@ -47,15 +55,23 @@ class PembimbingMagangController extends Controller
             'mahasiswas' => ['required', 'array', 'min:1'],
         ]);
 
+        $dospem = DosenPembimbing::findOrFail($id);
+        $tahun_ajaran_aktif = TahunAjaran::where('status', true)->first();
         $mahasiswa_convert = collect($validated['mahasiswas']);
         $check_id_mahasiswa = $mahasiswa_convert->except('_token');
 
         if ($check_id_mahasiswa) {
             foreach ($check_id_mahasiswa as $mahasiswaId) {
-                PembimbingMagang::create([
-                    'id_dosen_pembimbing' => $id,
-                    'id_mahasiswa' => $mahasiswaId,
-                ]);
+                $pembimbing_magang_dospem_count = PembimbingMagang::where('id_dosen_pembimbing', $id)->where('id_semester', $tahun_ajaran_aktif->id_semester)->count();
+
+                // pengecekan kuota dospem
+                if ($pembimbing_magang_dospem_count < $dospem->kuota) {
+                    PembimbingMagang::create([
+                        'id_dosen_pembimbing' => $id,
+                        'id_mahasiswa' => $mahasiswaId,
+                        'id_semester' => $tahun_ajaran_aktif->id_semester,
+                    ]);
+                }
             }
         }
 

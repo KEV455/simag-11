@@ -10,6 +10,7 @@ class PelamarMagang extends Model
         'status_diterima',
         'id_mahasiswa',
         'id_lowongan',
+        'id_semester',
     ];
 
     public function mahasiswa()
@@ -19,6 +20,10 @@ class PelamarMagang extends Model
     public function lowongan()
     {
         return $this->belongsTo(Lowongan::class, 'id_lowongan', 'id');
+    }
+    public function semester()
+    {
+        return $this->belongsTo(Semester::class, 'id_semester', 'id');
     }
     public function berkas_pelamar()
     {

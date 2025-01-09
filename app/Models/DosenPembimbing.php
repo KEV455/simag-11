@@ -8,6 +8,7 @@ class DosenPembimbing extends Model
 {
     protected $fillable = [
         'status',
+        'kuota',
         'id_dosen'
     ];
 

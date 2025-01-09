@@ -22,7 +22,9 @@ return new class extends Migration
             $table->date('tanggal_magang_ditutup')->nullable(false);
             $table->enum('status', ['Aktif', 'Tidak Aktif'])->nullable(false);
             $table->unsignedBigInteger('id_mitra');
+            $table->unsignedBigInteger('id_semester');
             $table->foreign('id_mitra')->references('id')->on('mitras')->onDelete('cascade');
+            $table->foreign('id_semester')->references('id')->on('semesters')->onDelete('cascade');
             $table->timestamps();
         });
     }

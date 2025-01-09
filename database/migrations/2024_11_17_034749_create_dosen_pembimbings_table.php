@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('dosen_pembimbings', function (Blueprint $table) {
             $table->id();
             $table->enum('status', ['Aktif', 'Tidak Aktif'])->nullable(false);
+            $table->integer('kuota')->nullable(false);
             $table->unsignedBigInteger('id_dosen');
             $table->foreign('id_dosen')->references('id')->on('dosens')->onDelete('cascade');
             $table->timestamps();

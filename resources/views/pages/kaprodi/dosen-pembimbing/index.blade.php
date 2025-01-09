@@ -33,6 +33,7 @@
                                     <tr class="text-center">
                                         <th width="10%">No</th>
                                         <th class="text-left">Nama Dosen</th>
+                                        <th class="text-left">Kuota Dosen Pembimbing</th>
                                         <th class="text-left">Nama Program Studi</th>
                                         <th class="text-left">Status</th>
                                         <th width="10%">Action</th>
@@ -46,6 +47,7 @@
                                         <tr class="text-center">
                                             <td>{{ $no }}</td>
                                             <td class="text-left">{{ $item->dosen->nama_dosen }}</td>
+                                            <td class="text-left">{{ $item->kuota }}</td>
                                             <td class="text-left">{{ $item->dosen->prodi->nama_program_studi }}</td>
                                             <td class="text-left">{{ $item->status }}</td>
                                             <td>
@@ -104,6 +106,22 @@
                                                                             <div id="update_id_dosen" class="form-text pb-1">
                                                                                 {{ $message }}
                                                                             </div>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <label for="update_kuota">Kuota Dosen
+                                                                            Pembimbing</label>
+                                                                        <input type="number"
+                                                                            class="form-control @error('update_kuota') is-invalid @enderror"
+                                                                            id="update_kuota" name="update_kuota"
+                                                                            placeholder="Masukkan Kuota Dospem"
+                                                                            min="1" value="{{ $item->kuota }}">
+                                                                        @error('update_kuota')
+                                                                            <div id="update_kuota" class="form-text pb-1">
+                                                                                {{ $message }}</div>
                                                                         @enderror
                                                                     </div>
                                                                 </div>
@@ -182,6 +200,19 @@
                                     </select>
                                     @error('create_id_dosen')
                                         <div id="create_id_dosen" class="form-text pb-1">
+                                            {{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="create_kuota">Kuota Dosen Pembimbing</label>
+                                    <input type="number" class="form-control @error('create_kuota') is-invalid @enderror"
+                                        id="create_kuota" name="create_kuota" placeholder="Masukkan Kuota Dospem"
+                                        min="1">
+                                    @error('create_kuota')
+                                        <div id="create_kuota" class="form-text pb-1">
                                             {{ $message }}</div>
                                     @enderror
                                 </div>

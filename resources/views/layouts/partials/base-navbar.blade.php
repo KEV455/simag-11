@@ -16,6 +16,11 @@
             <!--end logo-->
             <ul class="list-unstyled topbar-nav float-right mb-0">
                 <li class="dropdown">
+                    <a class="nav-link waves-effect waves-light nav-user pr-0" href="#" role="button"
+                        aria-expanded="false">
+                        <span>Tahun Ajaran :
+                            {{ $tahun_ajaran_aktif ? $tahun_ajaran_aktif->semester->nama_semester : 'Belum Diset!' }}</span>
+                    </a>
                     <a class="nav-link dropdown-toggle waves-effect waves-light nav-user pr-0" data-toggle="dropdown"
                         href="#" role="button" aria-haspopup="false" aria-expanded="false">
                         <img src="{{ asset('images/profile-picture.jpg') }}" alt="profile-user"
@@ -161,7 +166,7 @@
                                     </li>
                                     <li>
                                         <a href="{{ route('admin.tahun.ajaran.edit') }}">
-                                            Setting Semester
+                                            Tahun Ajaran
                                         </a>
                                     </li>
                                 </ul><!--end submenu-->
@@ -192,7 +197,8 @@
                                     <li class="has-submenu">
                                         <a href="#">Lowongan</a>
                                         <ul class="submenu">
-                                            <li><a href="{{ route('koordinator.lowongan.index') }}">Daftar Lowongan</a>
+                                            <li><a href="{{ route('koordinator.lowongan.index') }}">Daftar
+                                                    Lowongan</a>
                                             </li>
 
                                         </ul>

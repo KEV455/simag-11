@@ -1,9 +1,8 @@
 @extends('layouts.base.base-template')
 
 @section('title')
-    <title>Tambah Mahasiswa| SiMagang</title>
+    <title>Tambah Mahasiswa | SiMagang</title>
 @endsection
-
 
 @section('content')
     <div class="container-fluid">

@@ -16,8 +16,10 @@ return new class extends Migration
             $table->enum('status_diterima', ['Menunggu', 'Ditolak', 'Diterima'])->nullable(false);
             $table->unsignedBigInteger('id_mahasiswa');
             $table->unsignedBigInteger('id_lowongan');
+            $table->unsignedBigInteger('id_semester');
             $table->foreign('id_mahasiswa')->references('id')->on('mahasiswas')->onDelete('cascade');
             $table->foreign('id_lowongan')->references('id')->on('lowongans')->onDelete('cascade');
+            $table->foreign('id_semester')->references('id')->on('semesters')->onDelete('cascade');
             $table->timestamps();
         });
     }
