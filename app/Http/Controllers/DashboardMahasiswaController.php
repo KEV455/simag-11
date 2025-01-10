@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Mahasiswa;
 use App\Models\MitraMandiri;
 use App\Models\PelamarMagang;
+use App\Models\TahunAjaran;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,11 +17,14 @@ class DashboardMahasiswaController extends Controller
      */
     public function index()
     {
+        // Ambil tahun ajaran yang sedang aktif
+        $tahun_ajaran_aktif = TahunAjaran::where('status', true)->first();
+
         $user =  User::where('id', Auth::user()->id)->first();
         $mahasiswa = Mahasiswa::where('id_user', $user->id)->first();
 
         // mengambil data pelamar magang yang disetujui dan peserta memiliki data peserta magang
-        $pelamar_magang = PelamarMagang::where('id_mahasiswa', $mahasiswa->id)->where('status_diterima', 'Diterima')->first();
+        $pelamar_magang = PelamarMagang::where('id_semester', $tahun_ajaran_aktif->id_semester)->where('id_mahasiswa', $mahasiswa->id)->where('status_diterima', 'Diterima')->first();
 
         $data = [
             'mitras_mandiri_count' => MitraMandiri::where('id_mahasiswa', $mahasiswa->id)->count(),

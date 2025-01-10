@@ -8,6 +8,7 @@ use App\Models\Lowongan;
 use App\Models\LowonganProdi;
 use App\Models\Mitra;
 use App\Models\Prodi;
+use App\Models\TahunAjaran;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -20,7 +21,7 @@ class LowonganController extends Controller
     public function index()
     {
         $data = [
-            'lowongan' => Lowongan::all(),
+            'lowongan' => Lowongan::orderBy('id_semester', 'asc')->get(),
             'mitra' => Mitra::all(),
             'berkas' => Berkas::all(),
             'berkas_lowongan' => BerkasLowongan::all(),
@@ -57,6 +58,8 @@ class LowonganController extends Controller
             'prodi' => ['required', 'array', 'min:1'],
         ]);
 
+        $tahun_ajaran_aktif = TahunAjaran::where('status', true)->first();
+
         $newLowongan = Lowongan::create([
             'id_mitra' => $validated['mitra'],
             'nama' => $validated['nama_lowongan'],
@@ -67,6 +70,7 @@ class LowonganController extends Controller
             'tanggal_magang_dimulai' => $validated['tanggal_magang_dimulai'],
             'tanggal_magang_ditutup' => $validated['tanggal_magang_ditutup'],
             'status' => $validated['status'],
+            'id_semester' => $tahun_ajaran_aktif->id_semester,
         ]);
 
         $prodi_convert = collect($validated['prodi']);
@@ -85,7 +89,6 @@ class LowonganController extends Controller
             'tanggal_magang_ditutup',
             'status',
         );
-
 
         if ($check_prodi) {
             foreach ($check_prodi as $prodiId) {
@@ -114,7 +117,6 @@ class LowonganController extends Controller
             'status',
         );
 
-
         if ($check_berkas) {
             foreach ($check_berkas as $berkasId) {
                 if ($berkas->contains('id', $berkasId)) {
@@ -125,8 +127,6 @@ class LowonganController extends Controller
                 }
             }
         }
-
-
 
         Alert::success('Success', 'Lowongan Berhasil Ditambahkan');
 
@@ -155,7 +155,6 @@ class LowonganController extends Controller
     public function update(Request $request, string $id)
     {
         $lowongan = Lowongan::findOrFail($id);
-
 
         $validated = $request->validate([
             'mitra' => ['required', 'string'],
@@ -226,8 +225,6 @@ class LowonganController extends Controller
             }
         });
 
-
-
         Alert::success('Success', 'Lowongan Berhasil Diupdate');
 
         return redirect()->route('koordinator.lowongan.index');
@@ -238,7 +235,6 @@ class LowonganController extends Controller
      */
     public function destroy(string $id)
     {
-
         $lowongan = Lowongan::findOrFail($id);
         $lowongan->delete();
         Alert::success('Success', 'Lowongan Berhasil Dihapus');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PelamarMagang;
 use App\Models\PesertaMagang;
+use App\Models\TahunAjaran;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -14,8 +15,11 @@ class LamaranMagangController extends Controller
      */
     public function index()
     {
+        // Ambil tahun ajaran yang sedang aktif
+        $tahun_ajaran_aktif = TahunAjaran::where('status', true)->first();
+
         $data = [
-            'pelamar_magang_menunggu' => PelamarMagang::where('status_diterima', 'Menunggu')->get()
+            'pelamar_magang_menunggu' => PelamarMagang::where('status_diterima', 'Menunggu')->where('id_semester', $tahun_ajaran_aktif->id_semester)->get()
         ];
 
         return view('pages.koordinator.pelamar-magang.index', $data);
@@ -23,8 +27,11 @@ class LamaranMagangController extends Controller
 
     public function pelamar_magang_disetujui()
     {
+        // Ambil tahun ajaran yang sedang aktif
+        $tahun_ajaran_aktif = TahunAjaran::where('status', true)->first();
+
         $data = [
-            'pelamar_magang_menunggu' => PelamarMagang::where('status_diterima', 'Diterima')->get()
+            'pelamar_magang_menunggu' => PelamarMagang::where('status_diterima', 'Diterima')->where('id_semester', $tahun_ajaran_aktif->id_semester)->get()
         ];
 
         return view('pages.koordinator.pelamar-magang.pelamar-magang-disetujui', $data);
@@ -32,8 +39,11 @@ class LamaranMagangController extends Controller
 
     public function pelamar_magang_ditolak()
     {
+        // Ambil tahun ajaran yang sedang aktif
+        $tahun_ajaran_aktif = TahunAjaran::where('status', true)->first();
+
         $data = [
-            'pelamar_magang_menunggu' => PelamarMagang::where('status_diterima', 'Ditolak')->get()
+            'pelamar_magang_menunggu' => PelamarMagang::where('status_diterima', 'Ditolak')->where('id_semester', $tahun_ajaran_aktif->id_semester)->get()
         ];
 
         return view('pages.koordinator.pelamar-magang.pelamar-magang-ditolak', $data);
@@ -41,6 +51,9 @@ class LamaranMagangController extends Controller
 
     public function diterima(string $id)
     {
+        // Ambil tahun ajaran yang sedang aktif
+        $tahun_ajaran_aktif = TahunAjaran::where('status', true)->first();
+
         $pelamar_magang = PelamarMagang::findOrFail($id);
 
         // Hitung jumlah pelamar magang pada lowongan terkait
@@ -59,7 +72,7 @@ class LamaranMagangController extends Controller
         $pelamar_magang->update(['status_diterima' => 'Diterima']);
 
         // mengambil semua pelamar magang milik mahasiswa
-        $pelamar_magang_mhs = PelamarMagang::where('id_mahasiswa', $pelamar_magang->id_mahasiswa)->where('status_diterima', 'Menunggu')->get();
+        $pelamar_magang_mhs = PelamarMagang::where('id_semester', $tahun_ajaran_aktif->id_semester)->where('id_mahasiswa', $pelamar_magang->id_mahasiswa)->where('status_diterima', 'Menunggu')->get();
 
         // update seluruh data pelamar magang mhs selain yang di izinkan agar otomatis tertolak
         foreach ($pelamar_magang_mhs as $pm_mhs) {

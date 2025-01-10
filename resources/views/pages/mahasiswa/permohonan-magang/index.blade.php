@@ -33,6 +33,7 @@
                                         <th class="text-left">Lowongan</th>
                                         <th class="text-left">Email</th>
                                         <th class="text-center">Berkas</th>
+                                        <th class="text-center">Tahun Ajaran</th>
                                         <th class="text-left">Status Diterima</th>
                                         <th width="10%">Action</th>
                                     </tr>
@@ -53,6 +54,7 @@
                                                     Lihat Berkas Saya
                                                 </button>
                                             </td>
+                                            <td class="text-center">{{ $item->semester->nama_semester }}</td>
                                             <td class="text-left">{{ $item->status_diterima }}</td>
                                             <td>
                                                 @if ($item->status_diterima == 'Diterima')

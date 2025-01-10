@@ -8,6 +8,7 @@ use App\Models\Lowongan;
 use App\Models\LowonganProdi;
 use App\Models\Mahasiswa;
 use App\Models\PelamarMagang;
+use App\Models\TahunAjaran;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,14 +21,22 @@ class PelamarMagangController extends Controller
      */
     public function index($id)
     {
+        // Ambil tahun ajaran yang sedang aktif
+        $tahun_ajaran_aktif = TahunAjaran::where('status', true)->first();
+
         $lowongan = Lowongan::findOrFail($id);
         $user =  User::where('id', Auth::user()->id)->first();
+
+        if ($lowongan->id_semester !== $tahun_ajaran_aktif->id_semester) {
+            Alert::error('Invalid', 'Maaf, Lowongan Tidak Tersedia');
+            return redirect()->back();
+        }
 
         // Ambil data mahasiswa berdasarkan user
         $mahasiswa = Mahasiswa::where('id_user', $user->id)->firstOrFail();
 
         // mengambil data pelamar magang untuk lowongan sekarang
-        $pelamarMagangLowongan = PelamarMagang::where('id_lowongan', $id)->where('id_mahasiswa', $mahasiswa->id)->where('status_diterima', 'Menunggu')->first();
+        $pelamarMagangLowongan = PelamarMagang::where('id_semester', $tahun_ajaran_aktif->id_semester)->where('id_lowongan', $id)->where('id_mahasiswa', $mahasiswa->id)->where('status_diterima', 'Menunggu')->first();
         $flag_lamaran_magang = false;
 
         if ($pelamarMagangLowongan) {
@@ -53,7 +62,7 @@ class PelamarMagangController extends Controller
         }
 
         // mengambil data pelamar magang yang disetujui dan peserta memiliki data peserta magang
-        $pelamar_magang = PelamarMagang::where('id_mahasiswa', $mahasiswa->id)->where('status_diterima', 'Diterima')->first();
+        $pelamar_magang = PelamarMagang::where('id_semester', $tahun_ajaran_aktif->id_semester)->where('id_mahasiswa', $mahasiswa->id)->where('status_diterima', 'Diterima')->first();
 
         if ($pelamar_magang) {
             Alert::error('Invalid', 'Maaf Anda telah Diterima di Program Magang Lain');
@@ -82,6 +91,9 @@ class PelamarMagangController extends Controller
      */
     public function store(Request $request, $id)
     {
+        // Ambil tahun ajaran yang sedang aktif
+        $tahun_ajaran_aktif = TahunAjaran::where('status', true)->first();
+
         $lowongan = Lowongan::findOrFail($id); // Cari data lowongan
         $user = Auth::user(); // Ambil data user yang sedang login
         $mahasiswa = Mahasiswa::where('id_user', $user->id)->firstOrFail(); // Ambil data mahasiswa berdasarkan user
@@ -96,6 +108,7 @@ class PelamarMagangController extends Controller
             'status_diterima' => 'Menunggu', // Default status
             'id_mahasiswa' => $mahasiswa->id,
             'id_lowongan' => $lowongan->id,
+            'id_semester' => $tahun_ajaran_aktif->id_semester,
         ]);
 
         // Upload dan simpan data file ke `BerkasPelamar`

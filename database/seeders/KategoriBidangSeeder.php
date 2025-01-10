@@ -23,11 +23,11 @@ class KategoriBidangSeeder extends Seeder
         ]);
         KategoriBidang::create([
             'id' => 3,
-            'nama_kategori' => 'Pertanian',
+            'nama_kategori' => 'Reparasi Hardware dan Komputer',
         ]);
         KategoriBidang::create([
             'id' => 4,
-            'nama_kategori' => 'Perhotelan',
+            'nama_kategori' => 'Pemasaran Produk via Sosial Media',
         ]);
     }
 }

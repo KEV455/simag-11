@@ -22,11 +22,10 @@ class PermohonanMagangMahasiswaController extends Controller
         $mahasiswa = Mahasiswa::where('id_user', $user->id)->firstOrFail();
 
         $data = [
-            'pelamar_magang' => PelamarMagang::where('id_mahasiswa', $mahasiswa->id)
+            'pelamar_magang' => PelamarMagang::where('id_mahasiswa', $mahasiswa->id)->orderBy('id_semester', 'asc')
                 ->with('berkas_pelamar') // Load relasi berkas pelamar
                 ->get(),
         ];
-
 
         return view('pages.mahasiswa.permohonan-magang.index', $data);
     }
@@ -91,7 +90,6 @@ class PermohonanMagangMahasiswaController extends Controller
                 }
             }
         }
-
 
         $pelamar_magang->delete();
 

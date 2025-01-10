@@ -54,11 +54,10 @@
                                         <th class="text-left">No</th>
                                         <th class="text-left">Nama Lowongan</th>
                                         <th class="text-left">Mitra</th>
-                                        <th class="text-left">Tanggal Dibuka Lowongan</th>
-                                        <th class="text-left">Tanggal Ditutup Lowongan</th>
-                                        <th class="text-left">Tanggal Dimulai Magang</th>
-                                        <th class="text-left">Tanggal Ditutup Magang</th>
+                                        <th class="text-left">Periode Pendaftaran</th>
+                                        <th class="text-left">Periode Magang</th>
                                         <th class="text-left">Status</th>
+                                        <th class="text-left">Tahun Ajaran</th>
                                         <th width="10%">Action</th>
                                     </tr>
                                     <!--end tr-->
@@ -70,11 +69,12 @@
                                             <td>{{ $no }}</td>
                                             <td class="text-left">{{ $item->nama }}</td>
                                             <td class="text-left">{{ $item->mitra->nama }}</td>
-                                            <td class="text-left">{{ dateConversion($item->tanggal_dibuka) }}</td>
-                                            <td class="text-left">{{ dateConversion($item->tanggal_ditutup) }}</td>
-                                            <td class="text-left">{{ dateConversion($item->tanggal_magang_dimulai) }}</td>
-                                            <td class="text-left">{{ dateConversion($item->tanggal_magang_ditutup) }}</td>
+                                            <td class="text-left">{{ dateConversion($item->tanggal_dibuka) }} -
+                                                {{ dateConversion($item->tanggal_ditutup) }}</td>
+                                            <td class="text-left">{{ dateConversion($item->tanggal_magang_dimulai) }} -
+                                                {{ dateConversion($item->tanggal_magang_ditutup) }}</td>
                                             <td class="text-left">{{ $item->status }}</td>
+                                            <td class="text-left">{{ $item->semester->nama_semester }}</td>
                                             <td>
                                                 <a href="{{ route('koordinator.lowongan.update', $item->id) }}"
                                                     class="mr-2" data-toggle="modal" data-animation="bounce"

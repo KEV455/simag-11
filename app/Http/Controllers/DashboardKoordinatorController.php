@@ -8,6 +8,7 @@ use App\Models\Lowongan;
 use App\Models\Mitra;
 use App\Models\MitraMandiri;
 use App\Models\PelamarMagang;
+use App\Models\TahunAjaran;
 use Illuminate\Http\Request;
 
 class DashboardKoordinatorController extends Controller
@@ -17,13 +18,16 @@ class DashboardKoordinatorController extends Controller
      */
     public function index()
     {
+        // Ambil tahun ajaran yang sedang aktif
+        $tahun_ajaran_aktif = TahunAjaran::where('status', true)->first();
+
         $data = [
             'kategori_bidang_count' => KategoriBidang::count(),
             'mitra_count' => Mitra::count(),
             'berkas_count' => Berkas::count(),
             'lowongan_count' => Lowongan::count(),
             'mitra_mandiri_count' => MitraMandiri::count(),
-            'pelamar_magang_menunggu_count' => PelamarMagang::where('status_diterima', 'Menunggu')->count()
+            'pelamar_magang_menunggu_count' => PelamarMagang::where('id_semester', $tahun_ajaran_aktif->id_semester)->where('status_diterima', 'Menunggu')->count()
         ];
 
         return view('dashboard.koordinator', $data);

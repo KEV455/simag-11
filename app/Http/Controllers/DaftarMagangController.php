@@ -7,7 +7,7 @@ use App\Models\KategoriBidang;
 use App\Models\Lowongan;
 use App\Models\LowonganProdi;
 use App\Models\Mahasiswa;
-use App\Models\PelamarMagang;
+use App\Models\TahunAjaran;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,6 +20,9 @@ class DaftarMagangController extends Controller
      */
     public function index(Request $request)
     {
+        // Ambil data tahun ajaran yang aktif
+        $tahun_ajaran_aktif = TahunAjaran::where('status', true)->first();
+
         // Ambil data kategori bidang untuk dropdown
         $kategori_bidangs = KategoriBidang::all();
 
@@ -29,7 +32,7 @@ class DaftarMagangController extends Controller
         if ($id_kategori_bidang) {
             // Query dengan filter id_kategori_bidang dan muat relasi lowongan_prodi
             $lowongan_by_kategori = Lowongan::with('lowongan_prodi')
-                ->where('status', 'Aktif')
+                ->where('status', 'Aktif')->where('id_semester', $tahun_ajaran_aktif->id_semester)
                 ->whereHas('mitra', function ($query) use ($id_kategori_bidang) {
                     $query->where('id_kategori_bidang', $id_kategori_bidang);
                 })
@@ -37,7 +40,7 @@ class DaftarMagangController extends Controller
         } else {
             // Jika tidak ada filter, tampilkan semua data dengan relasi lowongan_prodi
             $lowongan_by_kategori = Lowongan::with('lowongan_prodi')
-                ->where('status', 'Aktif')
+                ->where('status', 'Aktif')->where('id_semester', $tahun_ajaran_aktif->id_semester)
                 ->get();
         }
 
@@ -69,7 +72,16 @@ class DaftarMagangController extends Controller
      */
     public function show(string $id)
     {
+        // Ambil data tahun ajaran yang aktif
+        $tahun_ajaran_aktif = TahunAjaran::where('status', true)->first();
+
         $lowongan = Lowongan::findOrFail($id);
+
+        if ($lowongan->id_semester !== $tahun_ajaran_aktif->id_semester) {
+            Alert::error('Invalid', 'Maaf, Lowongan Tidak Tersedia');
+            return redirect()->back();
+        }
+
         $user =  User::where('id', Auth::user()->id)->first();
         $lowonganProdi = LowonganProdi::where('id_lowongan', $id)->get();
 
