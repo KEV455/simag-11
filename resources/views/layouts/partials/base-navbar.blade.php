@@ -222,6 +222,11 @@
                                             Kategori Bidang
                                         </a>
                                     </li>
+                                    <li>
+                                        <a href="{{ route('koordinator.kriteria.penilaian.index') }}">
+                                            Kriteria Penilaian
+                                        </a>
+                                    </li>
                                 </ul><!--end submenu-->
                             </li><!--end has-submenu-->
                         @endif

@@ -152,6 +152,27 @@
                         </div><!-- end col-->
                     @endif
 
+                    @if (Auth()->user()->role == 'koordinator')
+                        <div class="col-lg-4">
+                            <a href="{{ route('koordinator.kriteria.penilaian.index') }}">
+                                <div class="card hospital-info card-hover card-rounded">
+                                    <div class="card-body">
+                                        <h4 class="header-title mt-0 mb-3">Kriteria Penilaian</h4>
+                                        <div class="media">
+                                            <div class="data-icon align-self-center">
+                                                <i class="fa-solid fa-layer-group rounded-circle text-purple"></i>
+                                            </div>
+                                            <div class="media-body ml-3 align-self-center text-right">
+                                                <h3 class="mt-0">{{ $kriteria_penilaian_count }}</h3>
+                                                <p class="text-muted mb-0 text-nowrap">Daftar Aspek Penilaian</p>
+                                            </div><!--end media body-->
+                                        </div>
+                                    </div><!--end card-body-->
+                                </div><!--end card-->
+                            </a>
+                        </div><!-- end col-->
+                    @endif
+
                 </div><!--end row-->
             </div><!--end col-->
         </div><!--end row-->

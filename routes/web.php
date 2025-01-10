@@ -21,6 +21,7 @@ use App\Http\Controllers\KaprodiProfileController;
 use App\Http\Controllers\KategoriBidangController;
 use App\Http\Controllers\KoordinatorController;
 use App\Http\Controllers\KoordinatorProfileController;
+use App\Http\Controllers\KriteriaPenilaianController;
 use App\Http\Controllers\LogbookController;
 use App\Http\Controllers\LamaranMagangController;
 use App\Http\Controllers\LaporanAkhirController;
@@ -165,6 +166,12 @@ Route::middleware(['auth', 'role:koordinator'])->group(function () {
     Route::get('/koordinator/manajemen-pelamar-magang/ditolak', [LamaranMagangController::class, 'pelamar_magang_ditolak'])->name('koordinator.pelamar.magang.ditolak.index');
     Route::get('/koordinator/manajemen-pelamar-magang/{id}/diterima', [LamaranMagangController::class, 'diterima'])->name('koordinator.pelamar.magang.diterima');
     Route::get('/koordinator/manajemen-pelamar-magang/{id}/ditolak', [LamaranMagangController::class, 'ditolak'])->name('koordinator.pelamar.magang.ditolak');
+
+    // Route Manajemen Kriteria Penilaian
+    Route::get('/koordinator/manajemen-kriteria-penilaian', [KriteriaPenilaianController::class, 'index'])->name('koordinator.kriteria.penilaian.index');
+    Route::post('/koordinator/manajemen-kriteria-penilaian/create', [KriteriaPenilaianController::class, 'store'])->name('koordinator.kriteria.penilaian.create');
+    Route::put('/koordinator/manajemen-kriteria-penilaian/{id}/update', [KriteriaPenilaianController::class, 'update'])->name('koordinator.kriteria.penilaian.update');
+    Route::get('/koordinator/manajemen-kriteria-penilaian/delete/{id}', [KriteriaPenilaianController::class, 'destroy'])->name('koordinator.kriteria.penilaian.destroy');
 });
 
 Route::middleware(['auth', 'role:kaprodi'])->group(function () {

@@ -92,7 +92,6 @@ class BerkasController extends Controller
      */
     public function destroy(string $id)
     {
-
         $berkas = Berkas::findOrFail($id);
         $berkas->delete();
         Alert::success('Success', 'Berkas Berhasil Dihapus');

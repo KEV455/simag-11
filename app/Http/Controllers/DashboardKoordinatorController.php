@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Berkas;
 use App\Models\KategoriBidang;
+use App\Models\KriteriaPenilaian;
 use App\Models\Lowongan;
 use App\Models\Mitra;
 use App\Models\MitraMandiri;
@@ -27,7 +28,8 @@ class DashboardKoordinatorController extends Controller
             'berkas_count' => Berkas::count(),
             'lowongan_count' => Lowongan::count(),
             'mitra_mandiri_count' => MitraMandiri::count(),
-            'pelamar_magang_menunggu_count' => PelamarMagang::where('id_semester', $tahun_ajaran_aktif->id_semester)->where('status_diterima', 'Menunggu')->count()
+            'pelamar_magang_menunggu_count' => PelamarMagang::where('id_semester', $tahun_ajaran_aktif->id_semester)->where('status_diterima', 'Menunggu')->count(),
+            'kriteria_penilaian_count' => KriteriaPenilaian::count(),
         ];
 
         return view('dashboard.koordinator', $data);
