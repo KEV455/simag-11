@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-title-box">
-                    <h4 class="page-title">Tambah Mahsiswa || Dosen Pembimbing {{ $dosen_pembimbing->dosen->nama_dosen }}
+                    <h4 class="page-title">Tambah Mahasiswa || Dosen Pembimbing {{ $dosen_pembimbing->dosen->nama_dosen }}
                     </h4>
                 </div>
             </div>

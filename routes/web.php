@@ -22,6 +22,7 @@ use App\Http\Controllers\KategoriBidangController;
 use App\Http\Controllers\KoordinatorController;
 use App\Http\Controllers\KoordinatorProfileController;
 use App\Http\Controllers\KriteriaPenilaianController;
+use App\Http\Controllers\KriteriaPenilaianMitraController;
 use App\Http\Controllers\LogbookController;
 use App\Http\Controllers\LamaranMagangController;
 use App\Http\Controllers\LaporanAkhirController;
@@ -172,6 +173,12 @@ Route::middleware(['auth', 'role:koordinator'])->group(function () {
     Route::post('/koordinator/manajemen-kriteria-penilaian/create', [KriteriaPenilaianController::class, 'store'])->name('koordinator.kriteria.penilaian.create');
     Route::put('/koordinator/manajemen-kriteria-penilaian/{id}/update', [KriteriaPenilaianController::class, 'update'])->name('koordinator.kriteria.penilaian.update');
     Route::get('/koordinator/manajemen-kriteria-penilaian/delete/{id}', [KriteriaPenilaianController::class, 'destroy'])->name('koordinator.kriteria.penilaian.destroy');
+
+    // Route Kriteria Penilaian Mitra
+    Route::get('/kaprodi/manajemen-kriteria-penilaian-mitra/{id}', [KriteriaPenilaianMitraController::class, 'index'])->name('koordinator.kriteria.penilaian.mitra.index');
+    Route::get('/kaprodi/manajemen-kriteria-penilaian-mitra/{id}/create', [KriteriaPenilaianMitraController::class, 'create'])->name('koordinator.kriteria.penilaian.mitra.create');
+    Route::post('/kaprodi/manajemen-kriteria-penilaian-mitra/{id}/store', [KriteriaPenilaianMitraController::class, 'store'])->name('koordinator.kriteria.penilaian.mitra.store');
+    Route::get('/kaprodi/manajemen-kriteria-penilaian-mitra/{id}/delete', [KriteriaPenilaianMitraController::class, 'destroy'])->name('koordinator.kriteria.penilaian.mitra.destroy');
 });
 
 Route::middleware(['auth', 'role:kaprodi'])->group(function () {

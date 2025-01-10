@@ -56,11 +56,16 @@
                                             <td class="text-left">{{ $item->kategori_bidang->nama_kategori }}</td>
                                             <td class="text-left">{{ $item->status }}</td>
                                             <td>
+                                                <a href="{{ route('koordinator.kriteria.penilaian.mitra.index', $item->id) }}"
+                                                    class="mr-2" data-animation="bounce" title="Kriteria Penilaian Mitra">
+                                                    <i class="fas fa-layer-group text-purple font-16"></i>
+                                                </a>
                                                 <a href="{{ route('koordinator.mitra.edit', $item->id) }}" class="mr-2"
-                                                    data-animation="bounce">
+                                                    data-animation="bounce" title="Edit Mitra">
                                                     <i class="fas fa-edit text-info font-16"></i>
                                                 </a>
-                                                <a href="{{ route('koordinator.mitra.destroy', $item->id) }}">
+                                                <a href="{{ route('koordinator.mitra.destroy', $item->id) }}"
+                                                    title="Hapus Mitra">
                                                     <i class="fas fa-trash-alt text-danger font-16"></i>
                                                 </a>
                                             </td>

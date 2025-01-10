@@ -11,4 +11,9 @@ class KriteriaPenilaian extends Model
         'nama_kriteria_penilaian',
         'status',
     ];
+
+    public function kriteria_penilaian_mitra()
+    {
+        return $this->hasMany(KriteriaPenilaianMitra::class);
+    }
 }
