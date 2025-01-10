@@ -7,6 +7,7 @@ use App\Models\Mahasiswa;
 use App\Models\NilaiMagang;
 use App\Models\PelamarMagang;
 use App\Models\PesertaMagang;
+use App\Models\TahunAjaran;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,6 +21,9 @@ class LaporanAkhirController extends Controller
      */
     public function index()
     {
+        // Ambil data tahun ajaran yang aktif
+        $tahun_ajaran_aktif = TahunAjaran::where('status', true)->first();
+
         // Ambil data user yang sedang login
         $user = User::findOrFail(Auth::id());
 
@@ -27,9 +31,12 @@ class LaporanAkhirController extends Controller
         $mahasiswa = Mahasiswa::where('id_user', $user->id)->firstOrFail();
 
         // Ambil data pelamar magang dengan status 'diterima'
-        $pelamar_magang = PelamarMagang::where('id_mahasiswa', $mahasiswa->id)
-            ->where('status_diterima', 'Diterima')
-            ->firstOrFail();
+        $pelamar_magang = PelamarMagang::where('id_semester', $tahun_ajaran_aktif->id_semester)->where('id_mahasiswa', $mahasiswa->id)->where('status_diterima', 'Diterima')->firstOrFail();
+
+        if (!$pelamar_magang) {
+            Alert::info('Oops', 'Maaf, Anda tidak terdaftar di program magang ini.');
+            return redirect()->route('dashboard.mahasiswa');
+        }
 
         // Ambil data peserta magang berdasarkan pelamar magang
         $peserta_magang = PesertaMagang::where('id_pelamar_magang', $pelamar_magang->id)
@@ -66,6 +73,9 @@ class LaporanAkhirController extends Controller
      */
     public function store(Request $request)
     {
+        // Ambil data tahun ajaran yang aktif
+        $tahun_ajaran_aktif = TahunAjaran::where('status', true)->first();
+
         // Ambil data user yang sedang login
         $user = User::findOrFail(Auth::id());
 
@@ -73,9 +83,12 @@ class LaporanAkhirController extends Controller
         $mahasiswa = Mahasiswa::where('id_user', $user->id)->firstOrFail();
 
         // Ambil data pelamar magang dengan status 'diterima'
-        $pelamar_magang = PelamarMagang::where('id_mahasiswa', $mahasiswa->id)
-            ->where('status_diterima', 'Diterima')
-            ->firstOrFail();
+        $pelamar_magang = PelamarMagang::where('id_semester', $tahun_ajaran_aktif->id_semester)->where('id_mahasiswa', $mahasiswa->id)->where('status_diterima', 'Diterima')->firstOrFail();
+
+        if (!$pelamar_magang) {
+            Alert::info('Oops', 'Maaf, Anda tidak terdaftar di program magang ini.');
+            return redirect()->route('dashboard.mahasiswa');
+        }
 
         // Ambil data peserta magang berdasarkan pelamar magang
         $peserta_magang = PesertaMagang::where('id_pelamar_magang', $pelamar_magang->id)

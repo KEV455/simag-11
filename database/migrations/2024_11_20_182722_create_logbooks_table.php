@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('dokumentasi_kegiatan', 255)->nullable(false);
             $table->text('deskripsi_kegiatan')->nullable(false);
             $table->date('tanggal_kegiatan')->nullable(false);
+            $table->boolean('validasi')->nullable()->default(false);
             $table->unsignedBigInteger('id_peserta_magang');
             $table->foreign('id_peserta_magang')->references('id')->on('peserta_magangs')->onDelete('cascade');
             $table->timestamps();

@@ -110,7 +110,9 @@
                                         title="Foto {{ $dataLowongan->mitra->nama }}">
                                 </div>
                                 <h4 class="title-text mt-0">{{ $dataLowongan->nama }}</h4>
-                                <h3 class="my-2">{{ $dataLowongan->jumlah_lowongan }}<small>&ensp;Kuota</small></h3>
+                                <h3 class="my-2">
+                                    {{ $dataLowongan->pelamar_diterima_count }}/{{ $dataLowongan->jumlah_lowongan }}<small>&ensp;Kuota</small>
+                                </h3>
                                 <p class="mb-0 text-muted text-truncate"> Open:
                                     <span class="text-success">
                                         {{ dateConversion($dataLowongan->tanggal_dibuka) }} -

@@ -12,6 +12,7 @@ class Logbook extends Model
         'dokumentasi_kegiatan',
         'deskripsi_kegiatan',
         'tanggal_kegiatan',
+        'validasi',
         'id_peserta_magang'
     ];
 

@@ -32,6 +32,11 @@ class DaftarMagangController extends Controller
         if ($id_kategori_bidang) {
             // Query dengan filter id_kategori_bidang dan muat relasi lowongan_prodi
             $lowongan_by_kategori = Lowongan::with('lowongan_prodi')
+                ->withCount([
+                    'pelamar_magang as pelamar_diterima_count' => function ($query) {
+                        $query->where('status_diterima', 'Diterima');
+                    }
+                ])
                 ->where('status', 'Aktif')->where('id_semester', $tahun_ajaran_aktif->id_semester)
                 ->whereHas('mitra', function ($query) use ($id_kategori_bidang) {
                     $query->where('id_kategori_bidang', $id_kategori_bidang);
@@ -40,6 +45,11 @@ class DaftarMagangController extends Controller
         } else {
             // Jika tidak ada filter, tampilkan semua data dengan relasi lowongan_prodi
             $lowongan_by_kategori = Lowongan::with('lowongan_prodi')
+                ->withCount([
+                    'pelamar_magang as pelamar_diterima_count' => function ($query) {
+                        $query->where('status_diterima', 'Diterima');
+                    }
+                ])
                 ->where('status', 'Aktif')->where('id_semester', $tahun_ajaran_aktif->id_semester)
                 ->get();
         }
