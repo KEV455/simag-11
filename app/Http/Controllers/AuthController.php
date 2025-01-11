@@ -46,6 +46,9 @@ class AuthController extends Controller
                 case 'koordinator':
                     Alert::toast('Selamat datang ' . $user->name, 'success');
                     return redirect()->route('dashboard.koordinator');
+                case 'dpl':
+                    Alert::toast('Selamat datang ' . $user->name, 'success');
+                    return redirect()->route('dashboard.dpl');
                 default:
                     Auth::logout();
                     return redirect()->route('login')->withErrors('Role tidak dikenali.');

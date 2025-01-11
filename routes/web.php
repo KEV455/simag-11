@@ -8,6 +8,7 @@ use App\Http\Controllers\DaftarMagangController;
 use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\DashboardDosenController;
 use App\Http\Controllers\DashboardDospemController;
+use App\Http\Controllers\DashboardDPLController;
 use App\Http\Controllers\DashboardKaprodiController;
 use App\Http\Controllers\DashboardKoordinatorController;
 use App\Http\Controllers\DashboardMahasiswaController;
@@ -15,6 +16,7 @@ use App\Http\Controllers\DosenController;
 use App\Http\Controllers\DosenPembimbingController;
 use App\Http\Controllers\DosenProfileController;
 use App\Http\Controllers\DospemProfileController;
+use App\Http\Controllers\DPLMitraController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\KaprodiController;
 use App\Http\Controllers\KaprodiProfileController;
@@ -179,6 +181,14 @@ Route::middleware(['auth', 'role:koordinator'])->group(function () {
     Route::get('/kaprodi/manajemen-kriteria-penilaian-mitra/{id}/create', [KriteriaPenilaianMitraController::class, 'create'])->name('koordinator.kriteria.penilaian.mitra.create');
     Route::post('/kaprodi/manajemen-kriteria-penilaian-mitra/{id}/store', [KriteriaPenilaianMitraController::class, 'store'])->name('koordinator.kriteria.penilaian.mitra.store');
     Route::get('/kaprodi/manajemen-kriteria-penilaian-mitra/{id}/delete', [KriteriaPenilaianMitraController::class, 'destroy'])->name('koordinator.kriteria.penilaian.mitra.destroy');
+
+    // Route DPL Mitra
+    Route::get('/kaprodi/manajemen-dpl-mitra/{id}', [DPLMitraController::class, 'index'])->name('koordinator.dpl.mitra.index');
+    Route::post('/kaprodi/manajemen-dpl-mitra/{id}/store', [DPLMitraController::class, 'store'])->name('koordinator.dpl.mitra.store');
+    Route::put('/kaprodi/manajemen-dpl-mitra/{id}/update', [DPLMitraController::class, 'update'])->name('koordinator.dpl.mitra.update');
+    Route::get('/kaprodi/manajemen-dpl-mitra/{id}/delete', [DPLMitraController::class, 'destroy'])->name('koordinator.dpl.mitra.destroy');
+
+    Route::get('/kaprodi/manajemen-dpl-mitra/{id}/create', [DPLMitraController::class, 'create'])->name('koordinator.dpl.mitra.create');
 });
 
 Route::middleware(['auth', 'role:kaprodi'])->group(function () {
@@ -270,4 +280,10 @@ Route::middleware(['auth', 'role:mahasiswa'])->group(function () {
 
     // Route Nilai Mahasiswa
     Route::get('/mahsaiswa/nilai-magang', [NilaiMagangMahasiswaController::class, 'index'])->name('mahasiswa.nilai.magang.index');
+});
+
+Route::middleware(['auth', 'role:dpl'])->group(function () {
+    Route::get('/dosen-pendamping-lapang/dashboard', [DashboardDPLController::class, 'index'])->name('dashboard.dpl');
+    // Route::get('/dosen/profile', [DosenProfileController::class, 'index'])->name('profile.dosen.index');
+    // Route::put('/dosen/profile/{id}/update', [DosenProfileController::class, 'update'])->name('profile.dosen.update');
 });
