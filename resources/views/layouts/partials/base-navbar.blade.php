@@ -67,7 +67,7 @@
                             </a>
                         @endif
                         @if (Auth()->user()->role == 'dpl')
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="{{ route('profile.dpl.index') }}">
                                 <i class="dripicons-user text-muted mr-2"></i>
                                 Profile
                             </a>
@@ -290,7 +290,7 @@
                                 </a>
                                 <ul class="submenu">
                                     <li>
-                                        <a href="#">
+                                        <a href="{{ route('profile.dpl.index') }}">
                                             Profil Saya
                                         </a>
                                     </li>

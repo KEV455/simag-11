@@ -17,6 +17,7 @@ use App\Http\Controllers\DosenPembimbingController;
 use App\Http\Controllers\DosenProfileController;
 use App\Http\Controllers\DospemProfileController;
 use App\Http\Controllers\DPLMitraController;
+use App\Http\Controllers\DPLProfileController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\KaprodiController;
 use App\Http\Controllers\KaprodiProfileController;
@@ -284,6 +285,6 @@ Route::middleware(['auth', 'role:mahasiswa'])->group(function () {
 
 Route::middleware(['auth', 'role:dpl'])->group(function () {
     Route::get('/dosen-pendamping-lapang/dashboard', [DashboardDPLController::class, 'index'])->name('dashboard.dpl');
-    // Route::get('/dosen/profile', [DosenProfileController::class, 'index'])->name('profile.dosen.index');
-    // Route::put('/dosen/profile/{id}/update', [DosenProfileController::class, 'update'])->name('profile.dosen.update');
+    Route::get('/dosen-pendamping-lapang/profile', [DPLProfileController::class, 'index'])->name('profile.dpl.index');
+    Route::put('/dosen-pendamping-lapang/profile/{id}/update', [DPLProfileController::class, 'update'])->name('profile.dpl.update');
 });

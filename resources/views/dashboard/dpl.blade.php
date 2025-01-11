@@ -29,7 +29,7 @@
                     @if (Auth()->user()->role == 'dpl')
                         <div class="col-lg-4">
                             <div class="card hospital-info card-hover card-rounded">
-                                <a href="#">
+                                <a href="{{ route('profile.dpl.index') }}">
                                     <div class="card-body">
                                         <h4 class="header-title mt-0 mb-3">Ubah Biodata</h4>
                                         <div class="media">
