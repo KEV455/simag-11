@@ -27,24 +27,6 @@
             <div class="col-lg-12">
                 <div class="row">
                     @if (Auth()->user()->role == 'dospem')
-                        {{-- <div class="col-lg-4">
-                            <div class="card hospital-info card-hover card-rounded">
-                                <a href="#">
-                                    <div class="card-body">
-                                        <h4 class="header-title mt-0 mb-3">Laporan Akhir</h4>
-                                        <div class="media">
-                                            <div class="data-icon align-self-center">
-                                                <i class="fa-solid fa-folder-open rounded-circle text-purple"></i>
-                                            </div>
-                                            <div class="media-body ml-3 align-self-center text-right">
-                                                <h3 class="mt-0">--</h3>
-                                                <p class="text-muted mb-0 text-nowrap">Daftar Laporan Akhir Mahasiswa</p>
-                                            </div><!--end media body-->
-                                        </div>
-                                    </div><!--end card-body-->
-                                </a>
-                            </div><!--end card-->
-                        </div><!-- end col--> --}}
                         <div class="col-lg-4">
                             <a href="{{ route('dospem.mahasiswa.bimbingan.index') }}">
                                 <div class="card hospital-info card-hover card-rounded">
@@ -57,6 +39,27 @@
                                             <div class="media-body ml-3 align-self-center text-right">
                                                 <h3 class="mt-0">{{ $pembimbing_magang_count }}</h3>
                                                 <p class="text-muted mb-0 text-nowrap">Daftar Mahasiswa Bimbingan</p>
+                                            </div><!--end media body-->
+                                        </div>
+                                    </div><!--end card-body-->
+                                </div><!--end card-->
+                            </a>
+                        </div><!-- end col-->
+                    @endif
+                    @if (Auth()->user()->role == 'dospem')
+                        <div class="col-lg-4">
+                            <a href="{{ route('dospem.validasi.permohonan.index') }}">
+                                <div class="card hospital-info card-hover card-rounded">
+                                    <div class="card-body">
+                                        <h4 class="header-title mt-0 mb-3">Mahasiswa</h4>
+                                        <div class="media">
+                                            <div class="data-icon align-self-center">
+                                                <i class="fa-solid fa-graduation-cap rounded-circle text-deep-sky-blue"></i>
+                                            </div>
+                                            <div class="media-body ml-3 align-self-center text-right">
+                                                <h3 class="mt-0">0</h3>
+                                                <p class="text-muted mb-0 text-nowrap">Permohonan Dosen Mahasiswa Bimbingan
+                                                </p>
                                             </div><!--end media body-->
                                         </div>
                                     </div><!--end card-body-->

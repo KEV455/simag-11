@@ -37,6 +37,8 @@ use App\Http\Controllers\PelamarMagangController;
 use App\Http\Controllers\PembimbingMagangController;
 use App\Http\Controllers\PengajuanMitraMandiriController;
 use App\Http\Controllers\PenilaianMagangController;
+use App\Http\Controllers\PermohonanDosenController;
+use App\Http\Controllers\PermohonanDosenPembimbingController;
 use App\Http\Controllers\PermohonanMagangMahasiswaController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\SemesterController;
@@ -219,6 +221,13 @@ Route::middleware(['auth', 'role:dospem'])->group(function () {
     Route::get('/dospem/manajemen-mahasiswa/{id}/show', [MahasiswaBimbinganController::class, 'show'])->name('dospem.mahasiswa.bimbingan.show');
 
     Route::get('/dospem/manajemen-mahasiswa/{id}/logbook', [MahasiswaBimbinganController::class, 'logbook'])->name('dospem.mahasiswa.bimbingan.logbook');
+
+    //Route validasi permohonan dosen pembimbing mahasiswa
+    Route::get('/dospem/validasi-permohonan-dosen-pembimbing-mahasiswa', [PermohonanDosenController::class, 'index'])->name('dospem.validasi.permohonan.index');
+    Route::get('/dospem/validasi-permohonan-dosen-pembimbing-mahasiswa/disetujui', [PermohonanDosenController::class, 'permohonan_dosen_disetujui'])->name('dospem.validasi.permohonan.disetujui.index');
+    Route::get('/dospem/validasi-permohonan-dosen-pembimbing-mahasiswa/ditolak', [PermohonanDosenController::class, 'permohonan_dosen_ditolak'])->name('dospem.validasi.permohonan.ditolak.index');
+    Route::get('/dospem/validasi-permohonan-dosen-pembimbing-mahasiswa/{id}/disetujui', [PermohonanDosenController::class, 'disetujui'])->name('dospem.validasi.permohonan.disetujui');
+    Route::get('/dospem/validasi-permohonan-dosen-pembimbing-mahasiswa/{id}/ditolak', [PermohonanDosenController::class, 'ditolak'])->name('dospem.validasi.permohonan.ditolak');
 });
 
 Route::middleware(['auth', 'role:dosen'])->group(function () {
@@ -270,4 +279,10 @@ Route::middleware(['auth', 'role:mahasiswa'])->group(function () {
 
     // Route Nilai Mahasiswa
     Route::get('/mahsaiswa/nilai-magang', [NilaiMagangMahasiswaController::class, 'index'])->name('mahasiswa.nilai.magang.index');
+
+    //Route Permohoanan Dosen Pembimbing
+    Route::get('/mahasiswa/permohonan-dosen-pembimbing', [PermohonanDosenPembimbingController::class, 'index'])->name('mahasiswa.permohonan.dosen.pembimbing.index');
+    Route::get('/mahasiswa/permohonan-dosen-pembimbing/create', [PermohonanDosenPembimbingController::class, 'create'])->name('mahasiswa.permohonan.dosen.pembimbing.create');
+    Route::post('/mahasiswa/permohonan-dosen-pembimbing/{id}/store', [PermohonanDosenPembimbingController::class, 'store'])->name('mahasiswa.permohonan.dosen.pembimbing.store');
+    Route::get('/mahasiswa/permohonan-dosen-pembimbing/{id}/delete', [PermohonanDosenPembimbingController::class, 'destroy'])->name('mahasiswa.permohonan.dosen.pembimbing.destroy');
 });

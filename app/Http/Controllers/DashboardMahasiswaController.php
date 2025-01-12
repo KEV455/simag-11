@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Mahasiswa;
 use App\Models\MitraMandiri;
 use App\Models\PelamarMagang;
+use App\Models\PermohonanDosenPembimbing;
 use App\Models\TahunAjaran;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -29,6 +30,7 @@ class DashboardMahasiswaController extends Controller
         $data = [
             'mitras_mandiri_count' => MitraMandiri::where('id_mahasiswa', $mahasiswa->id)->count(),
             'pelamar_magang_count' => PelamarMagang::where('id_mahasiswa', $mahasiswa->id)->count(),
+            'permohonan_dosen_pembimbing_count' => PermohonanDosenPembimbing::where('id_mahasiswa', $mahasiswa->id)->count(),
             'pelamar_magang' => $pelamar_magang,
         ];
 
