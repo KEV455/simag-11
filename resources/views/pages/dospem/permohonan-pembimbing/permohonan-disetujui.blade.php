@@ -23,10 +23,11 @@
                     <div class="card-body">
                         <a href="{{ route('dospem.validasi.permohonan.index') }}" class="btn btn-warning px-4 mt-0 mb-3"
                             data-animation="bounce">
-                            <i class="fa-solid fa-clock"></i>&ensp;Lamaran Menunggu
+                            <i class="fa-solid fa-clock"></i>&ensp;Permohonan Menunggu
                         </a>&ensp;
-                        <a href="{{route('dospem.validasi.permohonan.ditolak.index')}}" class="btn btn-danger px-4 mt-0 mb-3" data-animation="bounce">
-                            <i class="fa-solid fa-circle-xmark"></i>&ensp;Lamaran Ditolak
+                        <a href="{{ route('dospem.validasi.permohonan.ditolak.index') }}"
+                            class="btn btn-danger px-4 mt-0 mb-3" data-animation="bounce">
+                            <i class="fa-solid fa-circle-xmark"></i>&ensp;Permohonan Ditolak
                         </a>
 
                         <div class="table-responsive">
