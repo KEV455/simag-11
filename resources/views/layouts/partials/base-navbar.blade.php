@@ -66,6 +66,12 @@
                                 Profile
                             </a>
                         @endif
+                        @if (Auth()->user()->role == 'dpl')
+                            <a class="dropdown-item" href="{{ route('profile.dpl.index') }}">
+                                <i class="dripicons-user text-muted mr-2"></i>
+                                Profile
+                            </a>
+                        @endif
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('logout') }}"><i
                                 class="dripicons-exit text-muted mr-2"></i>
@@ -110,6 +116,11 @@
                                 </a>
                             @elseif (Auth()->user()->role == 'koordinator')
                                 <a href="{{ route('dashboard.koordinator') }}">
+                                    <i class="fa-solid fa-house-chimney"></i>
+                                    <span>Dashboard</span>
+                                </a>
+                            @elseif (Auth()->user()->role == 'dpl')
+                                <a href="{{ route('dashboard.dpl') }}">
                                     <i class="fa-solid fa-house-chimney"></i>
                                     <span>Dashboard</span>
                                 </a>
@@ -263,6 +274,23 @@
                                 <ul class="submenu">
                                     <li>
                                         <a href="{{ route('profile.dosen.index') }}">
+                                            Profil Saya
+                                        </a>
+                                    </li>
+                                </ul><!--end submenu-->
+                            </li><!--end has-submenu-->
+                        @endif
+
+                        {{-- Navbar Dosen Pendamping Lapang --}}
+                        @if (Auth()->user()->role == 'dpl')
+                            <li class="has-submenu">
+                                <a href="#">
+                                    <i class="fa-solid fa-user"></i>
+                                    <span>Profil</span>
+                                </a>
+                                <ul class="submenu">
+                                    <li>
+                                        <a href="{{ route('profile.dpl.index') }}">
                                             Profil Saya
                                         </a>
                                     </li>

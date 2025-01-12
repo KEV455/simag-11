@@ -35,4 +35,9 @@ class Mitra extends Model
     {
         return $this->hasMany(KriteriaPenilaianMitra::class);
     }
+
+    public function dpl_mitra()
+    {
+        return $this->hasMany(DPLMitra::class);
+    }
 }

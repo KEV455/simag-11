@@ -56,6 +56,10 @@
                                             <td class="text-left">{{ $item->kategori_bidang->nama_kategori }}</td>
                                             <td class="text-left">{{ $item->status }}</td>
                                             <td>
+                                                <a href="{{ route('koordinator.dpl.mitra.index', $item->id) }}"
+                                                    class="mr-2" data-animation="bounce" title="DPL Mitra">
+                                                    <i class="fas fa-user-tag text-orange font-16"></i>
+                                                </a>
                                                 <a href="{{ route('koordinator.kriteria.penilaian.mitra.index', $item->id) }}"
                                                     class="mr-2" data-animation="bounce" title="Kriteria Penilaian Mitra">
                                                     <i class="fas fa-layer-group text-purple font-16"></i>

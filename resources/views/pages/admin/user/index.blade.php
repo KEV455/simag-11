@@ -181,6 +181,10 @@
                                                                                 value="koordinator"{{ $data->role == 'koordinator' ? 'selected' : '' }}>
                                                                                 Koordinator Magang
                                                                             </option>
+                                                                            <option
+                                                                                value="dpl"{{ $data->role == 'dpl' ? 'selected' : '' }}>
+                                                                                Dosen Pembimbing Lapang
+                                                                            </option>
                                                                         </select>
                                                                         @error('role')
                                                                             <div id="role" class="form-text pb-1">
@@ -295,6 +299,7 @@
                                         <option value="dospem">Dosen Pembimbing</option>
                                         <option value="kaprodi">Kaprodi</option>
                                         <option value="koordinator">Koordinator Magang</option>
+                                        <option value="dpl">Dosen Pembimbing Lapang</option>
                                     </select>
                                     @error('create_role')
                                         <div id="create_role" class="form-text pb-1">
