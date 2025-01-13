@@ -30,9 +30,13 @@ class MahasiswaBimbinganController extends Controller
         // Ambil data dosen pembimbing berdasarkan dosen ID
         $dosen_pembimbing = DosenPembimbing::where('id_dosen', $dosen->id)->first();
 
-        $pembimbing_magang = PembimbingMagang::where('id_semester', $tahun_ajaran_aktif->id_semester)->with(['mahasiswa.pelamar_magang' => function ($query) {
-            $query->where('status_diterima', 'Diterima');
-        }, 'mahasiswa.pelamar_magang.peserta_magang.laporan_akhir_magang'])->where('id_dosen_pembimbing', $dosen_pembimbing->id)->get();
+        $pembimbing_magang = PembimbingMagang::where('id_semester', $tahun_ajaran_aktif->id_semester)
+            ->with(['mahasiswa.pelamar_magang' => function ($query) {
+                $query->where('status_diterima', 'Diterima');
+            }, 'mahasiswa.pelamar_magang.peserta_magang.laporan_akhir_magang'])
+            ->where('id_dosen_pembimbing', $dosen_pembimbing->id)
+            ->where('id_semester', $tahun_ajaran_aktif->id_semester)
+            ->get();
 
         $data = [
             'dosen' => $dosen,

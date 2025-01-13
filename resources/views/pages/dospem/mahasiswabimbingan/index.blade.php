@@ -54,7 +54,7 @@
                                                 @foreach ($data->mahasiswa->pelamar_magang as $pelamar)
                                                     @foreach ($pelamar->peserta_magang as $peserta)
                                                         @if (isset($peserta->id))
-                                                            {{-- Periksa apakah id_peserta_magang tersedia --}}
+                                                            {{-- Tautan logbook untuk peserta --}}
                                                             <a
                                                                 href="{{ route('dospem.mahasiswa.bimbingan.logbook', ['id' => $peserta->id]) }}">
                                                                 <i class="fa-solid fa-eye text-primary font-16"
@@ -66,6 +66,7 @@
                                                     @endforeach
                                                 @endforeach
                                             </td>
+
                                             <td class="text-left">
                                                 <button type="button" class="btn btn-primary px-4 mt-0 mb-3"
                                                     data-toggle="modal" data-animation="bounce"

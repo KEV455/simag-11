@@ -50,6 +50,7 @@ use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\TahunAjaranController;
 use App\Http\Controllers\TranskripNilaiDPLController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ValidasiLogbookController;
 use App\Http\Controllers\ValidasiNilaiMagangController;
 
 Route::middleware(['guest'])->group(function () {
@@ -313,4 +314,12 @@ Route::middleware(['auth', 'role:dpl'])->group(function () {
     Route::get('/dosen-pendamping-lapang/nilai-dpl/{id}/daftar-mahasiswa', [NilaiDPLController::class, 'show'])->name('dpl.nilai.dpl.show');
     Route::get('/dosen-pendamping-lapang/nilai-dpl/{id}/penilaian-mahasiswa', [NilaiDPLController::class, 'create'])->name('dpl.nilai.dpl.create');
     Route::post('/dosen-pendamping-lapang/nilai-dpl/{id}/store', [NilaiDPLController::class, 'store'])->name('dpl.nilai.dpl.store');
+
+    //Route Validasi LOgbook
+    Route::get('/dosen-pendamping-lapang/validasi-logbook', [ValidasiLogbookController::class, 'index'])->name('dpl.validasi.logbook.index');
+    Route::get('/dosen-pendamping-lapang/validasi-logbook/{id}/show', [ValidasiLogbookController::class, 'show'])->name('dpl.validasi.logbook.show');
+    Route::get('/dosen-pendamping-lapang/validasi-logbook/{id}/show/logbook', [ValidasiLogbookController::class, 'showLogbook'])->name('dpl.validasi.logbook.show.logbook');
+    Route::get('/dosen-pendamping-lapang/validasi-logbook/{id}/show/logbook/diterima', [ValidasiLogbookController::class, 'diterima'])->name('dpl.validasi.logbook.show.logbook.diterima');
+
+    // Route Validasi Laporan Akhir
 });

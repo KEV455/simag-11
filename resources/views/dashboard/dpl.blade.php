@@ -67,6 +67,26 @@
                             </div><!--end card-->
                         </div><!-- end col-->
                     @endif
+                    @if (Auth()->user()->role == 'dpl')
+                        <div class="col-lg-4">
+                            <div class="card hospital-info card-hover card-rounded">
+                                <a href="{{ route('dpl.validasi.logbook.index') }}">
+                                    <div class="card-body">
+                                        <h4 class="header-title mt-0 mb-3">Log Book Magang</h4>
+                                        <div class="media">
+                                            <div class="data-icon align-self-center">
+                                                <i class="fa-solid fa-person-chalkboard rounded-circle text-success"></i>
+                                            </div>
+                                            <div class="media-body ml-3 align-self-center text-right">
+                                                <h4 class="mt-0">{{ $dpl_mitra->mitra->nama }}</h4>
+                                                <p class="text-muted mb-0 text-nowrap">Daftar Log Book Magang Mahasiswa</p>
+                                            </div><!--end media body-->
+                                        </div>
+                                    </div><!--end card-body-->
+                                </a>
+                            </div><!--end card-->
+                        </div><!-- end col-->
+                    @endif
 
                 </div><!--end row-->
             </div><!--end col-->

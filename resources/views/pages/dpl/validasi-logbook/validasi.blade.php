@@ -1,7 +1,7 @@
 @extends('layouts.base.base-template')
 
 @section('title')
-    <title>Manajemen Logbook | SiMagang</title>
+    <title>Validasi Logbook | SiMagang</title>
 @endsection
 
 @php
@@ -31,8 +31,10 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-title-box">
-                    <h4 class="page-title">Manajemen Logbook || {{ $pelamar_magang->lowongan->nama }} -
-                        {{ $pelamar_magang->lowongan->mitra->nama }}</h4>
+                    <h4 class="page-title">Validasi Logbook ||
+                        {{ $peserta_magang->pelamar_magang->mahasiswa->nama_mahasiswa }} -
+                        {{ $peserta_magang->pelamar_magang->lowongan->nama }} -
+                        {{ $peserta_magang->pelamar_magang->lowongan->mitra->nama }}</h4>
                 </div>
                 <!--end page-title-box-->
             </div>
@@ -43,19 +45,13 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        @php
+                        {{-- @php
                             // Konversi tanggal mulai dan tanggal tutup ke format yang dapat dibandingkan
                             $tanggalMulai = \Carbon\Carbon::parse($lowongan->tanggal_magang_dimulai);
                             $tanggalTutup = \Carbon\Carbon::parse($lowongan->tanggal_magang_ditutup);
                             $tanggalSekarang = now(); // Mendapatkan tanggal sekarang
-                        @endphp
+                        @endphp --}}
 
-                        @if ($tanggalSekarang->between($tanggalMulai, $tanggalTutup))
-                            <a href="{{ route('mahasiswa.logbook.create', $peserta_magang->id) }}"
-                                class="btn btn-primary px-4 mt-0 mb-3" data-animation="bounce">
-                                <i class="mdi mdi-plus-circle-outline mr-2"></i>Tambah Logbook Baru
-                            </a>
-                        @endif
                         <div class="table-responsive">
                             @php
                                 $no = 1;
@@ -69,14 +65,13 @@
                                         <th class="text-left">Kehadiran</th>
                                         <th class="text-left">Tanggal Kegiatan</th>
                                         <th class="text-left">Deskripsi Kegiatan</th>
-                                        <th class="text-left">Status</th>
                                         <th width="10%">Action</th>
                                     </tr>
                                     <!--end tr-->
                                 </thead>
 
                                 <tbody>
-                                    @foreach ($logbooks as $item)
+                                    @foreach ($logbook as $item)
                                         <tr class="text-center">
                                             <td>{{ $no }}</td>
                                             <td class="text-left">{{ $item->judul_kegiatan }}</td>
@@ -92,18 +87,15 @@
                                                     : '-' }}
                                             </td>
                                             <td class="text-left">{{ $item->deskripsi_kegiatan }}</td>
-                                            <td class="text-left">
-                                                {{ $item->validasi ? 'Disetujui' : 'Menunggu Persetujuan' }}
-                                            </td>
-
                                             <td>
-                                                <a href="{{ route('mahasiswa.logbook.edit', $item->id) }}" class="mr-2"
-                                                    data-animation="bounce">
-                                                    <i class="fas fa-edit text-info font-16"></i>
+                                                <a href="{{ route('dpl.validasi.logbook.show.logbook.diterima', $item->id) }}"
+                                                    title="Diterima">
+                                                    <i class="fa-solid fa-circle-check text-success font-16"></i>
                                                 </a>
-                                                <a href="{{ route('mahasiswa.logbook.destroy', $item->id) }}">
-                                                    <i class="fas fa-trash-alt text-danger font-16"></i>
-                                                </a>
+                                                &ensp;
+                                                {{-- <a href="#" title="Ditolak">
+                                                    <i class="fa-solid fa-circle-xmark text-salmon font-16"></i>
+                                                </a> --}}
                                             </td>
                                         </tr>
                                         <!--end tr-->
