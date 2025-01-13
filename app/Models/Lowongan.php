@@ -44,4 +44,9 @@ class Lowongan extends Model
     {
         return $this->hasMany(PelamarMagang::class, 'id');
     }
+
+    public function dpl_lowongan()
+    {
+        return $this->hasMany(DPLLowongan::class);
+    }
 }

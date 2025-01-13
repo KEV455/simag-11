@@ -21,4 +21,9 @@ class DPLMitra extends Model
     {
         return $this->belongsTo(Mitra::class, 'id_mitra', 'id');
     }
+
+    public function dpl_lowongan()
+    {
+        return $this->hasMany(DPLLowongan::class);
+    }
 }

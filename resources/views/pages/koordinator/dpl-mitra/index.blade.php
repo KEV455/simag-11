@@ -56,8 +56,8 @@
                                         <th width="20%" class="text-left">Nama DPL Mitra</th>
                                         <th width="20%">Tanggal Lahir</th>
                                         <th width="30%">Email</th>
-                                        <th width="30%">Nomor Telepon</th>
-                                        <th width="10%">Action</th>
+                                        <th width="10%">Nomor Telepon</th>
+                                        <th width="20%">Action</th>
                                     </tr>
                                     <!--end tr-->
                                 </thead>
@@ -71,12 +71,17 @@
                                             <td>{{ $item->email }}</td>
                                             <td>{{ $item->nomor_telp }}</td>
                                             <td>
+                                                <a href="{{ route('koordinator.dpl.lowongan.index', $item->id) }}"
+                                                    class="mr-2" title="Lowongan DPL">
+                                                    <i class="fas fa-briefcase text-purple font-16"></i>
+                                                </a>
                                                 <a href="{{ route('koordinator.dpl.mitra.update', $item->id) }}"
                                                     class="mr-2" data-toggle="modal" data-animation="bounce"
-                                                    data-target=".modalUpdate{{ $item->id }}">
+                                                    data-target=".modalUpdate{{ $item->id }}" title="Edit DPL Mitra">
                                                     <i class="fas fa-edit text-info font-16"></i>
                                                 </a>
-                                                <a href="{{ route('koordinator.dpl.mitra.destroy', $item->id) }}">
+                                                <a href="{{ route('koordinator.dpl.mitra.destroy', $item->id) }}"
+                                                    title="Hapus DPL Mitra">
                                                     <i class="fas fa-trash-alt text-danger font-16"></i>
                                                 </a>
                                             </td>

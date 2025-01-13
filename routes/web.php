@@ -16,6 +16,7 @@ use App\Http\Controllers\DosenController;
 use App\Http\Controllers\DosenPembimbingController;
 use App\Http\Controllers\DosenProfileController;
 use App\Http\Controllers\DospemProfileController;
+use App\Http\Controllers\DPLLowonganController;
 use App\Http\Controllers\DPLMitraController;
 use App\Http\Controllers\DPLProfileController;
 use App\Http\Controllers\JurusanController;
@@ -189,7 +190,11 @@ Route::middleware(['auth', 'role:koordinator'])->group(function () {
     Route::put('/kaprodi/manajemen-dpl-mitra/{id}/update', [DPLMitraController::class, 'update'])->name('koordinator.dpl.mitra.update');
     Route::get('/kaprodi/manajemen-dpl-mitra/{id}/delete', [DPLMitraController::class, 'destroy'])->name('koordinator.dpl.mitra.destroy');
 
-    Route::get('/kaprodi/manajemen-dpl-mitra/{id}/create', [DPLMitraController::class, 'create'])->name('koordinator.dpl.mitra.create');
+    // Route DPL Lowongan
+    Route::get('/kaprodi/manajemen-dpl-lowongan/{id}', [DPLLowonganController::class, 'index'])->name('koordinator.dpl.lowongan.index');
+    Route::get('/kaprodi/manajemen-dpl-lowongan/{id}/create', [DPLLowonganController::class, 'create'])->name('koordinator.dpl.lowongan.create');
+    Route::post('/kaprodi/manajemen-dpl-lowongan/{id}/store', [DPLLowonganController::class, 'store'])->name('koordinator.dpl.lowongan.store');
+    Route::get('/kaprodi/manajemen-dpl-lowongan/{id}/delete', [DPLLowonganController::class, 'destroy'])->name('koordinator.dpl.lowongan.destroy');
 });
 
 Route::middleware(['auth', 'role:kaprodi'])->group(function () {
