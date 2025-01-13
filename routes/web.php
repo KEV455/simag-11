@@ -36,6 +36,7 @@ use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MahasiswaProfileController;
 use App\Http\Controllers\MitraController;
 use App\Http\Controllers\MitraMandiriController;
+use App\Http\Controllers\NilaiDPLController;
 use App\Http\Controllers\NilaiMagangMahasiswaController;
 use App\Http\Controllers\PelamarMagangController;
 use App\Http\Controllers\PembimbingMagangController;
@@ -235,7 +236,6 @@ Route::middleware(['auth', 'role:dospem'])->group(function () {
     // Route Mahasiswa Bimbingan
     Route::get('/dospem/manajemen-mahasiswa', [MahasiswaBimbinganController::class, 'index'])->name('dospem.mahasiswa.bimbingan.index');
     Route::get('/dospem/manajemen-mahasiswa/{id}/show', [MahasiswaBimbinganController::class, 'show'])->name('dospem.mahasiswa.bimbingan.show');
-
     Route::get('/dospem/manajemen-mahasiswa/{id}/logbook', [MahasiswaBimbinganController::class, 'logbook'])->name('dospem.mahasiswa.bimbingan.logbook');
 
     //Route validasi permohonan dosen pembimbing mahasiswa
@@ -296,7 +296,7 @@ Route::middleware(['auth', 'role:mahasiswa'])->group(function () {
     // Route Nilai Mahasiswa
     Route::get('/mahsaiswa/nilai-magang', [NilaiMagangMahasiswaController::class, 'index'])->name('mahasiswa.nilai.magang.index');
 
-    //Route Permohoanan Dosen Pembimbing
+    // Route Permohoanan Dosen Pembimbing
     Route::get('/mahasiswa/permohonan-dosen-pembimbing', [PermohonanDosenPembimbingController::class, 'index'])->name('mahasiswa.permohonan.dosen.pembimbing.index');
     Route::get('/mahasiswa/permohonan-dosen-pembimbing/create', [PermohonanDosenPembimbingController::class, 'create'])->name('mahasiswa.permohonan.dosen.pembimbing.create');
     Route::post('/mahasiswa/permohonan-dosen-pembimbing/{id}/store', [PermohonanDosenPembimbingController::class, 'store'])->name('mahasiswa.permohonan.dosen.pembimbing.store');
@@ -307,4 +307,10 @@ Route::middleware(['auth', 'role:dpl'])->group(function () {
     Route::get('/dosen-pendamping-lapang/dashboard', [DashboardDPLController::class, 'index'])->name('dashboard.dpl');
     Route::get('/dosen-pendamping-lapang/profile', [DPLProfileController::class, 'index'])->name('profile.dpl.index');
     Route::put('/dosen-pendamping-lapang/profile/{id}/update', [DPLProfileController::class, 'update'])->name('profile.dpl.update');
+
+    // Route Nilai DPL
+    Route::get('/dosen-pendamping-lapang/nilai-dpl/daftar-lowongan', [NilaiDPLController::class, 'index'])->name('dpl.nilai.dpl.index');
+    Route::get('/dosen-pendamping-lapang/nilai-dpl/{id}/daftar-mahasiswa', [NilaiDPLController::class, 'show'])->name('dpl.nilai.dpl.show');
+    Route::get('/dosen-pendamping-lapang/nilai-dpl/{id}/penilaian-mahasiswa', [NilaiDPLController::class, 'create'])->name('dpl.nilai.dpl.create');
+    Route::post('/dosen-pendamping-lapang/nilai-dpl/{id}/store', [NilaiDPLController::class, 'store'])->name('dpl.nilai.dpl.store');
 });

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DPLMitra;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardDPLController extends Controller
 {
@@ -11,7 +14,12 @@ class DashboardDPLController extends Controller
      */
     public function index()
     {
-        $data = [];
+        $user =  User::where('id', Auth::user()->id)->first();
+        $dpl_mitra = DPLMitra::where('email', $user->email)->first();
+
+        $data = [
+            'dpl_mitra' => $dpl_mitra,
+        ];
 
         return view('dashboard.dpl', $data);
     }

@@ -39,4 +39,8 @@ class Mahasiswa extends Model
     {
         return $this->hasMany(PermohonanDosenPembimbing::class);
     }
+    public function nilai_dpl()
+    {
+        return $this->hasMany(NilaiDPL::class);
+    }
 }

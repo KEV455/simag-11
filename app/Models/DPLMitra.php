@@ -26,4 +26,9 @@ class DPLMitra extends Model
     {
         return $this->hasMany(DPLLowongan::class);
     }
+
+    public function nilai_dpl()
+    {
+        return $this->hasMany(NilaiDPL::class);
+    }
 }

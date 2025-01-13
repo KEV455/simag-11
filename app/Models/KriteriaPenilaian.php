@@ -16,4 +16,9 @@ class KriteriaPenilaian extends Model
     {
         return $this->hasMany(KriteriaPenilaianMitra::class);
     }
+
+    public function nilai_dpl()
+    {
+        return $this->hasMany(NilaiDPL::class);
+    }
 }
