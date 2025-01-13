@@ -35,4 +35,8 @@ class Mahasiswa extends Model
     {
         return $this->hasMany(PelamarMagang::class, 'id_mahasiswa');
     }
+    public function permohonan_dosen_pembimbing()
+    {
+        return $this->hasMany(PermohonanDosenPembimbing::class);
+    }
 }

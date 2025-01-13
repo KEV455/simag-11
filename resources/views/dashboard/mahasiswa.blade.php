@@ -47,6 +47,27 @@
                             </div><!--end card-->
                         </div><!-- end col-->
                     @endif
+                    @if (Auth()->user()->role == 'mahasiswa')
+                        <div class="col-lg-4">
+                            <div class="card hospital-info card-hover card-rounded">
+                                <a href="{{ route('mahasiswa.permohonan.dosen.pembimbing.index') }}">
+                                    <div class="card-body">
+                                        <h4 class="header-title mt-0 mb-3">Permohonan Dosen Pembimbing</h4>
+                                        <div class="media">
+                                            <div class="data-icon align-self-center">
+                                                <i class="fa-solid fa-file-lines rounded-circle text-danger"></i>
+                                            </div>
+                                            <div class="media-body ml-3 align-self-center text-right">
+                                                <h3 class="mt-0">{{ $permohonan_dosen_pembimbing_count }}</h3>
+                                                <p class="text-muted mb-0 text-nowrap">Daftar Permohonan Dosen Pembimbing
+                                                </p>
+                                            </div><!--end media body-->
+                                        </div>
+                                    </div><!--end card-body-->
+                                </a>
+                            </div><!--end card-->
+                        </div><!-- end col-->
+                    @endif
 
                     @if (Auth()->user()->role == 'mahasiswa')
                         <div class="col-lg-4">

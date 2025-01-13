@@ -21,4 +21,8 @@ class DosenPembimbing extends Model
     {
         return $this->hasMany(PembimbingMagang::class);
     }
+    public function permohonan_dosen_pembimbing()
+    {
+        return $this->hasMany(PermohonanDosenPembimbing::class);
+    }
 }
