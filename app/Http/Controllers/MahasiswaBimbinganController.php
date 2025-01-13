@@ -7,6 +7,7 @@ use App\Models\DosenPembimbing;
 use App\Models\Logbook;
 use App\Models\PembimbingMagang;
 use App\Models\PesertaMagang;
+use App\Models\TahunAjaran;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,6 +19,8 @@ class MahasiswaBimbinganController extends Controller
      */
     public function index()
     {
+        $tahun_ajaran_aktif = TahunAjaran::where('status', true)->first();
+
         // Ambil data user yang sedang login
         $user = User::findOrFail(Auth::id());
 
@@ -27,7 +30,7 @@ class MahasiswaBimbinganController extends Controller
         // Ambil data dosen pembimbing berdasarkan dosen ID
         $dosen_pembimbing = DosenPembimbing::where('id_dosen', $dosen->id)->first();
 
-        $pembimbing_magang = PembimbingMagang::with(['mahasiswa.pelamar_magang' => function ($query) {
+        $pembimbing_magang = PembimbingMagang::where('id_semester', $tahun_ajaran_aktif->id_semester)->with(['mahasiswa.pelamar_magang' => function ($query) {
             $query->where('status_diterima', 'Diterima');
         }, 'mahasiswa.pelamar_magang.peserta_magang.laporan_akhir_magang'])->where('id_dosen_pembimbing', $dosen_pembimbing->id)->get();
 

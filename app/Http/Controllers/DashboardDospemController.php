@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Dosen;
 use App\Models\DosenPembimbing;
 use App\Models\PembimbingMagang;
+use App\Models\PermohonanDosenPembimbing;
+use App\Models\TahunAjaran;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +18,8 @@ class DashboardDospemController extends Controller
      */
     public function index()
     {
+        $tahun_ajaran_aktif = TahunAjaran::where('status', true)->first();
+
         // get data user aktif
         $user =  User::where('id', Auth::user()->id)->first();
 
@@ -25,8 +29,11 @@ class DashboardDospemController extends Controller
         // mengambil data dosen pembimbing
         $dospem = DosenPembimbing::where('id_dosen', $dosen->id)->first();
 
+        $permohonan_dospem = PermohonanDosenPembimbing::where('id_semester', $tahun_ajaran_aktif->id_semester)->where('id_dosen_pembimbing', $dospem->id)->where('status', 'menunggu')->count();
+
         $data = [
-            'pembimbing_magang_count' => PembimbingMagang::where('id_dosen_pembimbing', $dospem->id)->count()
+            'pembimbing_magang_count' => PembimbingMagang::where('id_dosen_pembimbing', $dospem->id)->where('id_semester', $tahun_ajaran_aktif->id_semester)->count(),
+            'permohonan_dospem' => $permohonan_dospem
         ];
 
         return view('dashboard.dospem', $data);

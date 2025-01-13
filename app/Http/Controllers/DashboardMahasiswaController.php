@@ -27,11 +27,14 @@ class DashboardMahasiswaController extends Controller
         // mengambil data pelamar magang yang disetujui dan peserta memiliki data peserta magang
         $pelamar_magang = PelamarMagang::where('id_semester', $tahun_ajaran_aktif->id_semester)->where('id_mahasiswa', $mahasiswa->id)->where('status_diterima', 'Diterima')->first();
 
+        $permohonan_dospem_mhs = PermohonanDosenPembimbing::where('id_semester', $tahun_ajaran_aktif->id_semester)->where('id_mahasiswa', $mahasiswa->id)->count();
+
         $data = [
             'mitras_mandiri_count' => MitraMandiri::where('id_mahasiswa', $mahasiswa->id)->count(),
             'pelamar_magang_count' => PelamarMagang::where('id_mahasiswa', $mahasiswa->id)->count(),
             'permohonan_dosen_pembimbing_count' => PermohonanDosenPembimbing::where('id_mahasiswa', $mahasiswa->id)->count(),
             'pelamar_magang' => $pelamar_magang,
+            'permohonan_dospem_mhs' => $permohonan_dospem_mhs,
         ];
 
         return view('dashboard.mahasiswa', $data);

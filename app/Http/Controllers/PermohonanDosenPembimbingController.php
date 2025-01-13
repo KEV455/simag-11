@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\DosenPembimbing;
 use App\Models\Mahasiswa;
 use App\Models\PermohonanDosenPembimbing;
-use App\Models\Semester;
 use App\Models\TahunAjaran;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -50,6 +49,20 @@ class PermohonanDosenPembimbingController extends Controller
         $mahasiswa = Mahasiswa::where('id_user', $user->id)->first();
         $tahun_ajaran_aktif = TahunAjaran::where('status', true)->first();
 
+        $permohonan_dospem_waiting = PermohonanDosenPembimbing::where('id_semester', $tahun_ajaran_aktif->id_semester)->where('id_mahasiswa', $mahasiswa->id)->where('status', 'menunggu')->first();
+
+        if ($permohonan_dospem_waiting) {
+            Alert::error('Invalid', 'Maaf, Anda tidak dapat mengajukan lebih dari satu permohonan dospem');
+            return redirect()->route('mahasiswa.permohonan.dosen.pembimbing.index');
+        }
+
+        $permohonan_dospem_active = PermohonanDosenPembimbing::where('id_semester', $tahun_ajaran_aktif->id_semester)->where('id_mahasiswa', $mahasiswa->id)->where('status', 'disetujui')->first();
+
+        if ($permohonan_dospem_active) {
+            Alert::error('Invalid', 'Maaf, Anda tidak diperboleh untuk mengajukan dospem baru');
+            return redirect()->route('mahasiswa.permohonan.dosen.pembimbing.index');
+        }
+
         $data = [
             'dosen_pembimbing' => DosenPembimbing::where('status', 'aktif')->get()
         ];
@@ -72,7 +85,6 @@ class PermohonanDosenPembimbingController extends Controller
             'id_semester' => $tahun_ajaran_aktif->id_semester,
             'status' => 'menunggu',
         ]);
-
 
         Alert::success('Success', 'Permohonan Dosen Pembimbing berhasil diajukan!');
 

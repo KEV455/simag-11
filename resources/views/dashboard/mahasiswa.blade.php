@@ -58,7 +58,7 @@
                                                 <i class="fa-solid fa-file-lines rounded-circle text-danger"></i>
                                             </div>
                                             <div class="media-body ml-3 align-self-center text-right">
-                                                <h3 class="mt-0">{{ $permohonan_dosen_pembimbing_count }}</h3>
+                                                <h3 class="mt-0">{{ $permohonan_dospem_mhs }}</h3>
                                                 <p class="text-muted mb-0 text-nowrap">Daftar Permohonan Dosen Pembimbing
                                                 </p>
                                             </div><!--end media body-->
