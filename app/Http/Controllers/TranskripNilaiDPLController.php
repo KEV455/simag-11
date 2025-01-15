@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KriteriaPenilaianMitra;
 use App\Models\Mahasiswa;
+use App\Models\NilaiDPL;
 use App\Models\NilaiMagang;
 use App\Models\PelamarMagang;
 use App\Models\PesertaMagang;
+use App\Models\TahunAjaran;
 use App\Models\TranskripNilaiDPL;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -20,6 +23,9 @@ class TranskripNilaiDPLController extends Controller
      */
     public function index()
     {
+        // Ambil data tahun ajaran yang aktif
+        $tahun_ajaran_aktif = TahunAjaran::where('status', true)->first();
+
         // Ambil data user yang sedang login
         $user = User::findOrFail(Auth::id());
 
@@ -27,9 +33,14 @@ class TranskripNilaiDPLController extends Controller
         $mahasiswa = Mahasiswa::where('id_user', $user->id)->firstOrFail();
 
         // Ambil data pelamar magang dengan status 'diterima'
-        $pelamar_magang = PelamarMagang::where('id_mahasiswa', $mahasiswa->id)
+        $pelamar_magang = PelamarMagang::where('id_semester', $tahun_ajaran_aktif->id_semester)->where('id_mahasiswa', $mahasiswa->id)
             ->where('status_diterima', 'Diterima')
-            ->firstOrFail();
+            ->first();
+
+        if (!$pelamar_magang) {
+            Alert::info('Oops', 'Maaf, Anda sedang tidak mengikuti program magang saat ini');
+            return redirect()->route('dashboard.mahasiswa');
+        }
 
         // Ambil data peserta magang berdasarkan pelamar magang
         $peserta_magang = PesertaMagang::where('id_pelamar_magang', $pelamar_magang->id)
@@ -44,10 +55,26 @@ class TranskripNilaiDPLController extends Controller
             $flag_transkrip = true;
         }
 
+        // ambil nilai dpl
+        $kriteria_penilaian_mitras = KriteriaPenilaianMitra::where('id_mitra', $pelamar_magang->lowongan->id_mitra)->get();
+
+        // Mengambil nilai DPL dengan kondisi id_kriteria_penilaian (mengambil nilai magang sesuai dengan lowongan dan tahun ajaran)
+        $nilai_dpls = NilaiDPL::where('id_mahasiswa', $pelamar_magang->id_mahasiswa)->where('id_lowongan', $pelamar_magang->id_lowongan)
+            ->whereIn('id_kriteria_penilaian', $kriteria_penilaian_mitras->pluck('id_kriteria_penilaian'))
+            ->get();
+
+        // Menghitung jumlah dan rata-rata nilai DPL
+        $jumlah_nilai = $nilai_dpls->sum('nilai');
+        $rata_rata_nilai = $nilai_dpls->count() > 0 ? $jumlah_nilai / $nilai_dpls->count() : 0;
+
         $data = [
             'transkrip_nilai_dpl' => $transkrip_nilai_dpl,
             'transkrip_nilai_dpl_count' => $transkrip_nilai_dpl_count,
-            'flag_transkrip' => $flag_transkrip
+            'flag_transkrip' => $flag_transkrip,
+            'kriteria_penilaian_mitras' => $kriteria_penilaian_mitras,
+            'nilai_dpls' => $nilai_dpls,
+            'jumlah_nilai' => $jumlah_nilai,
+            'rata_rata_nilai' => round($rata_rata_nilai, 1),
         ];
 
         return view('pages.mahasiswa.transkrip-nilai-dpl.index', $data);
@@ -66,6 +93,9 @@ class TranskripNilaiDPLController extends Controller
      */
     public function store(Request $request)
     {
+        // Ambil data tahun ajaran yang aktif
+        $tahun_ajaran_aktif = TahunAjaran::where('status', true)->first();
+
         // Ambil data user yang sedang login
         $user = User::findOrFail(Auth::id());
 
@@ -73,9 +103,14 @@ class TranskripNilaiDPLController extends Controller
         $mahasiswa = Mahasiswa::where('id_user', $user->id)->firstOrFail();
 
         // Ambil data pelamar magang dengan status 'diterima'
-        $pelamar_magang = PelamarMagang::where('id_mahasiswa', $mahasiswa->id)
+        $pelamar_magang = PelamarMagang::where('id_semester', $tahun_ajaran_aktif->id_semester)->where('id_mahasiswa', $mahasiswa->id)
             ->where('status_diterima', 'Diterima')
             ->firstOrFail();
+
+        if (!$pelamar_magang) {
+            Alert::info('Oops', 'Maaf, Anda tidak terdaftar di program magang ini.');
+            return redirect()->route('dashboard.mahasiswa');
+        }
 
         // Ambil data peserta magang berdasarkan pelamar magang
         $peserta_magang = PesertaMagang::where('id_pelamar_magang', $pelamar_magang->id)

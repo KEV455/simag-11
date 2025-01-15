@@ -12,6 +12,7 @@ class NilaiDPL extends Model
         'id',
         'nilai',
         'id_mahasiswa',
+        'id_lowongan',
         'id_dpl_mitra',
         'id_kriteria_penilaian',
     ];
@@ -19,6 +20,11 @@ class NilaiDPL extends Model
     public function mahasiswa()
     {
         return $this->belongsTo(Mahasiswa::class, 'id_mahasiswa', 'id');
+    }
+
+    public function lowongan()
+    {
+        return $this->belongsTo(Lowongan::class, 'id_lowongan', 'id');
     }
 
     public function dpl_mitra()

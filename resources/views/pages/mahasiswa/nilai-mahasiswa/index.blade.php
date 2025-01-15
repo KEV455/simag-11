@@ -1,7 +1,7 @@
 @extends('layouts.base.base-template')
 
 @section('title')
-    <title>Penilaian Magang | SiMagang</title>
+    <title>Nilai Magang | SiMagang</title>
 @endsection
 
 
@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-title-box">
-                    <h4 class="page-title">Penilaian Magang || {{ $pelamarMagang->mahasiswa->nama_mahasiswa }}
+                    <h4 class="page-title">Nilai Magang || {{ $pelamarMagang->mahasiswa->nama_mahasiswa }}
                     </h4>
                 </div>
             </div>

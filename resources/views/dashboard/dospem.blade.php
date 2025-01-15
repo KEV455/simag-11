@@ -80,7 +80,7 @@
                                                 <i class="fa-solid fa-square-poll-vertical rounded-circle text-orange"></i>
                                             </div>
                                             <div class="media-body ml-3 align-self-center text-right">
-                                                <h4 class="mt-0">{{ Auth()->user()->name }}</h4>
+                                                <h6 class="mt-0">{{ Auth()->user()->name }}</h6>
                                                 <p class="text-muted mb-0 text-nowrap">Konversi Nilai Magang Mahasiswa</p>
                                             </div><!--end media body-->
                                         </div>

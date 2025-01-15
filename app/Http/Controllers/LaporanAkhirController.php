@@ -31,7 +31,7 @@ class LaporanAkhirController extends Controller
         $mahasiswa = Mahasiswa::where('id_user', $user->id)->firstOrFail();
 
         // Ambil data pelamar magang dengan status 'diterima'
-        $pelamar_magang = PelamarMagang::where('id_semester', $tahun_ajaran_aktif->id_semester)->where('id_mahasiswa', $mahasiswa->id)->where('status_diterima', 'Diterima')->firstOrFail();
+        $pelamar_magang = PelamarMagang::where('id_semester', $tahun_ajaran_aktif->id_semester)->where('id_mahasiswa', $mahasiswa->id)->where('status_diterima', 'Diterima')->first();
 
         if (!$pelamar_magang) {
             Alert::info('Oops', 'Maaf, Anda tidak terdaftar di program magang ini.');

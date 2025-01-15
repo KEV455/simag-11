@@ -95,11 +95,27 @@ class NilaiDPLController extends Controller
             'id_kriteria_penilaian.*' => 'required|exists:kriteria_penilaians,id',
         ]);
 
+        $tahun_ajaran_aktif = TahunAjaran::where('status', true)->first();
+
         $user =  User::where('id', Auth::user()->id)->first();
         $dpl_mitra = DPLMitra::where('email', $user->email)->first();
 
         if (!$dpl_mitra) {
             return redirect()->back()->with('error', 'DPL Mitra tidak valid.');
+        }
+
+        // Mendapatkan daftar id_lowongan dari DPLLowongan
+        $dpl_lowongan = DPLLowongan::where('id_dpl_mitra', $dpl_mitra->id)->pluck('id_lowongan');
+
+        // Mencari satu data pelamar magang yang sesuai
+        $pelamar_magang_mahasiswa = PelamarMagang::where('status_diterima', 'Diterima')
+            ->where('id_mahasiswa', $id)
+            ->where('id_semester', $tahun_ajaran_aktif->id_semester)
+            ->whereIn('id_lowongan', $dpl_lowongan) // Menggunakan whereIn untuk memeriksa daftar id_lowongan
+            ->first();
+
+        if (!$pelamar_magang_mahasiswa) {
+            return redirect()->back()->with('error', 'Penilaian Invalid, karena pelamar magang tidak sesuai');
         }
 
         $nilai_total = 0;
@@ -111,6 +127,7 @@ class NilaiDPLController extends Controller
             NilaiDPL::updateOrCreate(
                 [
                     'id_mahasiswa' => $id,
+                    'id_lowongan' => $pelamar_magang_mahasiswa->id_lowongan,
                     'id_dpl_mitra' => $dpl_mitra->id,
                     'id_kriteria_penilaian' => $id_kriteria_penilaian,
                 ],

@@ -239,7 +239,7 @@ Route::middleware(['auth', 'role:dospem'])->group(function () {
     Route::get('/dospem/manajemen-mahasiswa/{id}/show', [MahasiswaBimbinganController::class, 'show'])->name('dospem.mahasiswa.bimbingan.show');
     Route::get('/dospem/manajemen-mahasiswa/{id}/logbook', [MahasiswaBimbinganController::class, 'logbook'])->name('dospem.mahasiswa.bimbingan.logbook');
 
-    //Route validasi permohonan dosen pembimbing mahasiswa
+    // Route validasi permohonan dosen pembimbing mahasiswa
     Route::get('/dospem/validasi-permohonan-dosen-pembimbing-mahasiswa', [PermohonanDosenController::class, 'index'])->name('dospem.validasi.permohonan.index');
     Route::get('/dospem/validasi-permohonan-dosen-pembimbing-mahasiswa/disetujui', [PermohonanDosenController::class, 'permohonan_dosen_disetujui'])->name('dospem.validasi.permohonan.disetujui.index');
     Route::get('/dospem/validasi-permohonan-dosen-pembimbing-mahasiswa/ditolak', [PermohonanDosenController::class, 'permohonan_dosen_ditolak'])->name('dospem.validasi.permohonan.ditolak.index');

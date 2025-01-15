@@ -9,6 +9,7 @@ use App\Models\NilaiMagang;
 use App\Models\PelamarMagang;
 use App\Models\PembimbingMagang;
 use App\Models\PesertaMagang;
+use App\Models\TahunAjaran;
 use App\Models\TranskripNilaiDPL;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -22,6 +23,9 @@ class PenilaianMagangController extends Controller
      */
     public function index()
     {
+        // Ambil data tahun ajaran yang aktif
+        $tahun_ajaran_aktif = TahunAjaran::where('status', true)->first();
+
         // get data user aktif
         $user =  User::where('id', Auth::user()->id)->first();
 
@@ -33,7 +37,7 @@ class PenilaianMagangController extends Controller
 
         $data = [
             'dosen_pembimbing' => $dospem,
-            'pembimbing_magangs' => PembimbingMagang::where('id_dosen_pembimbing', $dospem->id)->get()
+            'pembimbing_magangs' => PembimbingMagang::where('id_semester', $tahun_ajaran_aktif->id_semester)->where('id_dosen_pembimbing', $dospem->id)->get()
         ];
 
         return view('pages.dospem.penilaian-magang.index', $data);
@@ -58,9 +62,12 @@ class PenilaianMagangController extends Controller
             'nilai_huruf' => 'required|in:A,AB,B,BC,C,D,E',
         ]);
 
+        // Ambil data tahun ajaran yang aktif
+        $tahun_ajaran_aktif = TahunAjaran::where('status', true)->first();
+
         // Cari data pembimbing magang berdasarkan ID
-        $pembimbing_magang = PembimbingMagang::findOrFail($id);
-        $pelamar_magang = PelamarMagang::where('id_mahasiswa', $pembimbing_magang->id_mahasiswa)->first();
+        $pembimbing_magang = PembimbingMagang::where('id_semester', $tahun_ajaran_aktif->id_semester)->where('id', $id)->first();
+        $pelamar_magang = PelamarMagang::where('id_semester', $tahun_ajaran_aktif->id_semester)->where('id_mahasiswa', $pembimbing_magang->id_mahasiswa)->where('status_diterima', 'Diterima')->first();
         $peserta_magang = PesertaMagang::where('id_pelamar_magang', $pelamar_magang->id)->first();
 
         // Cek apakah data nilai sudah ada untuk mahasiswa ini
@@ -100,6 +107,9 @@ class PenilaianMagangController extends Controller
      */
     public function show(string $id)
     {
+        // Ambil data tahun ajaran yang aktif
+        $tahun_ajaran_aktif = TahunAjaran::where('status', true)->first();
+
         // get data user aktif
         $user =  User::where('id', Auth::user()->id)->first();
 
@@ -117,8 +127,14 @@ class PenilaianMagangController extends Controller
             return redirect()->back();
         }
 
-        $pembimbing_magang = PembimbingMagang::findOrFail($id);
-        $pelamar_magang = PelamarMagang::where('id_mahasiswa', $pembimbing_magang->id_mahasiswa)->first();
+        $pembimbing_magang = PembimbingMagang::where('id_semester', $tahun_ajaran_aktif->id_semester)->where('id', $id)->first();
+
+        if (is_null($pembimbing_magang)) {
+            Alert::info('Oops', 'Mahasiswa bimbingan invalid');
+            return redirect()->back();
+        }
+
+        $pelamar_magang = PelamarMagang::where('id_semester', $tahun_ajaran_aktif->id_semester)->where('id_mahasiswa', $pembimbing_magang->id_mahasiswa)->where('status_diterima', 'Diterima')->first();
 
         if (is_null($pelamar_magang)) {
             Alert::info('Oops', 'Mahasiswa belum melakukan pendaftaran magang');

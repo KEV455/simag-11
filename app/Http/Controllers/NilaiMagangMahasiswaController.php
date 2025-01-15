@@ -8,6 +8,7 @@ use App\Models\NilaiMagang;
 use App\Models\PelamarMagang;
 use App\Models\PembimbingMagang;
 use App\Models\PesertaMagang;
+use App\Models\TahunAjaran;
 use App\Models\TranskripNilaiDPL;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -21,6 +22,9 @@ class NilaiMagangMahasiswaController extends Controller
     public function index()
     {
         try {
+            // Ambil data tahun ajaran yang aktif
+            $tahun_ajaran_aktif = TahunAjaran::where('status', true)->first();
+
             // Ambil data user yang sedang login
             $user = User::findOrFail(Auth::id());
 
@@ -28,19 +32,20 @@ class NilaiMagangMahasiswaController extends Controller
             $mahasiswa = Mahasiswa::where('id_user', $user->id)->firstOrFail();
 
             // Ambil data pelamar magang dengan status 'Diterima'
-            $pelamarMagang = PelamarMagang::where('id_mahasiswa', $mahasiswa->id)
-                ->where('status_diterima', 'Diterima')
-                ->firstOrFail();
+            $pelamarMagang = PelamarMagang::where('id_semester', $tahun_ajaran_aktif->id_semester)->where('id_mahasiswa', $mahasiswa->id)->where('status_diterima', 'Diterima')->firstOrFail();
 
             // Ambil data peserta magang berdasarkan pelamar magang
             $pesertaMagang = PesertaMagang::where('id_pelamar_magang', $pelamarMagang->id)
                 ->firstOrFail();
 
+            // dd($pesertaMagang);
+
             // Ambil data nilai magang yang sudah disetujui
             $nilaiMagang = NilaiMagang::where('id_peserta_magang', $pesertaMagang->id)
                 ->where('validasi', 'Setuju') // Pastikan kolom status ada dan sesuai
                 ->get();
-            $pembimbingMagang = PembimbingMagang::where('id_mahasiswa', $mahasiswa->id)->first();
+
+            $pembimbingMagang = PembimbingMagang::where('id_semester', $tahun_ajaran_aktif->id_semester)->where('id_mahasiswa', $mahasiswa->id)->first();
 
             $data = [
                 'pembimbingMagang' => $pembimbingMagang,

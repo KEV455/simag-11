@@ -77,8 +77,15 @@
                         <h4 class="header-title mt-0 mb-3">Menu Transkrip Nilai DPL</h4>
                         <div class="files-nav">
                             <div class="nav flex-column nav-pills" id="files-tab" aria-orientation="vertical">
-                                <a class="nav-link active" id="files-projects-tab" data-toggle="pill" href="#files-projects"
+                                <a class="nav-link active" id="files-projects-tab" data-toggle="pill" href="#nilai-dpl"
                                     aria-selected="true">
+                                    <i class="em em-file_folder mr-3 text-warning d-inline-block"></i>
+                                    <div class="d-inline-block align-self-center">
+                                        <h5 class="m-0">Nilai DPL</h5>
+                                    </div>
+                                </a>
+                                <a class="nav-link" id="files-projects-tab" data-toggle="pill" href="#files-projects"
+                                    aria-selected="false">
                                     <i class="em em-file_folder mr-3 text-warning d-inline-block"></i>
                                     <div class="d-inline-block align-self-center">
                                         <h5 class="m-0">Unggah Transkrip Nilai DPL</h5>
@@ -101,7 +108,46 @@
             <div class="col-lg-9">
                 <div class="">
                     <div class="tab-content" id="files-tabContent">
-                        <div class="tab-pane fade show active" id="files-projects">
+                        <div class="tab-pane fade show active" id="nilai-dpl">
+                            {{-- Nilai DPL Mahasiswa --}}
+                            <div class="card">
+                                <div class="card-body">
+                                    <table class="table table-bordered table-striped">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th style="width: 5%;" class="text-center">No</th>
+                                                <th style="width: 50%;" class="text-center">Aktivitas Yang Dinilai</th>
+                                                <th style="width: 45%;" class="text-center">Nilai</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($kriteria_penilaian_mitras as $index => $item)
+                                                <tr>
+                                                    <td class="text-center">{{ $index + 1 }}</td>
+                                                    <td class="text-center">
+                                                        {{ $item->kriteria_penilaian->nama_kriteria_penilaian }}</td>
+                                                    <td class="text-center">
+                                                        {{ $nilai_dpls->where('id_kriteria_penilaian', $item->id_kriteria_penilaian)->first()->nilai ?? '-' }}
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td class="text-center" colspan="2">Jumlah</td>
+                                                <td class="text-center"><b>{{ $jumlah_nilai }}</b></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center" colspan="2">Rata-Rata</td>
+                                                <td class="text-center"><b>{{ $rata_rata_nilai }}</b></td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div><!--end tab-pane-->
+
+                        <div class="tab-pane fade show" id="files-projects">
                             {{-- Form Create Transkrip --}}
                             <div class="card">
                                 <div class="card-body">
