@@ -45,12 +45,6 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        {{-- @php
-                            // Konversi tanggal mulai dan tanggal tutup ke format yang dapat dibandingkan
-                            $tanggalMulai = \Carbon\Carbon::parse($lowongan->tanggal_magang_dimulai);
-                            $tanggalTutup = \Carbon\Carbon::parse($lowongan->tanggal_magang_ditutup);
-                            $tanggalSekarang = now(); // Mendapatkan tanggal sekarang
-                        @endphp --}}
 
                         <div class="table-responsive">
                             @php
@@ -93,9 +87,6 @@
                                                     <i class="fa-solid fa-circle-check text-success font-16"></i>
                                                 </a>
                                                 &ensp;
-                                                {{-- <a href="#" title="Ditolak">
-                                                    <i class="fa-solid fa-circle-xmark text-salmon font-16"></i>
-                                                </a> --}}
                                             </td>
                                         </tr>
                                         <!--end tr-->

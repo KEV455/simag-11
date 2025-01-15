@@ -296,6 +296,23 @@
                                     </li>
                                 </ul><!--end submenu-->
                             </li><!--end has-submenu-->
+
+                            <li class="has-submenu">
+                                <a href="#">
+                                    <i class="fa-solid fa-book"></i>
+                                    <span>Magang</span>
+                                </a>
+                                <ul class="submenu">
+                                    <li>
+                                        <a href="{{ route('dpl.validasi.logbook.index') }}">
+                                            Logbook Kegiatan
+                                        </a>
+                                        <a href="{{ route('dpl.nilai.dpl.index') }}">
+                                            Penilaian Magang
+                                        </a>
+                                    </li>
+                                </ul><!--end submenu-->
+                            </li><!--end has-submenu-->
                         @endif
 
                         {{-- Navbar Dosen Pembimbing --}}

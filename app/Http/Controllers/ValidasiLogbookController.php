@@ -81,11 +81,8 @@ class ValidasiLogbookController extends Controller
 
         $pelamar_magangs = PelamarMagang::where('status_diterima', 'Diterima')
             ->where('id_lowongan', $lowongan->id)
-            ->with('peserta_magang') // Include the related PesertaMagang
+            ->with('peserta_magang')
             ->get();
-
-        // Debug log untuk mengecek data
-        // Log::info($pelamar_magangs);
 
         $data = [
             'lowongan' => $lowongan,
@@ -123,6 +120,27 @@ class ValidasiLogbookController extends Controller
     public function showLogbook($id)
     {
         $peserta_magang = PesertaMagang::findOrFail($id);
+
+        $tahun_ajaran_aktif = TahunAjaran::where('status', true)->first();
+
+        $lowongan = Lowongan::where('id_semester', $tahun_ajaran_aktif->id_semester)->where('id', $peserta_magang->pelamar_magang->id_lowongan)->first();
+
+        if (!$lowongan) {
+            Alert::error('Invalid', 'Maaf, Lowongan Tidak Valid');
+            return redirect()->route('dpl.validasi.logbook.index');
+        }
+
+        $user = User::where('id', Auth::user()->id)->first();
+        $dpl_mitra = DPLMitra::where('email', $user->email)->first();
+
+        $lowonganDPL = DPLLowongan::where('id_lowongan', $lowongan->id)
+            ->where('id_dpl_mitra', $dpl_mitra->id)
+            ->first();
+
+        if (!$lowonganDPL) {
+            Alert::error('Invalid', 'Maaf, Lowongan Tidak Valid');
+            return redirect()->route('dpl.validasi.logbook.index');
+        }
 
         $data = [
             'peserta_magang' => $peserta_magang,
