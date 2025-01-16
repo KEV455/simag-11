@@ -11,6 +11,7 @@ use App\Models\TahunAjaran;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class MahasiswaBimbinganController extends Controller
 {
@@ -103,6 +104,27 @@ class MahasiswaBimbinganController extends Controller
 
     public function logbook($id)
     {
+        $tahun_ajaran_aktif = TahunAjaran::where('status', true)->first();
+
+        // Ambil data user yang sedang login
+        $user = User::findOrFail(Auth::id());
+
+        // Ambil data dosen berdasarkan user ID
+        $dosen = Dosen::where('email', $user->email)->firstOrFail();
+
+        // get data dospem
+        $dospem = DosenPembimbing::where('id_dosen', $dosen->id)->first();
+
+        // get data pembimbing magang
+        $peserta_magang = PesertaMagang::findOrFail($id);
+
+        $pembimbing_magang = PembimbingMagang::where('id_mahasiswa', $peserta_magang->pelamar_magang->mahasiswa->id)->where('id_semester', $tahun_ajaran_aktif->id_semester)->where('id_dosen_pembimbing', $dospem->id)->first();
+
+        if (!$pembimbing_magang) {
+            Alert::error('Invalid', 'Mahasiswa Bimbingan Invalid');
+            return redirect()->route('dospem.mahasiswa.bimbingan.index');
+        }
+
         // Ambil logbook berdasarkan peserta magang
         $logbook = Logbook::where('id_peserta_magang', $id)
             ->orderBy('tanggal_kegiatan', 'asc')
