@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DosenPembimbing;
 use App\Models\Mahasiswa;
 use App\Models\PembimbingMagang;
+use App\Models\PermohonanDosenPembimbing;
 use App\Models\TahunAjaran;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -63,6 +64,13 @@ class PembimbingMagangController extends Controller
         if ($check_id_mahasiswa) {
             foreach ($check_id_mahasiswa as $mahasiswaId) {
                 $pembimbing_magang_dospem_count = PembimbingMagang::where('id_dosen_pembimbing', $id)->where('id_semester', $tahun_ajaran_aktif->id_semester)->count();
+
+                PermohonanDosenPembimbing::create([
+                    'id_mahasiswa' => $mahasiswaId,
+                    'id_dosen_pembimbing' => $id,
+                    'id_semester' => $tahun_ajaran_aktif->id_semester,
+                    'status' => 'disetujui',
+                ]);
 
                 // pengecekan kuota dospem
                 if ($pembimbing_magang_dospem_count < $dospem->kuota) {

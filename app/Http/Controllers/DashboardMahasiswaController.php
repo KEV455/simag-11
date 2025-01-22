@@ -31,7 +31,7 @@ class DashboardMahasiswaController extends Controller
 
         $data = [
             'mitras_mandiri_count' => MitraMandiri::where('id_mahasiswa', $mahasiswa->id)->count(),
-            'pelamar_magang_count' => PelamarMagang::where('id_mahasiswa', $mahasiswa->id)->count(),
+            'pelamar_magang_count' => PelamarMagang::where('id_semester', $tahun_ajaran_aktif->id_semester)->where('id_mahasiswa', $mahasiswa->id)->count(),
             'permohonan_dosen_pembimbing_count' => PermohonanDosenPembimbing::where('id_mahasiswa', $mahasiswa->id)->count(),
             'pelamar_magang' => $pelamar_magang,
             'permohonan_dospem_mhs' => $permohonan_dospem_mhs,

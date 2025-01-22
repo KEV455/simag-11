@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\BerkasPelamar;
 use App\Models\Mahasiswa;
 use App\Models\PelamarMagang;
+use App\Models\TahunAjaran;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,11 +19,14 @@ class PermohonanMagangMahasiswaController extends Controller
      */
     public function index()
     {
+        // Ambil tahun ajaran yang sedang aktif
+        $tahun_ajaran_aktif = TahunAjaran::where('status', true)->first();
+
         $user = User::findOrFail(Auth::id());
         $mahasiswa = Mahasiswa::where('id_user', $user->id)->firstOrFail();
 
         $data = [
-            'pelamar_magang' => PelamarMagang::where('id_mahasiswa', $mahasiswa->id)->orderBy('id_semester', 'asc')
+            'pelamar_magang' => PelamarMagang::where('id_semester', $tahun_ajaran_aktif->id_semester)->where('id_mahasiswa', $mahasiswa->id)->orderBy('id_semester', 'asc')
                 ->with('berkas_pelamar') // Load relasi berkas pelamar
                 ->get(),
         ];

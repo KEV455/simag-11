@@ -53,7 +53,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ValidasiLogbookController;
 use App\Http\Controllers\ValidasiNilaiMagangController;
 
-Route::middleware(['guest'])->group(function () {
+Route::middleware(['redirect.auth', 'guest'])->group(function () {
     // Route Authentication
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [AuthController::class, 'login'])->name('do.login');
