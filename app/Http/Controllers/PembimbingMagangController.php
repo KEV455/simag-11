@@ -65,19 +65,26 @@ class PembimbingMagangController extends Controller
             foreach ($check_id_mahasiswa as $mahasiswaId) {
                 $pembimbing_magang_dospem_count = PembimbingMagang::where('id_dosen_pembimbing', $id)->where('id_semester', $tahun_ajaran_aktif->id_semester)->count();
 
-                PermohonanDosenPembimbing::create([
-                    'id_mahasiswa' => $mahasiswaId,
-                    'id_dosen_pembimbing' => $id,
-                    'id_semester' => $tahun_ajaran_aktif->id_semester,
-                    'status' => 'disetujui',
-                ]);
-
                 // pengecekan kuota dospem
                 if ($pembimbing_magang_dospem_count < $dospem->kuota) {
+                    PermohonanDosenPembimbing::create([
+                        'id_mahasiswa' => $mahasiswaId,
+                        'id_dosen_pembimbing' => $id,
+                        'id_semester' => $tahun_ajaran_aktif->id_semester,
+                        'status' => 'disetujui',
+                    ]);
+
                     PembimbingMagang::create([
                         'id_dosen_pembimbing' => $id,
                         'id_mahasiswa' => $mahasiswaId,
                         'id_semester' => $tahun_ajaran_aktif->id_semester,
+                    ]);
+                } else {
+                    PermohonanDosenPembimbing::create([
+                        'id_mahasiswa' => $mahasiswaId,
+                        'id_dosen_pembimbing' => $id,
+                        'id_semester' => $tahun_ajaran_aktif->id_semester,
+                        'status' => 'ditolak',
                     ]);
                 }
             }

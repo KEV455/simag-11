@@ -42,7 +42,7 @@ class Lowongan extends Model
 
     public function pelamar_magang()
     {
-        return $this->hasMany(PelamarMagang::class, 'id');
+        return $this->hasMany(PelamarMagang::class, 'id_lowongan', 'id');
     }
 
     public function dpl_lowongan()

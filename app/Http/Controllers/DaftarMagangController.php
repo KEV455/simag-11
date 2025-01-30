@@ -34,7 +34,8 @@ class DaftarMagangController extends Controller
             $lowongan_by_kategori = Lowongan::with('lowongan_prodi')
                 ->withCount([
                     'pelamar_magang as pelamar_diterima_count' => function ($query) {
-                        $query->where('status_diterima', 'Diterima');
+                        $query->whereColumn('pelamar_magangs.id_lowongan', 'lowongans.id')
+                            ->where('status_diterima', 'Diterima');
                     }
                 ])
                 ->where('status', 'Aktif')->where('id_semester', $tahun_ajaran_aktif->id_semester)
@@ -47,12 +48,15 @@ class DaftarMagangController extends Controller
             $lowongan_by_kategori = Lowongan::with('lowongan_prodi')
                 ->withCount([
                     'pelamar_magang as pelamar_diterima_count' => function ($query) {
-                        $query->where('status_diterima', 'Diterima');
+                        $query->whereColumn('pelamar_magangs.id_lowongan', 'lowongans.id')
+                            ->where('status_diterima', 'Diterima');
                     }
                 ])
                 ->where('status', 'Aktif')->where('id_semester', $tahun_ajaran_aktif->id_semester)
                 ->get();
         }
+
+        // dd($lowongan_by_kategori);
 
         // Kirim data ke view
         return view('pages.mahasiswa.pendaftaran-magang.index', [

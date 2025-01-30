@@ -98,9 +98,6 @@ class PermohonanDosenController extends Controller
         // Ambil total kuota pembimbing dari dosen pembimbing
         $kuota = $dosenPembimbing->kuota;
 
-        // Hitung jumlah mahasiswa yang sudah dibimbing oleh dosen ini
-        $jumlahMahasiswaDibimbing = PembimbingMagang::where('id_dosen_pembimbing', $dosenPembimbing->id)->count();
-
         // Ambil tahun ajaran aktif
         $tahun_ajaran_aktif = TahunAjaran::where('status', true)->first();
 
@@ -108,6 +105,9 @@ class PermohonanDosenController extends Controller
             Alert::error('Error', 'Tahun ajaran aktif tidak ditemukan.');
             return redirect()->back();
         }
+
+        // Hitung jumlah mahasiswa yang sudah dibimbing oleh dosen ini
+        $jumlahMahasiswaDibimbing = PembimbingMagang::where('id_semester', $tahun_ajaran_aktif->id_semester)->where('id_dosen_pembimbing', $dosenPembimbing->id)->count();
 
         // Cek apakah kuota sudah terpenuhi`
         if ($jumlahMahasiswaDibimbing >= $kuota) {

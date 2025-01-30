@@ -1,7 +1,7 @@
 @extends('layouts.base.base-template')
 
 @section('title')
-    <title>Detail Lowongan | SiMagang</title>
+    <title>Detail Lowongan {{ $lowongan->mitra->nama }} | SiMagang</title>
 @endsection
 
 @section('top-css')
@@ -85,15 +85,15 @@
                                     {{-- Mitra --}}
                                     <h4 class="bg-success text-white py-2 px-3 rounded mb-3">Informasi Mitra</h4>
                                     <span class="font-14">
-                                        <i class="fa-solid fa-user-tag"></i>&ensp;
+                                        <i class="fa-solid fa-user-tag"></i>&ensp; Narahubung :
                                         {{ $lowongan->mitra->narahubung }}
                                     </span><br>
-                                    <span class="text-lowercase font-14">
-                                        <i class="fa-solid fa-envelope"></i>&ensp;
+                                    <span class="font-14">
+                                        <i class="fa-solid fa-envelope"></i>&ensp; Email :
                                         {{ $lowongan->mitra->email }}
                                     </span><br>
-                                    <span class="text-lowercase font-14">
-                                        <i class="fa-solid fa-globe"></i>&ensp;
+                                    <span class="font-14">
+                                        <i class="fa-solid fa-globe"></i>&ensp; Web :
                                         @if ($lowongan->mitra->website)
                                             @php
                                                 $website = $lowongan->mitra->website;
@@ -109,12 +109,12 @@
                                             Belum ditambahkan
                                         @endif
                                     </span><br>
-                                    <span class="text-uppercase font-14">
-                                        <i class="fa-solid fa-location-dot"></i>&ensp;
+                                    <span class="font-14">
+                                        <i class="fa-solid fa-location-dot"></i>&ensp; Lokasi :
                                         {{ $lowongan->mitra->kota }} - {{ $lowongan->mitra->provinsi }}
                                     </span><br>
-                                    <span class="text-uppercase font-14">
-                                        <i class="fa-solid fa-map-location-dot"></i>&ensp;
+                                    <span class="font-14">
+                                        <i class="fa-solid fa-map-location-dot"></i>&ensp; Alamat :
                                         {{ $lowongan->mitra->alamat }}
                                     </span><br>
                                 </div>
@@ -136,6 +136,7 @@
                                         {{ dateConversion($lowongan->tanggal_magang_ditutup) }}
                                     </span><br><br>
                                     <p class="text-muted font-14">
+                                        Deskripsi Lowongan : <br>
                                         {{ $lowongan->deskripsi }}
                                     </p>
                                 </div>

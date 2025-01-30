@@ -10,7 +10,7 @@ class UserSeeder extends Seeder
 {
     public function run()
     {
-        // mahasiswa
+        // admin
         User::create([
             'id' => 1,
             'name' => 'Super Admin',
